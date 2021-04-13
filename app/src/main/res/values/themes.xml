@@ -1,0 +1,37 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorCarrotOrange</item>
+        <item name="colorPrimaryVariant">@color/colorAltoGray</item>
+        <item name="colorOnPrimary">@color/colorWhite</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/colorTeal_200</item>
+        <item name="colorSecondaryVariant">@color/colorTeal_700</item>
+        <item name="colorOnSecondary">@color/colorBlack</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="circleImageView" parent="AppTheme">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="TextInputLayoutError" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/sp_11</item>
+    </style>
+
+    <style name="ThemeOverlay.search" parent="AppTheme">
+        <!-- Text color -->
+        <item name="android:editTextColor">@color/colorCarrotOrange</item>
+        <!-- Hint text color -->
+        <item name="android:textColorHint">@color/colorGray_light</item>
+    </style>
+
+    <style name="cornerImageView10percent" parent="AppTheme">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5%</item>
+    </style>
+</resources>
