@@ -12,8 +12,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.qakhadriver.R
+import com.example.qakhadriver.screens.signin.SignInFragment
 import com.example.qakhadriver.utils.IPositiveNegativeListener
 import com.example.qakhadriver.utils.LocationHelper
+import com.example.qakhadriver.utils.addFragment
 
 class AuthenticationFragment : Fragment() {
 
@@ -27,6 +29,11 @@ class AuthenticationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         checkPermission()
+        initView()
+    }
+
+    private fun initView() {
+        addFragment(SignInFragment.newInstance(), R.id.containerViewAuthentication)
     }
 
     private fun checkPermission() {
