@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QAKHA Driver</string>
+    <string name="back_again_to_exit">Nhấn back thêm 1 lần nữa để thoát </string>
+    <string name="play_services_did_not_installed">Dịch vụ play chưa được cài đặt</string>
+    <string name="enable_gps_service">Bật dịch vụ GPS</string>
+    <string name="content_location">Ứng dụng này muốn thay đổi cài đặt thiết bị của bạn bằng cách sử dụng GPS, Wi-Fi và mạng di động cho vị trí của bạn</string>
+    <string name="turn_on">Bật</string>
+</resources>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">QAKHA Driver</string>
+    <string name="back_again_to_exit">Back again to exit </string>
+    <string name="play_services_did_not_installed">play services did not installed</string>
+    <string name="enable_gps_service">Enable GPS Service</string>
+    <string name="content_location">This app wants to change your device settings use GPS,Wi-Fi and cell networks for your location</string>
+    <string name="turn_on">Turn On</string>
 </resources>
