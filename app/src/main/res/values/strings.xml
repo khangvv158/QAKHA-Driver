@@ -106,7 +106,7 @@
     <string name="messenger_clear_cart">Do you want delete this cart</string>
     <string name="dialog_yes">Yes</string>
     <string name="dialog_no">No</string>
-    <string name="sign_up_success">Sign up Success</string>
+    <string name="sign_up_success">Sign up success, please wait to confirm your account</string>
     <string name="you_cannot_sign_in_with_this_account">You cannot sign in with this account</string>
     <string name="description_validate_password">At least 6 characters, 1 uppercase - lowercase letter and a number</string>
     <string name="password_cant_be_blank">Password can\'t be blank</string>
@@ -151,4 +151,10 @@
     <string name="your_order_is_being_delivered">Your order is being delivered…</string>
     <string name="identity_card">Identity card</string>
     <string name="license_plate">License plate</string>
+    <string name="identity_card_cant_be_blank">Identity card can\'t be blank</string>
+    <string name="identity_card_is_invalid">Identity card is invalid</string>
+    <string name="license_plate_cant_be_blank">License plate can\'t be blank</string>
+    <string name="license_plate_is_invalid">License plate is invalid, Ex: 43C1–12345</string>
+    <string name="id_card_is_already_exists_in_database">Id card is already exists in database</string>
+    <string name="license_plate_is_already_exists_in_database">License plate is already exists in database</string>
 </resources>

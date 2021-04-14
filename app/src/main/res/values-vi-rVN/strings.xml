@@ -97,7 +97,7 @@
     <string name="messenger_clear_cart">Bạn có muốn xóa giỏ hàng này không</string>
     <string name="dialog_yes">Đồng ý</string>
     <string name="dialog_no">Từ chối</string>
-    <string name="sign_up_success">Đăng ký thành công</string>
+    <string name="sign_up_success">Đăng ký thành công, Vui lòng đợi để xác nhận tài khoản</string>
     <string name="you_cannot_sign_in_with_this_account">Bạn không thể đăng nhập bằng tài khoản này</string>
     <string name="description_validate_password">Ít nhất 6 ký tự, bao gồm 1 chữ hoa, 1 chữ thường và một số</string>
     <string name="password_cant_be_blank">Mật khẩu không được để trống</string>
@@ -141,4 +141,10 @@
     <string name="your_order_is_being_delivered">Đơn hàng của bạn đang được giao…</string>
     <string name="identity_card">Chứng minh nhân dân</string>
     <string name="license_plate">Biển số xe máy</string>
+    <string name="identity_card_cant_be_blank">Chứng minh nhân dân không được để trống</string>
+    <string name="identity_card_is_invalid">Chứng minh nhân dân không hợp lệ</string>
+    <string name="license_plate_cant_be_blank">Biển số xe không được để trống</string>
+    <string name="license_plate_is_invalid">Biển số xe không hợp lệ, ví dụ : 43C1–12345</string>
+    <string name="id_card_is_already_exists_in_database">Chứng minh nhân dân đã tồn tại</string>
+    <string name="license_plate_is_already_exists_in_database">Biển số xe đã tồn tại</string>
 </resources>

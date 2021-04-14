@@ -28,4 +28,10 @@ interface SignAPI {
     fun resetPasswordByVerificationCode(
             @Body resetPasswordRequest: ResetPasswordRequest
     ): Observable<MessageResponse>
+
+    @POST("/example")
+    fun checkIdentifyCard(@Body identifyCardRequest: IdentifyCardRequest): Observable<Boolean>
+
+    @POST("/example")
+    fun checkLicensePlate(@Body licensePlateRequest: LicensePlateRequest): Observable<Boolean>
 }

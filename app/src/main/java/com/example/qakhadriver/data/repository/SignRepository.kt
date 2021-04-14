@@ -33,7 +33,13 @@ interface SignRepository {
 
     fun forgotPassword(emailRequest: EmailRequest): Observable<MessageResponse>
 
-    fun resetPasswordByVerificationCode(resetPasswordRequest: ResetPasswordRequest): Observable<MessageResponse>
+    fun resetPasswordByVerificationCode(
+            resetPasswordRequest: ResetPasswordRequest
+    ): Observable<MessageResponse>
+
+    fun checkIdentifyCard(identifyCardRequest: IdentifyCardRequest): Observable<Boolean>
+
+    fun checkLicensePlate(licensePlateRequest: LicensePlateRequest): Observable<Boolean>
 }
 
 class SignRepositoryImpl private constructor(
@@ -90,6 +96,12 @@ class SignRepositoryImpl private constructor(
     override fun resetPasswordByVerificationCode(
             resetPasswordRequest: ResetPasswordRequest
     ): Observable<MessageResponse> = client.resetPasswordByVerificationCode(resetPasswordRequest)
+
+    override fun checkIdentifyCard(identifyCardRequest: IdentifyCardRequest): Observable<Boolean> =
+            client.checkIdentifyCard(identifyCardRequest)
+
+    override fun checkLicensePlate(licensePlateRequest: LicensePlateRequest): Observable<Boolean> =
+            client.checkLicensePlate(licensePlateRequest)
 
     companion object {
 

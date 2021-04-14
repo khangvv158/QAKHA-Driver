@@ -197,6 +197,7 @@
                 android:layout_marginBottom="@dimen/dp_20"
                 android:layout_centerHorizontal="true"
                 android:text="@string/title_continue"
+                android:layout_marginTop="@dimen/dp_20"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/sp_18"
                 app:backgroundTint="@color/colorCarrotOrange"
