@@ -139,4 +139,6 @@
     <string name="feedback">Đánh giá</string>
     <string name="see_detail">Xem chi tiết</string>
     <string name="your_order_is_being_delivered">Đơn hàng của bạn đang được giao…</string>
+    <string name="identity_card">Chứng minh nhân dân</string>
+    <string name="license_plate">Biển số xe máy</string>
 </resources>

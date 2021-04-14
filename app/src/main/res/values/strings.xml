@@ -149,4 +149,6 @@
     <string name="feedback">feedback</string>
     <string name="see_detail">See detail</string>
     <string name="your_order_is_being_delivered">Your order is being delivered…</string>
+    <string name="identity_card">Identity card</string>
+    <string name="license_plate">License plate</string>
 </resources>
