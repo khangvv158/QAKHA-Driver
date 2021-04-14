@@ -4,7 +4,14 @@ import com.example.qakhadriver.utils.BasePresenter
 
 interface SignInContract {
 
-    interface View
+    interface View {
+        fun onSignInSuccess()
+        fun onSignInFailure(message: String)
+        fun onError(message: String)
+        fun onSignInRoleFailure()
+    }
 
-    interface Presenter : BasePresenter<View>
+    interface Presenter : BasePresenter<View> {
+        fun signIn(email: String, password: String)
+    }
 }
