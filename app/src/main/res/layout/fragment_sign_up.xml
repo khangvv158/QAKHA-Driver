@@ -1,6 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerViewSignUp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.signup.SignUpFragment"/>
+    android:background="@color/colorWhite"
+    tools:context=".screens.signup.SignUpFragment">
+
+    <ImageView
+        android:id="@+id/imageViewBack"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:translationZ="@dimen/dp_10"
+        android:background="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="24:24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.032"
+        app:layout_constraintWidth_percent="0.06" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewBack">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewIllustration"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/ic_driver_illustration"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="200:175"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.535"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.089"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewLogo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/logo"
+                app:layout_constraintDimensionRatio="123:47"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.77"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewIllustration"
+                app:layout_constraintWidth_percent="0.3" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:hint="@string/email"
+                app:boxCornerRadiusBottomEnd="@dimen/dp_10"
+                app:boxCornerRadiusBottomStart="@dimen/dp_10"
+                app:boxCornerRadiusTopEnd="@dimen/dp_10"
+                app:boxCornerRadiusTopStart="@dimen/dp_10"
+                app:errorTextAppearance="@style/TextInputLayoutError"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="331:75"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.375"
+                app:layout_constraintWidth_percent="0.8">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_50"
+                    android:imeOptions="actionGo"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_5"
+                android:hint="@string/password"
+                app:boxCornerRadiusBottomEnd="@dimen/dp_10"
+                app:boxCornerRadiusBottomStart="@dimen/dp_10"
+                app:boxCornerRadiusTopEnd="@dimen/dp_10"
+                app:boxCornerRadiusTopStart="@dimen/dp_10"
+                app:errorTextAppearance="@style/TextInputLayoutError"
+                app:layout_constraintDimensionRatio="331:75"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailTextInputLayout"
+                app:layout_constraintWidth_percent="0.8">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_50"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/confirmPasswordTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_5"
+                android:hint="@string/confirm_password"
+                app:boxCornerRadiusBottomEnd="@dimen/dp_10"
+                app:boxCornerRadiusBottomStart="@dimen/dp_10"
+                app:boxCornerRadiusTopEnd="@dimen/dp_10"
+                app:boxCornerRadiusTopStart="@dimen/dp_10"
+                app:errorTextAppearance="@style/TextInputLayoutError"
+                app:layout_constraintDimensionRatio="331:75"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout"
+                app:layout_constraintWidth_percent="0.8">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirmPasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_50"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nameTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_5"
+                android:hint="@string/name_account"
+                app:boxCornerRadiusBottomEnd="@dimen/dp_10"
+                app:boxCornerRadiusBottomStart="@dimen/dp_10"
+                app:boxCornerRadiusTopEnd="@dimen/dp_10"
+                app:boxCornerRadiusTopStart="@dimen/dp_10"
+                app:errorTextAppearance="@style/TextInputLayoutError"
+                app:layout_constraintDimensionRatio="331:75"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirmPasswordTextInputLayout"
+                app:layout_constraintWidth_percent="0.8">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_50"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneNumberTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_5"
+                android:hint="@string/phone_number"
+                app:boxCornerRadiusBottomEnd="@dimen/dp_10"
+                app:boxCornerRadiusBottomStart="@dimen/dp_10"
+                app:boxCornerRadiusTopEnd="@dimen/dp_10"
+                app:boxCornerRadiusTopStart="@dimen/dp_10"
+                app:errorTextAppearance="@style/TextInputLayoutError"
+                app:layout_constraintDimensionRatio="331:75"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameTextInputLayout"
+                app:layout_constraintWidth_percent="0.8">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneNumberEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_50"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/signUpButton"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="@dimen/dp_250"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:layout_centerHorizontal="true"
+                android:text="@string/title_continue"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_18"
+                app:backgroundTint="@color/colorCarrotOrange"
+                app:cornerRadius="@dimen/dp_10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/licensePlateTextInputLayout"
+                app:layout_constraintVertical_bias="0.79" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/identityCardTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_5"
+                android:hint="@string/identity_card"
+                app:boxCornerRadiusBottomEnd="@dimen/dp_10"
+                app:boxCornerRadiusBottomStart="@dimen/dp_10"
+                app:boxCornerRadiusTopEnd="@dimen/dp_10"
+                app:boxCornerRadiusTopStart="@dimen/dp_10"
+                app:errorTextAppearance="@style/TextInputLayoutError"
+                app:layout_constraintDimensionRatio="331:75"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumberTextInputLayout"
+                app:layout_constraintWidth_percent="0.8">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/identityCardEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_50"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/licensePlateTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_5"
+                android:hint="@string/license_plate"
+                app:boxCornerRadiusBottomEnd="@dimen/dp_10"
+                app:boxCornerRadiusBottomStart="@dimen/dp_10"
+                app:boxCornerRadiusTopEnd="@dimen/dp_10"
+                app:boxCornerRadiusTopStart="@dimen/dp_10"
+                app:errorTextAppearance="@style/TextInputLayoutError"
+                app:layout_constraintDimensionRatio="331:75"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/identityCardTextInputLayout"
+                app:layout_constraintWidth_percent="0.8">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/licensePlateCardEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_50"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
