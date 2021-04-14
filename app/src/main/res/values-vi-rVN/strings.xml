@@ -147,4 +147,6 @@
     <string name="license_plate_is_invalid">Biển số xe không hợp lệ, ví dụ : 43C1–12345</string>
     <string name="id_card_is_already_exists_in_database">Chứng minh nhân dân đã tồn tại</string>
     <string name="license_plate_is_already_exists_in_database">Biển số xe đã tồn tại</string>
+    <string name="bill">Đơn</string>
+    <string name="earnings">Thu nhập</string>
 </resources>
