@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import com.example.qakhadriver.R
 import com.example.qakhadriver.screens.authentication.AuthenticationFragment
+import com.example.qakhadriver.screens.container.ContainerFragment
 import com.example.qakhadriver.utils.addFragment
 
 class MainActivity : AppCompatActivity() {
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        addFragment(AuthenticationFragment.newInstance(), R.id.containerView)
+        addFragment(AuthenticationFragment.newInstance(), R.id.containerViewMain)
     }
 
     private fun setFlags() {
