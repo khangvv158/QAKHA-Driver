@@ -39,7 +39,8 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View {
     }
 
     override fun onCheckSignedInSuccess() {
-        presenter.checkTokenSignedIn()
+        /*presenter.checkTokenSignedIn() event check removed */
+        navigateContainerFragment()
     }
 
     override fun onCheckSignedInFailure() {

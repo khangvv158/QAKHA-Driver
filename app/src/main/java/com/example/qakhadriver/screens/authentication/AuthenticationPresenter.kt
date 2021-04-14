@@ -19,6 +19,7 @@ class AuthenticationPresenter(private val sharedPrefs: SharedPrefs)
     }
 
     override fun checkTokenSignedIn() {
+        //no-op
     }
 
     override fun onStart() = Unit
