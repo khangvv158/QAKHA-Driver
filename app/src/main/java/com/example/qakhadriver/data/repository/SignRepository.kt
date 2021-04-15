@@ -58,9 +58,7 @@ class SignRepositoryImpl private constructor(
                             password
                     )
             ).doOnNext {
-                if (it.role == Constants.ROLE_MEMBER) {
                     sharedPrefs.put(SharedPrefsKey.TOKEN_KEY, it)
-                }
             }
 
     override fun signUp(
@@ -80,7 +78,7 @@ class SignRepositoryImpl private constructor(
                             phoneNumber,
                             name,
                             idCard,
-                            licensePlate
+                            licensePlate,
                     )
             )
 

@@ -10,6 +10,5 @@ data class RegisterRequest(
         @SerializedName("name") val name: String,
         @SerializedName("id_card") val idCard: String,
         @SerializedName("license_plate") var licensePlate: String,
-        @SerializedName("type_user") var typeUser: String = "2",
-        @SerializedName("city_id") var idCity: String = "1"
+        @SerializedName("type_user") var typeUser: Int = 2,
 )

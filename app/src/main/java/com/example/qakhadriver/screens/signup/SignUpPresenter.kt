@@ -51,6 +51,7 @@ class SignUpPresenter(private val signRepository: SignRepository) : SignUpContra
                         }
                     }
                 })
+        compositeDisposable.add(disposable)
     }
 
     override fun checkEmailIsExist(email: String) {

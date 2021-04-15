@@ -6,6 +6,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class TokenAccess(
-        @SerializedName("role") val role: String?,
+        @SerializedName("message") val message: String?,
         @SerializedName("token") val token: String?
 ) : Parcelable
