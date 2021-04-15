@@ -14,12 +14,13 @@ import androidx.core.app.ActivityCompat
 import com.example.qakhadriver.R
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
 import com.example.qakhadriver.screens.container.ContainerFragment
+import com.example.qakhadriver.screens.signin.OnSignInSuccessListener
 import com.example.qakhadriver.screens.signin.SignInFragment
 import com.example.qakhadriver.utils.IPositiveNegativeListener
 import com.example.qakhadriver.utils.LocationHelper
 import com.example.qakhadriver.utils.replaceFragment
 
-class AuthenticationFragment : Fragment(), AuthenticationContract.View {
+class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignInSuccessListener {
 
     private val presenter by lazy {
         AuthenticationPresenter(SharedPrefsImpl.getInstance(requireContext()))
@@ -38,8 +39,11 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View {
         initView()
     }
 
+    override fun onSignInSuccess() {
+        navigateContainerFragment()
+    }
+
     override fun onCheckSignedInSuccess() {
-        /*presenter.checkTokenSignedIn() event check removed */
         navigateContainerFragment()
     }
 
@@ -60,7 +64,9 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View {
     }
 
     private fun navigateSignInFragment() {
-        replaceFragment(SignInFragment.newInstance(), R.id.containerViewAuthentication)
+        replaceFragment(SignInFragment.newInstance().apply {
+            registerOnSignInSuccessListener(this@AuthenticationFragment)
+        }, R.id.containerViewAuthentication)
     }
 
     private fun initView() {

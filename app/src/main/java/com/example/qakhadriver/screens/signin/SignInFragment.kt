@@ -23,6 +23,7 @@ class SignInFragment : Fragment(), SignInContract.View {
                 SharedPrefsImpl.getInstance(requireContext())
         ))
     }
+    private var onSignInSuccessListener: OnSignInSuccessListener? = null
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -39,11 +40,12 @@ class SignInFragment : Fragment(), SignInContract.View {
 
     override fun onStop() {
         presenter.onStop()
+        onSignInSuccessListener = null
         super.onStop()
     }
 
     override fun onSignInSuccess() {
-        //no-op
+        onSignInSuccessListener?.onSignInSuccess()
     }
 
     override fun onSignInFailure(message: String) {
@@ -61,6 +63,10 @@ class SignInFragment : Fragment(), SignInContract.View {
                 getString(R.string.you_cannot_sign_in_with_this_account),
                 Toast.LENGTH_LONG
         ).show()
+    }
+
+    fun registerOnSignInSuccessListener(onSignInSuccessListener: OnSignInSuccessListener) {
+        this.onSignInSuccessListener = onSignInSuccessListener
     }
 
     private fun initViews() {
