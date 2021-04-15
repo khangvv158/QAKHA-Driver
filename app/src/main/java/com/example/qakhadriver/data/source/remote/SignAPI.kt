@@ -9,7 +9,7 @@ import retrofit2.http.POST
 
 interface SignAPI {
 
-    @POST("sign_in")
+    @POST("sign_in_driver")
     fun signIn(@Body parameterName: CredentialRequest): Observable<TokenAccess>
 
     @POST("sign_up")
@@ -29,9 +29,9 @@ interface SignAPI {
             @Body resetPasswordRequest: ResetPasswordRequest
     ): Observable<MessageResponse>
 
-    @POST("/example")
+    @POST("check_id_card_driver")
     fun checkIdentifyCard(@Body identifyCardRequest: IdentifyCardRequest): Observable<Boolean>
 
-    @POST("/example")
+    @POST("check_license_plate_driver")
     fun checkLicensePlate(@Body licensePlateRequest: LicensePlateRequest): Observable<Boolean>
 }
