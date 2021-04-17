@@ -112,6 +112,12 @@ class SignUpFragment : Fragment(), SignUpContract.View {
         val checkPhoneNumber = validatePhoneNumber(phoneNumberEditText.text.toString())
         val checkIdCard = validateIdentityCard(identityCardEditText.text.toString())
         val checkLicensePlate = validateLicensePlate(licensePlateCardEditText.text.toString())
+        presenter.checkPhoneNumberIsExist(phoneNumberEditText.text.toString())
+        presenter.checkLicensePlate(licensePlateCardEditText.text.toString())
+        presenter.checkIdCardIsExist(identityCardEditText.text.toString())
+        if (!emailEditText.text.isNullOrBlank()) {
+            presenter.checkEmailIsExist(emailEditText.text.toString())
+        }
         if (checkEmail &&
                 checkPassword &&
                 checkPasswordConfirmation &&
@@ -222,7 +228,7 @@ class SignUpFragment : Fragment(), SignUpContract.View {
         identityCardEditText.text = null
         identityCardTextInputLayout.error = null
         licensePlateCardEditText.text = null
-        identityCardTextInputLayout.error = null
+        licensePlateTextInputLayout.error = null
     }
 
     private fun validateEmail(email: String): Boolean {
