@@ -120,4 +120,5 @@
     <color name="colorCarrotOrange">#F7941D</color>
     <color name="colorWhileSmoke">#F6F6F6</color>
     <color name="colorCarrotOrangeLight">#FBC584</color>
+    <color name="colorTextGray">#9A9A9A</color>
 </resources>

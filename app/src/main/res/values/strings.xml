@@ -162,4 +162,11 @@
     <string name="foreground_service_channel">Foreground Service Channel</string>
     <string name="location_turned_on">"Location turned on "</string>
     <string name="have_a_nice_working_day">Have a nice working day</string>
+    <string name="free_pick">Free-pick</string>
+    <string name="doing">Doing</string>
+    <string name="done">Done</string>
+    <string name="delivery">Delivery</string>
+    <string name="waiting_for_delivery">Waiting for delivery…</string>
+    <string name="pickup">Pickup</string>
+    <string name="title_pay">Pay:</string>
 </resources>

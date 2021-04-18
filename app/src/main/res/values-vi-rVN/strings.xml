@@ -152,4 +152,11 @@
     <string name="foreground_service_channel">Foreground Service Channel</string>
     <string name="location_turned_on">"Định vị GPS bật"</string>
     <string name="have_a_nice_working_day">Have a nice working day</string>
+    <string name="free_pick">Chọn đơn</string>
+    <string name="doing">Đang làm</string>
+    <string name="done">Hoàn thành</string>
+    <string name="delivery">Giao hàng</string>
+    <string name="waiting_for_delivery">Đợi để giao hàng…</string>
+    <string name="pickup">Lấy</string>
+    <string name="title_pay">Thanh toán:</string>
 </resources>
