@@ -1,5 +1,6 @@
 package com.example.qakhadriver.utils
 
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -60,4 +61,12 @@ fun Fragment.upperString(id: Int) = getText(id).toString().toUpperCase(Locale.ge
 
 fun Fragment.hideKeyboard() {
     view?.let { activity?.hideKeyboard(it) }
+}
+
+fun Fragment.back() {
+    this.parentFragmentManager.popBackStack()
+}
+
+fun Fragment.makeText(content: String) {
+    Toast.makeText(this.requireContext(), content, Toast.LENGTH_SHORT).show()
 }

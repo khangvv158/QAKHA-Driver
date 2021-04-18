@@ -149,4 +149,7 @@
     <string name="license_plate_is_already_exists_in_database">Biển số xe đã tồn tại</string>
     <string name="bill">Đơn</string>
     <string name="earnings">Thu nhập</string>
+    <string name="foreground_service_channel">Foreground Service Channel</string>
+    <string name="location_turned_on">"Định vị GPS bật"</string>
+    <string name="have_a_nice_working_day">Have a nice working day</string>
 </resources>

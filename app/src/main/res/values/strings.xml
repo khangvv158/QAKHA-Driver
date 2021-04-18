@@ -159,4 +159,7 @@
     <string name="license_plate_is_already_exists_in_database">License plate is already exists in database</string>
     <string name="bill">Bill</string>
     <string name="earnings">Earnings</string>
+    <string name="foreground_service_channel">Foreground Service Channel</string>
+    <string name="location_turned_on">"Location turned on "</string>
+    <string name="have_a_nice_working_day">Have a nice working day</string>
 </resources>
