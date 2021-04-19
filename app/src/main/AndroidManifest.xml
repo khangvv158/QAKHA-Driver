@@ -18,6 +18,8 @@
         <service
             android:name=".service.FirebaseLocationService"
             android:enabled="true"
+            android:foregroundServiceType="location"
+            android:stopWithTask="false"
             android:exported="true" />
 
         <meta-data

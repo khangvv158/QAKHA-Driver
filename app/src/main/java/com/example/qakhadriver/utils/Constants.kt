@@ -7,6 +7,10 @@ object Constants {
     const val DEFAULT_STRING = ""
     const val SPACE_STRING = " "
     const val BASE_URL = "https://4f1803ceffc0.ngrok.io/api/v1/"
-    const val AUTHORIZATION = "Authorization"
     const val ROLE_MEMBER = "driver"
+    const val DRIVER = "driver"
+    const val DRIVERS = "drivers"
+    const val ORDER = "order"
+    const val SHIPPING = "shipping"
+    const val LOCATION = "location"
 }

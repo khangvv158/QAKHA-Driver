@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.qakhadriver.R
-import com.example.qakhadriver.screens.bill.tabs.doing.DoingFragment
 import com.example.qakhadriver.screens.bill.tabs.done.DoneFragment
 import com.example.qakhadriver.screens.bill.tabs.freepick.FreePickFragment
 import com.example.qakhadriver.utils.Constants
@@ -25,7 +24,6 @@ class WorkingPagerAdapter(
     override fun getPageTitle(position: Int): CharSequence? {
         return when (fragments[position]::class.java.simpleName) {
             FreePickFragment::class.java.simpleName -> context.getString(R.string.free_pick)
-            DoingFragment::class.java.simpleName -> context.getString(R.string.doing)
             DoneFragment::class.java.simpleName -> context.getString(R.string.done)
             else -> Constants.SPACE_STRING
         }
