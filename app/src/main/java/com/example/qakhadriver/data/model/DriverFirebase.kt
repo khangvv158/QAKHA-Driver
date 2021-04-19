@@ -6,6 +6,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class DriverFirebase(
         val id: Int,
+        val name: String,
         val latitude: Float = 0f,
         val longitude: Float = 0f,
 ) : Parcelable

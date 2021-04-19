@@ -51,9 +51,6 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     }
 
     override fun onGetOrderFirebaseSuccess(orderFirebase: OrderFirebase) {
-        freePickLayout.show().apply {
-            namePartnerTextView.text = orderFirebase.id.toString()
-        }
     }
 
     override fun onGetOrderFirebaseRemove() {
@@ -92,7 +89,7 @@ class FreePickFragment : Fragment(), FreePickContract.View {
             )
         }
         deliveryTextView.setOnClickListener {
-            makeText("Driver now")
+            //no-op
         }
     }
 

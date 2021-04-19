@@ -63,7 +63,6 @@ class BillFragment : Fragment(), BillContract.View {
                     R.color.colorGreenHaze
                 )
             )
-            startServiceToOnline()
         }
     }
 
@@ -106,16 +105,16 @@ class BillFragment : Fragment(), BillContract.View {
         )
     }
 
-    private fun startServiceToOnline() {
+    private fun startServiceToOnline(driverFirebase: DriverFirebase) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O) {
             activity?.startService(
                 Intent(requireContext(), FirebaseLocationService::class.java).apply {
-                    putExtra(FirebaseLocationService.BUNDLE_DRIVER, DriverFirebase(2, 0f, 0f))
+                    putExtra(FirebaseLocationService.BUNDLE_DRIVER, driverFirebase)
                 })
         } else {
             activity?.startForegroundService(
                 Intent(requireContext(), FirebaseLocationService::class.java).apply {
-                    putExtra(FirebaseLocationService.BUNDLE_DRIVER, DriverFirebase(2, 0f, 0f))
+                    putExtra(FirebaseLocationService.BUNDLE_DRIVER, driverFirebase)
                 })
         }
     }
