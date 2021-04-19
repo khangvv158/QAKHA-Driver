@@ -2,16 +2,17 @@ package com.example.qakhadriver.screens.bill.tabs.freepick
 
 import com.example.qakhadriver.data.model.OrderFirebase
 import com.example.qakhadriver.data.repository.DriverRepository
+import com.example.qakhadriver.data.repository.OrderRepository
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 
-class FreePickPresenter(private val driverRepository: DriverRepository) : FreePickContract.Presenter {
+class FreePickPresenter(private val orderRepository: OrderRepository) : FreePickContract.Presenter {
 
     private var view: FreePickContract.View? = null
 
     override fun getOrderFirebase(id: Int) {
-        driverRepository.listenerOrder(id, object : ChildEventListener {
+        orderRepository.listenerOrder(id, object : ChildEventListener {
 
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 snapshot.getValue(OrderFirebase::class.java)?.let {

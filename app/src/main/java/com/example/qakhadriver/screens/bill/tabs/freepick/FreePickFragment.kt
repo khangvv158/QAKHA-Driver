@@ -10,16 +10,16 @@ import com.example.qakhadriver.R
 import com.example.qakhadriver.data.model.DriverFirebase
 import com.example.qakhadriver.data.model.OrderFirebase
 import com.example.qakhadriver.data.repository.DriverRepositoryImpl
-import com.example.qakhadriver.utils.GoogleMapHelper
-import com.example.qakhadriver.utils.gone
-import com.example.qakhadriver.utils.makeText
-import com.example.qakhadriver.utils.show
+import com.example.qakhadriver.data.repository.OrderRepositoryImpl
+import com.example.qakhadriver.screens.orderdetail.OrderDetailFragment
+import com.example.qakhadriver.utils.*
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.fragment_free_pick.*
+import kotlinx.android.synthetic.main.fragment_order_detail.*
 import kotlinx.android.synthetic.main.item_layout_free_pick.*
 
 class FreePickFragment : Fragment(), FreePickContract.View {
@@ -32,12 +32,12 @@ class FreePickFragment : Fragment(), FreePickContract.View {
         LocationServices.getFusedLocationProviderClient(requireContext())
     }
     private val presenter by lazy {
-        FreePickPresenter(DriverRepositoryImpl.getInstance())
+        FreePickPresenter(OrderRepositoryImpl.getInstance())
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_free_pick, container, false)
     }
@@ -85,6 +85,15 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     }
 
     private fun handleEvents() {
+        freePickLayout.setOnClickListener {
+            parentFragment?.parentFragment?.addFragmentBackStack(
+                OrderDetailFragment.newInstance(),
+                R.id.containerViewMain
+            )
+        }
+        deliveryTextView.setOnClickListener {
+            makeText("Driver now")
+        }
     }
 
     private fun animateCamera(latLng: LatLng) {
