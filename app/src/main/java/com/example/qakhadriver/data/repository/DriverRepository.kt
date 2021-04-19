@@ -7,7 +7,6 @@ import com.google.firebase.database.*
 interface DriverRepository {
 
     fun updateLocationDriver(driverFirebase: DriverFirebase)
-    fun listenerOrder(idDriver: Int, callback: ChildEventListener)
 }
 
 class DriverRepositoryImpl : DriverRepository {
@@ -17,29 +16,21 @@ class DriverRepositoryImpl : DriverRepository {
     override fun updateLocationDriver(driverFirebase: DriverFirebase) {
         driverFirebase.id.let {
             firebaseClient.reference.child(Constants.DRIVERS)
-                    .child(Constants.LOCATION)
-                    .child(Constants.DRIVER)
-                    .child(it.toString())
-                    .setValue(driverFirebase)
+                .child(Constants.LOCATION)
+                .child(Constants.DRIVER)
+                .child(it.toString())
+                .setValue(driverFirebase)
         }
     }
 
-    override fun listenerOrder(idDriver: Int, callback: ChildEventListener) {
-        firebaseClient.reference.child(Constants.DRIVERS)
-                .child(Constants.SHIPPING)
-                .child(idDriver.toString())
-                .child(Constants.ORDER)
-                .addChildEventListener(callback)
-    }
-
     companion object {
-        private var instance: DriverRepository? = null
+        private var instance: DriverRepositoryImpl? = null
 
-        fun getInstance(): DriverRepository =
-                instance ?: synchronized(this) {
-                    instance ?: DriverRepositoryImpl().also {
-                        instance = it
-                    }
+        fun getInstance(): DriverRepositoryImpl =
+            instance ?: synchronized(this) {
+                instance ?: DriverRepositoryImpl().also {
+                    instance = it
                 }
+            }
     }
 }

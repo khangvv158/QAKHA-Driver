@@ -159,4 +159,6 @@
     <string name="waiting_for_delivery">Đợi để giao hàng…</string>
     <string name="pickup">Lấy</string>
     <string name="title_pay">Thanh toán:</string>
+    <string name="delivery_confirmation">Xác nhận đơn hàng</string>
+    <string name="make_sure_your_order_has_been_delivered_correctly">Hãy chắc chắn rằng đơn hàng đã được giao chính xác</string>
 </resources>

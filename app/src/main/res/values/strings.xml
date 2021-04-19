@@ -169,4 +169,6 @@
     <string name="waiting_for_delivery">Waiting for delivery…</string>
     <string name="pickup">Pickup</string>
     <string name="title_pay">Pay:</string>
+    <string name="delivery_confirmation">Delivery confirmation</string>
+    <string name="make_sure_your_order_has_been_delivered_correctly">Make sure your order has been delivered correctly</string>
 </resources>
