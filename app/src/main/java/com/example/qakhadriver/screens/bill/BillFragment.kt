@@ -3,6 +3,7 @@ package com.example.qakhadriver.screens.bill
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import androidx.fragment.app.Fragment
@@ -13,10 +14,11 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.qakhadriver.R
+import com.example.qakhadriver.data.model.DriverFirebase
 import com.example.qakhadriver.screens.bill.adapter.WorkingPagerAdapter
-import com.example.qakhadriver.screens.bill.tabs.doing.DoingFragment
 import com.example.qakhadriver.screens.bill.tabs.done.DoneFragment
 import com.example.qakhadriver.screens.bill.tabs.freepick.FreePickFragment
+import com.example.qakhadriver.service.FirebaseLocationService
 import com.example.qakhadriver.utils.IPositiveNegativeListener
 import com.example.qakhadriver.utils.LocationHelper
 import kotlinx.android.synthetic.main.fragment_bill.*
@@ -47,7 +49,6 @@ class BillFragment : Fragment(), BillContract.View {
             offscreenPageLimit = OFF_SCREEN_PAGE_LIMIT
             adapter = workingPagerAdapter.apply {
                 addFragment(FreePickFragment.newInstance())
-                addFragment(DoingFragment.newInstance())
                 addFragment(DoneFragment.newInstance())
             }
         }
@@ -56,7 +57,13 @@ class BillFragment : Fragment(), BillContract.View {
 
     private fun handleEvents() {
         buttonStatus.setOnClickListener {
-            buttonStatus.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.colorGreenHaze))
+            buttonStatus.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorGreenHaze
+                )
+            )
+            startServiceToOnline()
         }
     }
 
@@ -97,6 +104,24 @@ class BillFragment : Fragment(), BillContract.View {
             getString(R.string.turn_on),
             false
         )
+    }
+
+    private fun startServiceToOnline() {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O) {
+            activity?.startService(
+                Intent(requireContext(), FirebaseLocationService::class.java).apply {
+                    putExtra(FirebaseLocationService.BUNDLE_DRIVER, DriverFirebase(2, 0f, 0f))
+                })
+        } else {
+            activity?.startForegroundService(
+                Intent(requireContext(), FirebaseLocationService::class.java).apply {
+                    putExtra(FirebaseLocationService.BUNDLE_DRIVER, DriverFirebase(2, 0f, 0f))
+                })
+        }
+    }
+
+    private fun stopServiceToOffline() {
+        activity?.stopService(Intent(requireContext(), FirebaseLocationService::class.java))
     }
 
     companion object {

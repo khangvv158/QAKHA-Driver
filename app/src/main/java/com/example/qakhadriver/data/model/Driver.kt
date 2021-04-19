@@ -3,6 +3,7 @@ package com.example.qakhadriver.data.model
 import com.google.gson.annotations.SerializedName
 
 data class Driver(
+    @SerializedName("id") val idDriver: Int,
     @SerializedName("name") val name: String?,
     @SerializedName("email") val email: String?,
     @SerializedName("address") val address: String?,
@@ -11,6 +12,4 @@ data class Driver(
     @SerializedName("license_plate") val licensePlate: String?,
     @SerializedName("role") val role: String?,
     @SerializedName("image") val image: String?,
-    @SerializedName("latitude") var latitude: Float = 0f,
-    @SerializedName("longitude") var longitude: Float = 0f
 )

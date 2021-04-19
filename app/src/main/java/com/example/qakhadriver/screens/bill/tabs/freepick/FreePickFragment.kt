@@ -7,7 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.qakhadriver.R
+import com.example.qakhadriver.data.model.DriverFirebase
+import com.example.qakhadriver.data.model.OrderFirebase
+import com.example.qakhadriver.data.repository.DriverRepositoryImpl
 import com.example.qakhadriver.utils.GoogleMapHelper
+import com.example.qakhadriver.utils.gone
+import com.example.qakhadriver.utils.makeText
 import com.example.qakhadriver.utils.show
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -15,8 +20,9 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.fragment_free_pick.*
+import kotlinx.android.synthetic.main.item_layout_free_pick.*
 
-class FreePickFragment : Fragment() {
+class FreePickFragment : Fragment(), FreePickContract.View {
 
     private lateinit var googleMap: GoogleMap
     private val googleMapHelper by lazy {
@@ -25,10 +31,13 @@ class FreePickFragment : Fragment() {
     private val locationProviderClient: FusedLocationProviderClient by lazy {
         LocationServices.getFusedLocationProviderClient(requireContext())
     }
+    private val presenter by lazy {
+        FreePickPresenter(DriverRepositoryImpl.getInstance())
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_free_pick, container, false)
     }
@@ -41,6 +50,20 @@ class FreePickFragment : Fragment() {
         }
     }
 
+    override fun onGetOrderFirebaseSuccess(orderFirebase: OrderFirebase) {
+        freePickLayout.show().apply {
+            namePartnerTextView.text = orderFirebase.id.toString()
+        }
+    }
+
+    override fun onGetOrderFirebaseRemove() {
+        freePickLayout.gone()
+    }
+
+    override fun onError(message: String) {
+        makeText(message)
+    }
+
     @SuppressLint("MissingPermission")
     private fun setUpGoogleMap(map: GoogleMap) {
         googleMap = map
@@ -48,6 +71,20 @@ class FreePickFragment : Fragment() {
         locationProviderClient.lastLocation.addOnSuccessListener {
             animateCamera(LatLng(it.latitude, it.longitude))
         }
+        initViews()
+        initData()
+        handleEvents()
+    }
+
+    private fun initViews() {
+        presenter.setView(this)
+    }
+
+    private fun initData() {
+        presenter.getOrderFirebase(2)
+    }
+
+    private fun handleEvents() {
     }
 
     private fun animateCamera(latLng: LatLng) {

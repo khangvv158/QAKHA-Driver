@@ -45,7 +45,7 @@
             app:layout_constraintVertical_bias="0.052" />
 
         <include
-            android:id="@+id/freePickView"
+            android:id="@+id/freePickLayout"
             layout="@layout/item_layout_free_pick"
             android:layout_width="0dp"
             android:layout_height="0dp"
