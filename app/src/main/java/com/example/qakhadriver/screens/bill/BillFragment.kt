@@ -15,12 +15,16 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.qakhadriver.R
 import com.example.qakhadriver.data.model.DriverFirebase
+import com.example.qakhadriver.data.repository.ProfileRepositoryImpl
+import com.example.qakhadriver.data.repository.TokenRepositoryImpl
+import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
 import com.example.qakhadriver.screens.bill.adapter.WorkingPagerAdapter
 import com.example.qakhadriver.screens.bill.tabs.done.DoneFragment
 import com.example.qakhadriver.screens.bill.tabs.freepick.FreePickFragment
 import com.example.qakhadriver.service.FirebaseLocationService
 import com.example.qakhadriver.utils.IPositiveNegativeListener
 import com.example.qakhadriver.utils.LocationHelper
+import com.example.qakhadriver.utils.makeText
 import kotlinx.android.synthetic.main.fragment_bill.*
 
 class BillFragment : Fragment(), BillContract.View {
@@ -28,7 +32,15 @@ class BillFragment : Fragment(), BillContract.View {
     private val workingPagerAdapter by lazy {
         WorkingPagerAdapter(childFragmentManager, requireContext())
     }
-
+    private val presenter by lazy {
+        BillPresenter(
+            ProfileRepositoryImpl.getInstance(),
+            TokenRepositoryImpl.getInstance(
+                SharedPrefsImpl.getInstance(requireContext())
+            )
+        )
+    }
+    private var flagStatusDriver = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +53,57 @@ class BillFragment : Fragment(), BillContract.View {
         super.onViewCreated(view, savedInstanceState)
         checkPermission()
         initWorkingViewPager()
+        initViews()
+        initData()
         handleEvents()
+    }
+
+    override fun onGetStatusOffline() {
+        flagStatusDriver = 0
+        buttonStatus.setBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.ColorRedBrick
+            )
+        )
+    }
+
+    override fun onGoOnlineSuccess() {
+        flagStatusDriver = 1
+        buttonStatus.setBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.colorGreenHaze
+            )
+        )
+    }
+
+    override fun onGoOfflineSuccess() {
+        flagStatusDriver = 0
+        buttonStatus.setBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.ColorRedBrick
+            )
+        )
+    }
+
+    override fun onGoOfflineFailure() {
+        makeText(getString(R.string.content_offline_failure))
+    }
+
+    override fun onGetStatusOnline() {
+        flagStatusDriver = 1
+        buttonStatus.setBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.colorGreenHaze
+            )
+        )
+    }
+
+    override fun onError(message: String) {
+        makeText(message)
     }
 
     private fun initWorkingViewPager() {
@@ -55,14 +117,21 @@ class BillFragment : Fragment(), BillContract.View {
         tabLayoutWorking.setupWithViewPager(viewPagerWorking)
     }
 
+    private fun initViews() {
+        presenter.setView(this)
+    }
+
+    private fun initData() {
+        presenter.getStatus()
+    }
+
     private fun handleEvents() {
         buttonStatus.setOnClickListener {
-            buttonStatus.setBackgroundColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.colorGreenHaze
-                )
-            )
+            if (flagStatusDriver == 0) {
+                // call api online
+            } else {
+                // call api offline
+            }
         }
     }
 

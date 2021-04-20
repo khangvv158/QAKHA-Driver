@@ -1,13 +1,12 @@
 package com.example.qakhadriver.screens.bill.tabs.freepick
 
 import com.example.qakhadriver.data.model.OrderFirebase
-import com.example.qakhadriver.data.repository.DriverRepository
-import com.example.qakhadriver.data.repository.OrderRepository
+import com.example.qakhadriver.data.repository.OrderFirebaseRepository
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 
-class FreePickPresenter(private val orderRepository: OrderRepository) : FreePickContract.Presenter {
+class FreePickPresenter(private val orderRepository: OrderFirebaseRepository) : FreePickContract.Presenter {
 
     private var view: FreePickContract.View? = null
 
