@@ -10,4 +10,5 @@ data class Driver(
     @SerializedName("phone_number") val phoneNumber: String?,
     @SerializedName("license_plate") val licensePlate: String?,
     @SerializedName("image") val image: String?,
+    @SerializedName("status") val status: String?
 )

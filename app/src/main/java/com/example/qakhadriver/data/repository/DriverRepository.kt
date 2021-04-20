@@ -9,7 +9,7 @@ interface DriverRepository {
     fun updateLocationDriver(driverFirebase: DriverFirebase)
 }
 
-class DriverRepositoryImpl : DriverRepository {
+class DriverRepositoryImpl private constructor(): DriverRepository {
 
     private val firebaseClient = FirebaseDatabase.getInstance()
 

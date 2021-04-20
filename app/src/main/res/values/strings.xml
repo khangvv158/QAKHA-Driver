@@ -171,4 +171,5 @@
     <string name="title_pay">Pay:</string>
     <string name="delivery_confirmation">Delivery confirmation</string>
     <string name="make_sure_your_order_has_been_delivered_correctly">Make sure your order has been delivered correctly</string>
+    <string name="content_offline_failure">Offline failure, check your delivery status</string>
 </resources>

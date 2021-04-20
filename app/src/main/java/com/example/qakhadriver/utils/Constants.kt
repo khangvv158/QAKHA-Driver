@@ -13,4 +13,8 @@ object Constants {
     const val ORDER = "order"
     const val SHIPPING = "shipping"
     const val LOCATION = "location"
+    const val ONLINE = "online"
+    const val OFFLINE = "offline"
+    const val COMPLETED = "completed"
+    const val AUTHORIZATION = "Authorization"
 }
