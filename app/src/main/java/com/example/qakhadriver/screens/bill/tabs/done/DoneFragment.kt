@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.qakhadriver.R
 
-class DoneFragment : Fragment() {
+class DoneFragment : Fragment(), DoneContract.View {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
