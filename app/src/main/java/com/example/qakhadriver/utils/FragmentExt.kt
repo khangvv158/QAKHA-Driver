@@ -46,6 +46,13 @@ fun Fragment.replaceFragment(fragment: Fragment, id: Int) {
     }
 }
 
+fun Fragment.replaceFragmentSlideAnim(fragment: Fragment, id: Int){
+    parentFragmentManager.inTransaction {
+        setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+        replace(id, fragment)
+    }
+}
+
 fun Fragment.replaceFragmentBackStack(fragment: Fragment, id: Int) {
     parentFragmentManager.inTransaction {
         replace(id, fragment)

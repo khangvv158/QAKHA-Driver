@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import com.example.qakhadriver.R
+import com.example.qakhadriver.data.model.Driver
 
 class MeFragment : Fragment() {
 
@@ -17,6 +19,11 @@ class MeFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = MeFragment()
+
+        private const val BUNDLE_DRIVER = "BUNDLE_DRIVER"
+
+        fun newInstance(driver: Driver) = MeFragment().apply {
+            arguments = bundleOf(BUNDLE_DRIVER to driver)
+        }
     }
 }

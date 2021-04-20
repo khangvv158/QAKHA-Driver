@@ -13,6 +13,7 @@ import androidx.core.app.NotificationCompat
 import com.example.qakhadriver.R
 import com.example.qakhadriver.data.model.DriverFirebase
 import com.example.qakhadriver.data.repository.DriverRepositoryImpl
+import com.example.qakhadriver.utils.Constants
 import com.example.qakhadriver.utils.LocationHelper.getLocationRequest
 import com.google.android.gms.common.api.GoogleApi
 import com.google.android.gms.common.api.GoogleApiClient
@@ -27,6 +28,7 @@ class FirebaseLocationService : Service() {
     private lateinit var locationProviderClient: FusedLocationProviderClient
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
+    private var idDriver = Constants.NOT_EXISTS
 
     override fun onBind(intent: Intent): IBinder? {
         return null
@@ -40,6 +42,7 @@ class FirebaseLocationService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         intent?.getParcelableExtra<DriverFirebase>(BUNDLE_DRIVER)?.let {
+            idDriver = it.id
             createLocationCallback(it)
             createNotificationChannel()
             startForeground(getNotificationId(), createNotification())
@@ -50,6 +53,7 @@ class FirebaseLocationService : Service() {
 
     override fun onDestroy() {
         locationProviderClient.removeLocationUpdates(locationCallback)
+        driverRepository.removeLocationDriver(idDriver)
         super.onDestroy()
     }
 

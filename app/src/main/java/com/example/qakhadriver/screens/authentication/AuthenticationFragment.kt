@@ -12,23 +12,30 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.qakhadriver.R
+import com.example.qakhadriver.data.model.Driver
+import com.example.qakhadriver.data.model.Image
+import com.example.qakhadriver.data.repository.ProfileRepositoryImpl
+import com.example.qakhadriver.data.repository.TokenRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
 import com.example.qakhadriver.screens.container.ContainerFragment
 import com.example.qakhadriver.screens.signin.OnSignInSuccessListener
 import com.example.qakhadriver.screens.signin.SignInFragment
-import com.example.qakhadriver.utils.IPositiveNegativeListener
-import com.example.qakhadriver.utils.LocationHelper
-import com.example.qakhadriver.utils.replaceFragment
+import com.example.qakhadriver.utils.*
 
 class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignInSuccessListener {
 
     private val presenter by lazy {
-        AuthenticationPresenter(SharedPrefsImpl.getInstance(requireContext()))
+        AuthenticationPresenter(
+            TokenRepositoryImpl.getInstance(
+                SharedPrefsImpl.getInstance(requireContext())
+            ),
+            ProfileRepositoryImpl.getInstance()
+        )
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_authentication, container, false)
     }
@@ -40,31 +47,35 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
     }
 
     override fun onSignInSuccess() {
-        navigateContainerFragment()
+        presenter.checkSignedInByToken()
     }
 
-    override fun onCheckSignedInSuccess() {
-        navigateContainerFragment()
+    override fun onCheckSignedInByTokenSuccess() {
+        /*Code offline here*/
+        presenter.getProfile()
     }
 
-    override fun onCheckSignedInFailure() {
+    override fun onCheckSignedInByTokenFailure() {
         navigateSignInFragment()
     }
 
-    override fun onCheckTokenSignedInSuccess() {
-        navigateContainerFragment()
+    override fun onGetProfileSuccess(driver: Driver) {
+        navigateContainerFragment(driver)
     }
 
-    override fun onCheckTokenSignedInFailure() {
-        navigateSignInFragment()
+    override fun onError(message: String) {
+        makeText(message)
     }
 
-    private fun navigateContainerFragment() {
-        replaceFragment(ContainerFragment.newInstance(), R.id.containerViewAuthentication)
+    private fun navigateContainerFragment(driver: Driver) {
+        replaceFragmentSlideAnim(
+            ContainerFragment.newInstance(driver),
+            R.id.containerViewAuthentication
+        )
     }
 
     private fun navigateSignInFragment() {
-        replaceFragment(SignInFragment.newInstance().apply {
+        replaceFragmentSlideAnim(SignInFragment.newInstance().apply {
             registerOnSignInSuccessListener(this@AuthenticationFragment)
         }, R.id.containerViewAuthentication)
     }
@@ -72,27 +83,27 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
     private fun initView() {
         presenter.apply {
             setView(this@AuthenticationFragment)
-            checkSignedIn()
+            checkSignedInByToken()
         }
     }
 
     private fun checkPermission() {
         if (!LocationHelper.isPlayServicesAvailable(requireContext())) {
             Toast.makeText(
-                    requireContext(),
-                    getString(R.string.play_services_did_not_installed),
-                    Toast.LENGTH_SHORT
+                requireContext(),
+                getString(R.string.play_services_did_not_installed),
+                Toast.LENGTH_SHORT
             )
-                    .show()
+                .show()
         } else enableGPS()
     }
 
     private fun enableGPS() {
         if (!LocationHelper.isHaveLocationPermission(requireContext())) {
             ActivityCompat.requestPermissions(
-                    activity as Activity,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
+                activity as Activity,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
             )
             return
         }
@@ -102,16 +113,16 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
 
     private fun showDialogEnableGPS() {
         LocationHelper.showPositiveDialogWithListener(
-                requireContext(),
-                getString(R.string.enable_gps_service),
-                getString(R.string.content_location),
-                object : IPositiveNegativeListener {
-                    override fun onPositive() {
-                        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-                    }
-                },
-                getString(R.string.turn_on),
-                false
+            requireContext(),
+            getString(R.string.enable_gps_service),
+            getString(R.string.content_location),
+            object : IPositiveNegativeListener {
+                override fun onPositive() {
+                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                }
+            },
+            getString(R.string.turn_on),
+            false
         )
     }
 
