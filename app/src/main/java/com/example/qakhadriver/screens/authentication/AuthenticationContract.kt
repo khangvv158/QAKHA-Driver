@@ -1,18 +1,19 @@
 package com.example.qakhadriver.screens.authentication
 
+import com.example.qakhadriver.data.model.Driver
 import com.example.qakhadriver.utils.BasePresenter
 
 interface AuthenticationContract {
 
     interface View {
-        fun onCheckSignedInSuccess()
-        fun onCheckSignedInFailure()
-        fun onCheckTokenSignedInSuccess()
-        fun onCheckTokenSignedInFailure()
+        fun onCheckSignedInByTokenSuccess()
+        fun onCheckSignedInByTokenFailure()
+        fun onGetProfileSuccess(driver: Driver)
+        fun onError(message: String)
     }
 
     interface Presenter : BasePresenter<View> {
-        fun checkSignedIn()
-        fun checkTokenSignedIn()
+        fun checkSignedInByToken()
+        fun getProfile()
     }
 }

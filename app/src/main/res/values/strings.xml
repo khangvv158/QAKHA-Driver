@@ -172,4 +172,8 @@
     <string name="delivery_confirmation">Delivery confirmation</string>
     <string name="make_sure_your_order_has_been_delivered_correctly">Make sure your order has been delivered correctly</string>
     <string name="content_offline_failure">Offline failure, check your delivery status</string>
+    <string name="lets_start_working">Let\'s start working !!</string>
+    <string name="fast_delivery">Fast delivery</string>
+    <string name="finish_work">Finish work</string>
+    <string name="do_you_want_to_end_work">Do you want to end work?</string>
 </resources>

@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.viewpager.widget.ViewPager
 import com.example.qakhadriver.R
+import com.example.qakhadriver.data.model.Driver
 import com.example.qakhadriver.screens.container.adapter.ContainerPagerAdapter
 import com.example.qakhadriver.screens.earnings.EarningsFragment
 import com.example.qakhadriver.screens.bill.BillFragment
@@ -19,12 +21,14 @@ class ContainerFragment : Fragment() {
     private val adapter: ContainerPagerAdapter by lazy {
         ContainerPagerAdapter(childFragmentManager)
     }
-    private val billFragment = BillFragment.newInstance()
-    private val earningsFragment = EarningsFragment.newInstance()
-    private val meFragment = MeFragment.newInstance()
+    private lateinit var billFragment: BillFragment
+    private lateinit var earningsFragment: EarningsFragment
+    private lateinit var meFragment: MeFragment
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_container, container, false)
     }
 
@@ -36,10 +40,15 @@ class ContainerFragment : Fragment() {
     }
 
     private fun initData() {
-        adapter.apply {
-            addFragment(billFragment)
-            addFragment(earningsFragment)
-            addFragment(meFragment)
+        arguments?.getParcelable<Driver>(BUNDLE_DRIVER)?.let {
+            billFragment = BillFragment.newInstance(it)
+            earningsFragment = EarningsFragment.newInstance(it)
+            meFragment = MeFragment.newInstance(it)
+            adapter.apply {
+                addFragment(billFragment)
+                addFragment(earningsFragment)
+                addFragment(meFragment)
+            }
         }
     }
 
@@ -53,14 +62,14 @@ class ContainerFragment : Fragment() {
     private fun handleEvents() {
         containerViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
             ) = Unit
 
             override fun onPageSelected(position: Int) {
                 bottomNavigationView.selectedItemId =
-                        bottomNavigationView.menu.getItem(position).itemId
+                    bottomNavigationView.menu.getItem(position).itemId
             }
 
             override fun onPageScrollStateChanged(state: Int) = Unit
@@ -86,8 +95,11 @@ class ContainerFragment : Fragment() {
 
     companion object {
 
+        const val BUNDLE_DRIVER = "BUNDLE_DRIVER"
         const val OFF_SCREEN_PAGE_LIMIT = 3
 
-        fun newInstance() = ContainerFragment()
+        fun newInstance(driver: Driver) = ContainerFragment().apply {
+            arguments = bundleOf(BUNDLE_DRIVER to driver)
+        }
     }
 }

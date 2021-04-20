@@ -11,9 +11,7 @@ import com.example.qakhadriver.R
 import com.example.qakhadriver.data.repository.SignRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
 import com.example.qakhadriver.screens.signup.SignUpFragment
-import com.example.qakhadriver.utils.Constants
-import com.example.qakhadriver.utils.addFragmentSlideAnim
-import com.example.qakhadriver.utils.hideKeyboard
+import com.example.qakhadriver.utils.*
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 class SignInFragment : Fragment(), SignInContract.View {
@@ -46,15 +44,18 @@ class SignInFragment : Fragment(), SignInContract.View {
 
     override fun onSignInSuccess() {
         onSignInSuccessListener?.onSignInSuccess()
+        progressBar.gone()
     }
 
     override fun onSignInFailure(message: String) {
         emailTextInputLayout.error = Constants.SPACE_STRING
         passwordTextInputLayout.error = message
+        progressBar.gone()
     }
 
     override fun onError(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        progressBar.gone()
     }
 
     override fun onSignInRoleFailure() {
@@ -91,6 +92,7 @@ class SignInFragment : Fragment(), SignInContract.View {
         signInButton.setOnClickListener {
             hideKeyboard()
             presenter.signIn(emailEditText.text.toString(), passwordEditText.text.toString())
+            progressBar.show()
         }
     }
 

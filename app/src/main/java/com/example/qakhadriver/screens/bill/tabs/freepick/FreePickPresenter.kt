@@ -33,6 +33,10 @@ class FreePickPresenter(private val orderRepository: OrderFirebaseRepository) : 
         })
     }
 
+    override fun getOrderDetail() {
+
+    }
+
     override fun onStart() = Unit
 
     override fun onStop() = Unit

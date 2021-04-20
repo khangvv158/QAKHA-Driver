@@ -162,4 +162,8 @@
     <string name="delivery_confirmation">Xác nhận đơn hàng</string>
     <string name="make_sure_your_order_has_been_delivered_correctly">Hãy chắc chắn rằng đơn hàng đã được giao chính xác</string>
     <string name="content_offline_failure">Offline thất bại, hãy kiểm tra trạng thái giao hàng của bạn</string>
+    <string name="lets_start_working">Bắt đầu làm việc thôi !!</string>
+    <string name="fast_delivery">Nhanh chóng giao hàng nào…</string>
+    <string name="finish_work">Kết thúc làm việc</string>
+    <string name="do_you_want_to_end_work">Bạn có muốn kết thúc giờ làm việc ?</string>
 </resources>

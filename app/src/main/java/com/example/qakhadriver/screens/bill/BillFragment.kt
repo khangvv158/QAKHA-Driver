@@ -2,6 +2,7 @@ package com.example.qakhadriver.screens.bill
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -13,7 +14,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import com.example.qakhadriver.R
+import com.example.qakhadriver.data.model.Driver
 import com.example.qakhadriver.data.model.DriverFirebase
 import com.example.qakhadriver.data.repository.ProfileRepositoryImpl
 import com.example.qakhadriver.data.repository.TokenRepositoryImpl
@@ -22,9 +25,7 @@ import com.example.qakhadriver.screens.bill.adapter.WorkingPagerAdapter
 import com.example.qakhadriver.screens.bill.tabs.done.DoneFragment
 import com.example.qakhadriver.screens.bill.tabs.freepick.FreePickFragment
 import com.example.qakhadriver.service.FirebaseLocationService
-import com.example.qakhadriver.utils.IPositiveNegativeListener
-import com.example.qakhadriver.utils.LocationHelper
-import com.example.qakhadriver.utils.makeText
+import com.example.qakhadriver.utils.*
 import kotlinx.android.synthetic.main.fragment_bill.*
 
 class BillFragment : Fragment(), BillContract.View {
@@ -40,7 +41,15 @@ class BillFragment : Fragment(), BillContract.View {
             )
         )
     }
+    private lateinit var driver: Driver
     private var flagStatusDriver = 0
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        arguments?.getParcelable<Driver>(BUNDLE_DRIVER)?.let {
+            driver = it
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,6 +85,7 @@ class BillFragment : Fragment(), BillContract.View {
                 R.color.colorGreenHaze
             )
         )
+        startServiceToOnline(DriverFirebase(driver.idDriver, driver.name))
     }
 
     override fun onGoOfflineSuccess() {
@@ -86,6 +96,7 @@ class BillFragment : Fragment(), BillContract.View {
                 R.color.ColorRedBrick
             )
         )
+        stopServiceToOffline()
     }
 
     override fun onGoOfflineFailure() {
@@ -110,7 +121,7 @@ class BillFragment : Fragment(), BillContract.View {
         viewPagerWorking.apply {
             offscreenPageLimit = OFF_SCREEN_PAGE_LIMIT
             adapter = workingPagerAdapter.apply {
-                addFragment(FreePickFragment.newInstance())
+                addFragment(FreePickFragment.newInstance(driver))
                 addFragment(DoneFragment.newInstance())
             }
         }
@@ -128,9 +139,29 @@ class BillFragment : Fragment(), BillContract.View {
     private fun handleEvents() {
         buttonStatus.setOnClickListener {
             if (flagStatusDriver == 0) {
-                // call api online
+                requireContext().showDialogWithListener(
+                    getString(R.string.lets_start_working),
+                    getString(R.string.fast_delivery),
+                    object : IPositiveNegativeListener {
+                        override fun onPositive() {
+                            presenter.goOnline(driver.idDriver)
+                        }
+                    },
+                    Constants.ONLINE,
+                    true
+                )
             } else {
-                // call api offline
+                requireContext().showDialogWithListener(
+                    getString(R.string.finish_work),
+                    getString(R.string.do_you_want_to_end_work),
+                    object : IPositiveNegativeListener {
+                        override fun onPositive() {
+                            presenter.goOffline(driver.idDriver)
+                        }
+                    },
+                    Constants.OFFLINE,
+                    true
+                )
             }
         }
     }
@@ -194,9 +225,12 @@ class BillFragment : Fragment(), BillContract.View {
 
     companion object {
 
+        private const val BUNDLE_DRIVER = "BUNDLE_DRIVER"
         private const val MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 102
         private const val OFF_SCREEN_PAGE_LIMIT = 3
 
-        fun newInstance() = BillFragment()
+        fun newInstance(driver: Driver) = BillFragment().apply {
+            arguments = bundleOf(BUNDLE_DRIVER to driver)
+        }
     }
 }

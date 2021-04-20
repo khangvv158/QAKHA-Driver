@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import com.example.qakhadriver.R
+import com.example.qakhadriver.data.model.Driver
+import com.example.qakhadriver.data.model.Order
 import com.example.qakhadriver.data.model.OrderFirebase
 import com.example.qakhadriver.data.repository.OrderFirebaseRepositoryImpl
 import com.example.qakhadriver.screens.orderdetail.OrderDetailFragment
@@ -14,6 +17,7 @@ import com.example.qakhadriver.utils.*
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.fragment_free_pick.*
@@ -31,6 +35,7 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     private val presenter by lazy {
         FreePickPresenter(OrderFirebaseRepositoryImpl.getInstance())
     }
+    private lateinit var driver: Driver
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,16 +47,44 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        arguments?.getParcelable<Driver>(BUNDLE_DRIVER)?.let {
+            driver = it
+        }
+        MapsInitializer.initialize(requireContext())
         mapFragment?.getMapAsync {
             setUpGoogleMap(it)
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        map.onPause()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        map.onLowMemory()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        map.onDestroy()
+    }
+
     override fun onGetOrderFirebaseSuccess(orderFirebase: OrderFirebase) {
+        // call api fetch order
     }
 
     override fun onGetOrderFirebaseRemove() {
         freePickLayout.gone()
+    }
+
+    override fun onGetOrderDetailSuccess(order: Order) {
+        // bind order to view
+    }
+
+    override fun onGetOrderDetailFailure() {
+       //error plesed reload
     }
 
     override fun onError(message: String) {
@@ -75,7 +108,7 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     }
 
     private fun initData() {
-        presenter.getOrderFirebase(2)
+        presenter.getOrderFirebase(driver.idDriver)
     }
 
     private fun handleEvents() {
@@ -86,7 +119,7 @@ class FreePickFragment : Fragment(), FreePickContract.View {
             )
         }
         deliveryTextView.setOnClickListener {
-            //no-op
+            // map add marker partner and marker user
         }
     }
 
@@ -96,6 +129,11 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     }
 
     companion object {
-        fun newInstance() = FreePickFragment()
+
+        private const val BUNDLE_DRIVER = "BUNDLE_DRIVER"
+
+        fun newInstance(driver: Driver) = FreePickFragment().apply {
+            arguments = bundleOf(BUNDLE_DRIVER to driver)
+        }
     }
 }
