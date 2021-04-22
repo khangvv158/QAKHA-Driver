@@ -217,6 +217,29 @@
                 app:layout_constraintVertical_bias="0.1"
                 app:layout_constraintWidth_percent="0.9" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:fontFamily="@font/sf_compact_display_regular"
+                android:text="@string/title_type"
+                app:layout_constraintBottom_toBottomOf="@+id/typeCheckoutTextView"
+                app:layout_constraintEnd_toStartOf="@+id/typeCheckoutTextView"
+                app:layout_constraintTop_toTopOf="@+id/typeCheckoutTextView"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/typeCheckoutTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_compact_display_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.981"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.94" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
