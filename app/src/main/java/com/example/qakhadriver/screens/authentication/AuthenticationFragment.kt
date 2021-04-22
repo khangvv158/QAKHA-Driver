@@ -51,11 +51,11 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
     }
 
     override fun onCheckSignedInByTokenSuccess() {
-        /*Code offline here*/
         presenter.getProfile()
     }
 
     override fun onCheckSignedInByTokenFailure() {
+        /*Code offline here*/
         navigateSignInFragment()
     }
 

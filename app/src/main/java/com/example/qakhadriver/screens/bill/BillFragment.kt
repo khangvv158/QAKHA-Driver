@@ -111,6 +111,7 @@ class BillFragment : Fragment(), BillContract.View {
                 R.color.colorGreenHaze
             )
         )
+        startServiceToOnline(DriverFirebase(driver.idDriver, driver.name))
     }
 
     override fun onError(message: String) {

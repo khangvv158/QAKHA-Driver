@@ -1,40 +1,30 @@
 package com.example.qakhadriver.screens.bill.tabs.freepick
 
-import com.example.qakhadriver.data.model.OrderFirebase
-import com.example.qakhadriver.data.repository.OrderFirebaseRepository
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
+import com.example.qakhadriver.data.repository.OrderRepository
+import com.example.qakhadriver.data.repository.TokenRepository
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
-class FreePickPresenter(private val orderRepository: OrderFirebaseRepository) : FreePickContract.Presenter {
+class FreePickPresenter(
+    private val orderRepository: OrderRepository,
+    private val tokenRepository: TokenRepository
+) : FreePickContract.Presenter {
 
     private var view: FreePickContract.View? = null
+    private val compositeDisposable = CompositeDisposable()
 
-    override fun getOrderFirebase(id: Int) {
-        orderRepository.listenerOrder(id, object : ChildEventListener {
-
-            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                snapshot.getValue(OrderFirebase::class.java)?.let {
-                    view?.onGetOrderFirebaseSuccess(it)
-                }
-            }
-
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) = Unit
-
-            override fun onChildRemoved(snapshot: DataSnapshot) {
-                view?.onGetOrderFirebaseRemove()
-            }
-
-            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) = Unit
-
-            override fun onCancelled(error: DatabaseError) {
-                view?.onError(error.message)
-            }
-        })
-    }
-
-    override fun getOrderDetail() {
-
+    override fun getOrderDetail(idDriver: Int, idOrder: Int) {
+        val disposable =
+            orderRepository.getOrderDetail(idDriver, idOrder, tokenRepository.getToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view?.onGetOrderDetailSuccess(it)
+                }, {
+                    view?.onError(it.localizedMessage)
+                })
+        compositeDisposable.add(disposable)
     }
 
     override fun onStart() = Unit

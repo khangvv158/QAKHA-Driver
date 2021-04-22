@@ -176,4 +176,9 @@
     <string name="fast_delivery">Fast delivery</string>
     <string name="finish_work">Finish work</string>
     <string name="do_you_want_to_end_work">Do you want to end work?</string>
+    <string name="you_have_an_order_pending_delivery">You have an order pending delivery</string>
+    <string name="please_deliver_the_goods_quickly">Please quickly deliver the goods to a customer</string>
+    <string name="notification_order_chanel">Notification Order Chanel</string>
+    <string name="complete_delivery">Complete delivery</string>
+    <string name="the_order_has_been_successfully_delivered">The order has been successfully delivered</string>
 </resources>
