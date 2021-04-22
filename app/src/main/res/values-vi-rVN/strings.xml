@@ -171,4 +171,5 @@
     <string name="notification_order_chanel">Notification Order Chanel</string>
     <string name="complete_delivery">Hoàn tất việc giao hàng</string>
     <string name="the_order_has_been_successfully_delivered">Đơn hàng đã được giao thành công</string>
+    <string name="title_type">Loại:</string>
 </resources>

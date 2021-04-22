@@ -181,4 +181,5 @@
     <string name="notification_order_chanel">Notification Order Chanel</string>
     <string name="complete_delivery">Complete delivery</string>
     <string name="the_order_has_been_successfully_delivered">The order has been successfully delivered</string>
+    <string name="title_type">Type:</string>
 </resources>

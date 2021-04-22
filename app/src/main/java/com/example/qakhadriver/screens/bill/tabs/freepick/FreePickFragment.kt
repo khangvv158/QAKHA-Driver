@@ -113,6 +113,7 @@ class FreePickFragment : Fragment(), FreePickContract.View {
         addressUserTextView.text = order.orderDetail.addressUser
         nameUserTextView.text = order.orderDetail.nameUser
         payTextView.text = order.orderDetail.subtotal.toString()
+        typeCheckoutTextView.text = order.orderDetail.typeCheckout
         freePickLayout.show()
     }
 
@@ -150,7 +151,8 @@ class FreePickFragment : Fragment(), FreePickContract.View {
             )
         }
         deliveryTextView.setOnClickListener {
-            markerPartner = googleMap.addMarker(googleMapHelper.getPartnerMarkerOptions(positionPartner))
+            markerPartner =
+                googleMap.addMarker(googleMapHelper.getPartnerMarkerOptions(positionPartner))
             markerUser = googleMap.addMarker(googleMapHelper.getUserMarkerOptions(positionUser))
             val builder = LatLngBounds.Builder().apply {
                 include(positionPartner)
@@ -166,15 +168,15 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     }
 
     private fun animateCameraBoundSmooth(bounds: LatLngBounds) {
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,150))
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 150))
     }
 
     private fun removeMarker() {
         googleMap.clear()
-  /*      markerUser?.remove()
-        markerUser?.isVisible = true
-        markerPartner?.remove()
-        markerUser?.isVisible = true*/
+        /*      markerUser?.remove()
+              markerUser?.isVisible = true
+              markerPartner?.remove()
+              markerUser?.isVisible = true*/
     }
 
     companion object {
