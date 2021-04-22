@@ -29,6 +29,14 @@ class GoogleMapHelper {
      * @return the [MarkerOptions] with given properties added to it.
      */
 
+    fun getPartnerMarkerOptions(position: LatLng) : MarkerOptions {
+        return getMarkerOptions(R.drawable.ic_marker_store,position)
+    }
+
+    fun getUserMarkerOptions(position: LatLng) : MarkerOptions {
+        return getMarkerOptions(R.drawable.ic_marker_box,position)
+    }
+
     fun getNormalMarkerOptions(position: LatLng): MarkerOptions {
         return MarkerOptions().position(position).title("${position.latitude},${position.longitude}")
     }

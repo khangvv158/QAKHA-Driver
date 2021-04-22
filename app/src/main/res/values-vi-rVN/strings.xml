@@ -166,4 +166,9 @@
     <string name="fast_delivery">Nhanh chóng giao hàng nào…</string>
     <string name="finish_work">Kết thúc làm việc</string>
     <string name="do_you_want_to_end_work">Bạn có muốn kết thúc giờ làm việc ?</string>
+    <string name="you_have_an_order_pending_delivery">Bạn có một đơn hàng đang chờ giao</string>
+    <string name="please_deliver_the_goods_quickly">Hãy nhanh chóng giao hàng cho khách nào</string>
+    <string name="notification_order_chanel">Notification Order Chanel</string>
+    <string name="complete_delivery">Hoàn tất việc giao hàng</string>
+    <string name="the_order_has_been_successfully_delivered">Đơn hàng đã được giao thành công</string>
 </resources>

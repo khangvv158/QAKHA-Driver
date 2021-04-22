@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/dp_5"
-    app:layout_behavior="@string/bottom_sheet_behavior">
+    app:cardCornerRadius="@dimen/dp_5">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,7 +49,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/pickupLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_100"
+            android:layout_height="@dimen/dp_80"
             android:layout_below="@+id/titleLayout"
             android:background="#FFF5E8">
 
@@ -155,7 +154,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/deliveryLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_70"
+            android:layout_height="@dimen/dp_80"
             android:layout_below="@+id/pickupLayout"
             android:background="#F6FBFB">
 
@@ -196,11 +195,26 @@
                 android:maxLines="2"
                 android:textColor="@color/colorTextGray"
                 android:textSize="@dimen/sp_12"
+                app:layout_constraintEnd_toEndOf="@+id/nameUserTextView"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/nameUserTextView"
+                app:layout_constraintTop_toBottomOf="@+id/nameUserTextView"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/nameUserTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_compact_display_medium"
+                android:maxLines="1"
+                android:textColor="@color/colorTextGray"
+                android:textSize="@dimen/sp_12"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/titleDeliveryTextView"
                 app:layout_constraintTop_toBottomOf="@+id/titleDeliveryTextView"
-                app:layout_constraintVertical_bias="0.205"
+                app:layout_constraintVertical_bias="0.1"
                 app:layout_constraintWidth_percent="0.9" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

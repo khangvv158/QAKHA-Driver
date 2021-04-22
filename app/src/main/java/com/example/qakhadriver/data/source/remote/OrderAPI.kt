@@ -6,10 +6,7 @@ import com.example.qakhadriver.data.source.remote.schema.response.MessageRespons
 import com.example.qakhadriver.utils.Constants.AUTHORIZATION
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface OrderAPI {
 
@@ -20,7 +17,7 @@ interface OrderAPI {
         @Header(AUTHORIZATION) token: String
     ): Single<Order>
 
-    @GET("drivers/complete_delivery")
+    @PATCH("drivers/complete_delivery")
     fun completeDelivery(
         @Body completeDelivery: CompleteDelivery,
         @Header(AUTHORIZATION) token: String

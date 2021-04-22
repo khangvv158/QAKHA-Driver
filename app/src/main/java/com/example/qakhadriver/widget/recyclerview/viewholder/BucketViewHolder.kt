@@ -17,7 +17,7 @@ class BucketViewHolder(viewGroup: ViewGroup) :
             imageViewProduct?.loadUrl(item.cart.product.image.imageUrl)
             textViewNameProduct?.text = item.cart.product.name
             textViewQuantityProduct?.text = item.cart.quantity.toString()
-            textViewPriceProduct?.text = item.cart.product.price.toString()
+            textViewPriceProduct?.text = item.cart.price.toString()
         }
     }
 
