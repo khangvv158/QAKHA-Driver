@@ -113,7 +113,11 @@ class FreePickFragment : Fragment(), FreePickContract.View {
         addressUserTextView.text = order.orderDetail.addressUser
         nameUserTextView.text = order.orderDetail.nameUser
         payTextView.text = order.orderDetail.subtotal.toString()
-        typeCheckoutTextView.text = order.orderDetail.typeCheckout
+        if (order.orderDetail.typeCheckout == Constants.CASH) {
+            typeCheckoutTextView.text = getString(R.string.cash)
+        } else {
+            typeCheckoutTextView.text = getString(R.string.coin)
+        }
         freePickLayout.show()
     }
 
@@ -173,10 +177,6 @@ class FreePickFragment : Fragment(), FreePickContract.View {
 
     private fun removeMarker() {
         googleMap.clear()
-        /*      markerUser?.remove()
-              markerUser?.isVisible = true
-              markerPartner?.remove()
-              markerUser?.isVisible = true*/
     }
 
     companion object {
