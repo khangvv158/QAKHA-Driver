@@ -182,4 +182,5 @@
     <string name="complete_delivery">Complete delivery</string>
     <string name="the_order_has_been_successfully_delivered">The order has been successfully delivered</string>
     <string name="title_type">Type:</string>
+    <string name="coin">coins</string>
 </resources>
