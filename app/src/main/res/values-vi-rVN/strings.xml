@@ -173,4 +173,9 @@
     <string name="the_order_has_been_successfully_delivered">Đơn hàng đã được giao thành công</string>
     <string name="title_type">Loại:</string>
     <string name="coin">coin</string>
+    <string name="please_check_your_emails_for_a_message_with_your_code">Vui lòng kiểm tra email của bạn để tìm tin nhắn có mã của bạn.</string>
+    <string name="content_activate_failure">Mã kích hoạt không hợp lệ. Vui lòng kiểm tra và thử lại.</string>
+    <string name="content_activate_success">Tài khoản này đã được kích hoạt. Vui lòng đợi kiểm duyệt</string>
+    <string name="activate_account">Kích hoạt tài khoản</string>
+    <string name="account_not_activated">Tài khoản chưa kích hoạt ?</string>
 </resources>

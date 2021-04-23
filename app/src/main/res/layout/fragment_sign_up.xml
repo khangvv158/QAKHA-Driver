@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containerViewSignUp"
+    android:clickable="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
@@ -22,6 +23,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.032"
         app:layout_constraintWidth_percent="0.06" />
+
+    <ProgressBar
+        android:id="@+id/loadingProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:theme="@style/circleProgress"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -197,7 +210,7 @@
                 android:layout_marginBottom="@dimen/dp_20"
                 android:layout_centerHorizontal="true"
                 android:text="@string/title_continue"
-                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_50"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/sp_18"
                 app:backgroundTint="@color/colorCarrotOrange"
@@ -258,6 +271,20 @@
                     android:layout_height="@dimen/dp_50"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/activateTextView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:fontFamily="@font/sf_compact_display_medium"
+                android:text="@string/account_not_activated"
+                app:layout_constraintDimensionRatio="139:20"
+                app:layout_constraintEnd_toEndOf="@+id/licensePlateTextInputLayout"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/licensePlateTextInputLayout"
+                app:layout_constraintTop_toBottomOf="@+id/licensePlateTextInputLayout"
+                app:layout_constraintWidth_percent="0.4" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

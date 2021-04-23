@@ -13,19 +13,19 @@ import io.reactivex.rxjava3.core.Observable
 interface SignRepository {
 
     fun signIn(
-            email: String,
-            password: String,
+        email: String,
+        password: String,
     ): Observable<TokenAccess>
 
     fun signUp(
-            email: String,
-            password: String,
-            passwordConfirmation: String,
-            phoneNumber: String,
-            name: String,
-            idCard: String,
-            licensePlate: String
-    ): Observable<Boolean>
+        email: String,
+        password: String,
+        passwordConfirmation: String,
+        phoneNumber: String,
+        name: String,
+        idCard: String,
+        licensePlate: String
+    ): Observable<MessageResponse>
 
     fun checkEmail(emailRequest: EmailRequest): Observable<Boolean>
 
@@ -34,72 +34,77 @@ interface SignRepository {
     fun forgotPassword(emailRequest: EmailRequest): Observable<MessageResponse>
 
     fun resetPasswordByVerificationCode(
-            resetPasswordRequest: ResetPasswordRequest
+        resetPasswordRequest: ResetPasswordRequest
     ): Observable<MessageResponse>
 
     fun checkIdentifyCard(identifyCardRequest: IdentifyCardRequest): Observable<Boolean>
 
     fun checkLicensePlate(licensePlateRequest: LicensePlateRequest): Observable<Boolean>
+
+    fun activateAccount(activateRequest: ActivateRequest): Observable<MessageResponse>
 }
 
 class SignRepositoryImpl private constructor(
-        private val sharedPrefs: SharedPrefs
+    private val sharedPrefs: SharedPrefs
 ) : SignRepository {
 
     private val client = RetrofitClient.getInstance().create(SignAPI::class.java)
 
     override fun signIn(
-            email: String,
-            password: String
+        email: String,
+        password: String
     ): Observable<TokenAccess> =
-            client.signIn(
-                    CredentialRequest(
-                            email,
-                            password
-                    )
-            ).doOnNext {
-                    sharedPrefs.put(SharedPrefsKey.TOKEN_KEY, it)
-            }
+        client.signIn(
+            CredentialRequest(
+                email,
+                password
+            )
+        ).doOnNext {
+            sharedPrefs.put(SharedPrefsKey.TOKEN_KEY, it)
+        }
 
     override fun signUp(
-            email: String,
-            password: String,
-            passwordConfirmation: String,
-            phoneNumber: String,
-            name: String,
-            idCard: String,
-            licensePlate: String
-    ): Observable<Boolean> =
-            client.signUp(
-                    RegisterRequest(
-                            email,
-                            password,
-                            passwordConfirmation,
-                            phoneNumber,
-                            name,
-                            idCard,
-                            licensePlate,
-                    )
+        email: String,
+        password: String,
+        passwordConfirmation: String,
+        phoneNumber: String,
+        name: String,
+        idCard: String,
+        licensePlate: String
+    ): Observable<MessageResponse> =
+        client.signUp(
+            RegisterRequest(
+                email,
+                password,
+                passwordConfirmation,
+                phoneNumber,
+                name,
+                idCard,
+                licensePlate,
             )
+        )
 
     override fun checkEmail(emailRequest: EmailRequest): Observable<Boolean> =
-            client.checkEmail(emailRequest)
+        client.checkEmail(emailRequest)
 
     override fun checkPhoneNumber(phoneRequest: PhoneRequest): Observable<Boolean> =
-            client.checkPhoneNumber(phoneRequest)
+        client.checkPhoneNumber(phoneRequest)
 
     override fun forgotPassword(emailRequest: EmailRequest): Observable<MessageResponse> =
-            client.forgotPassword(emailRequest)
+        client.forgotPassword(emailRequest)
 
     override fun resetPasswordByVerificationCode(
-            resetPasswordRequest: ResetPasswordRequest
+        resetPasswordRequest: ResetPasswordRequest
     ): Observable<MessageResponse> = client.resetPasswordByVerificationCode(resetPasswordRequest)
 
     override fun checkIdentifyCard(identifyCardRequest: IdentifyCardRequest): Observable<Boolean> =
-            client.checkIdentifyCard(identifyCardRequest)
+        client.checkIdentifyCard(identifyCardRequest)
 
     override fun checkLicensePlate(licensePlateRequest: LicensePlateRequest): Observable<Boolean> =
-            client.checkLicensePlate(licensePlateRequest)
+        client.checkLicensePlate(licensePlateRequest)
+
+    override fun activateAccount(activateRequest: ActivateRequest): Observable<MessageResponse> =
+        client.activateAccount(activateRequest)
 
     companion object {
 
@@ -107,12 +112,12 @@ class SignRepositoryImpl private constructor(
         private var instance: SignRepositoryImpl? = null
 
         fun getInstance(
-                sharedPrefs: SharedPrefs,
+            sharedPrefs: SharedPrefs,
         ): SignRepositoryImpl =
-                instance ?: synchronized(this) {
-                    instance ?: SignRepositoryImpl(sharedPrefs).also {
-                        instance = it
-                    }
+            instance ?: synchronized(this) {
+                instance ?: SignRepositoryImpl(sharedPrefs).also {
+                    instance = it
                 }
+            }
     }
 }

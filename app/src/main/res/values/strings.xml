@@ -183,4 +183,9 @@
     <string name="the_order_has_been_successfully_delivered">The order has been successfully delivered</string>
     <string name="title_type">Type:</string>
     <string name="coin">coins</string>
+    <string name="please_check_your_emails_for_a_message_with_your_code">Please check your emails for a message with your code</string>
+    <string name="content_activate_failure">The activation code is invalid. Please check and try again.</string>
+    <string name="content_activate_success">This account has been activated. Please wait for moderation</string>
+    <string name="activate_account">Activate account</string>
+    <string name="account_not_activated">Account not activated?</string>
 </resources>
