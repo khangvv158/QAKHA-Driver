@@ -13,7 +13,7 @@ interface SignAPI {
     fun signIn(@Body parameterName: CredentialRequest): Observable<TokenAccess>
 
     @POST("sign_up")
-    fun signUp(@Body register: RegisterRequest): Observable<Boolean>
+    fun signUp(@Body register: RegisterRequest): Observable<MessageResponse>
 
     @POST("check_email")
     fun checkEmail(@Body emailRequest: EmailRequest): Observable<Boolean>
@@ -34,4 +34,9 @@ interface SignAPI {
 
     @POST("check_license_plate_driver")
     fun checkLicensePlate(@Body licensePlateRequest: LicensePlateRequest): Observable<Boolean>
+
+    @POST("activated_account_driver")
+    fun activateAccount(
+        @Body activateRequest: ActivateRequest
+    ): Observable<MessageResponse>
 }
