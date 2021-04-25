@@ -2,6 +2,7 @@ package com.example.qakhadriver.screens.authentication
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
@@ -13,16 +14,31 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.qakhadriver.R
 import com.example.qakhadriver.data.model.Driver
+import com.example.qakhadriver.data.model.Event
 import com.example.qakhadriver.data.model.Image
 import com.example.qakhadriver.data.repository.ProfileRepositoryImpl
 import com.example.qakhadriver.data.repository.TokenRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
 import com.example.qakhadriver.screens.container.ContainerFragment
+import com.example.qakhadriver.screens.me.MeFragment
 import com.example.qakhadriver.screens.signin.OnSignInSuccessListener
 import com.example.qakhadriver.screens.signin.SignInFragment
 import com.example.qakhadriver.utils.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignInSuccessListener {
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        EventBus.getDefault().unregister(this)
+    }
 
     private val presenter by lazy {
         AuthenticationPresenter(
@@ -44,6 +60,13 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
         super.onViewCreated(view, savedInstanceState)
         checkPermission()
         initView()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEventBusSignOutSuccess(event: Event<Int>){
+        if(event.keyEvent == MeFragment.EVENT_SIGN_OUT){
+            navigateSignInFragment()
+        }
     }
 
     override fun onSignInSuccess() {

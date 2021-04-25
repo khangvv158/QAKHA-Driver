@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".screens.me.MeFragment"/>
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".screens.me.MeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/avatarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_250"
+            android:background="@color/colorWhite">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageViewAvatar"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_70"
+                android:src="@color/colorAlabasterGray"
+                app:shapeAppearanceOverlay="@style/circleImageView"
+                app:strokeWidth="@dimen/dp_2" />
+
+            <TextView
+                android:id="@+id/textViewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageViewAvatar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_10"
+                android:fontFamily="@font/sf_compact_display_medium" />
+        </RelativeLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/avatarLayout"
+            android:fitsSystemWindows="false"
+            app:elevation="0dp"
+            app:itemIconSize="@dimen/dp_18"
+            app:menu="@menu/menu_nav_me" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signOutButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:layout_below="@id/navProfile"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/dp_10"
+            android:textSize="@dimen/sp_10"
+            android:text="@string/sign_out"
+            android:textColor="@color/colorCarrotOrange"
+            app:cornerRadius="@dimen/dp_15"
+            app:strokeColor="@color/colorCarrotOrange"
+            app:strokeWidth="@dimen/dp_1" />
+    </RelativeLayout>
+</ScrollView>
