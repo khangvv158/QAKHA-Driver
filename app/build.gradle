@@ -95,4 +95,8 @@ dependencies {
 
     /* Map  utils */
     implementation 'com.google.maps.android:android-maps-utils:2.2.2'
+
+    /* Date picker dialog */
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
+    implementation 'com.github.dewinjm:monthyear-picker:1.0.2'
 }

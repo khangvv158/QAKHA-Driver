@@ -69,7 +69,7 @@ class MeFragment : Fragment(), MeContract.View {
 
     private fun handleEvent() {
         signOutButton.setOnClickListener {
-           presenter.checkStatusIsOffline()
+            presenter.checkStatusIsOffline()
         }
     }
 

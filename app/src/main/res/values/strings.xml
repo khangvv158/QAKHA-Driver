@@ -182,7 +182,7 @@
     <string name="complete_delivery">Complete delivery</string>
     <string name="the_order_has_been_successfully_delivered">The order has been successfully delivered</string>
     <string name="title_type">Type:</string>
-    <string name="coin">coins</string>
+    <string name="coin">Coins</string>
     <string name="please_check_your_emails_for_a_message_with_your_code">Please check your emails for a message with your code</string>
     <string name="content_activate_failure">The activation code is invalid. Please check and try again.</string>
     <string name="content_activate_success">This account has been activated. Please wait for moderation</string>
@@ -190,4 +190,11 @@
     <string name="account_not_activated">Account not activated?</string>
     <string name="take_care_of_the_driver">Take care of the driver</string>
     <string name="quit_a_job">Quit a job</string>
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="total_daily">Total daily</string>
+    <string name="total_month">Total month</string>
+    <string name="total_annual">Total annual</string>
+    <string name="choose_year">Choose year</string>
 </resources>
