@@ -178,4 +178,6 @@
     <string name="content_activate_success">Tài khoản này đã được kích hoạt. Vui lòng đợi kiểm duyệt</string>
     <string name="activate_account">Kích hoạt tài khoản</string>
     <string name="account_not_activated">Tài khoản chưa kích hoạt ?</string>
+    <string name="take_care_of_the_driver">Chăm sóc tài xế</string>
+    <string name="quit_a_job">Nghỉ việc</string>
 </resources>
