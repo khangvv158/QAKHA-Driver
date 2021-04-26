@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerViewImageSignUp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".screens.signup.imagesignup.ImageSignUpFragment">
+
+    <ImageView
+        android:id="@+id/imageViewBack"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_back"
+        android:translationZ="@dimen/dp_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="24:24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.032"
+        app:layout_constraintWidth_percent="0.06" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/avatarImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="190:190"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.155"
+        app:layout_constraintWidth_percent="0.6"
+        app:shapeAppearanceOverlay="@style/circleImageView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sp_32"
+        android:ellipsize="end"
+        android:fontFamily="@font/sf_compact_display_medium"
+        android:gravity="center"
+        android:maxLines="2"
+        android:text="@string/please_select_a_picture_that_shows_your_full_face"
+        android:textSize="@dimen/sp_18"
+        app:layout_constraintEnd_toEndOf="@+id/avatarImageView"
+        app:layout_constraintStart_toStartOf="@+id/avatarImageView"
+        app:layout_constraintTop_toBottomOf="@+id/avatarImageView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/selectImageView"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_20"
+        android:text="select a picture"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/sp_18"
+        app:backgroundTint="@color/colorCarrotOrange"
+        app:cornerRadius="@dimen/dp_10"
+        app:layout_constraintDimensionRatio="200:50"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatTextView5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/appCompatTextView5"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView5"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signUpButton"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="108dp"
+        android:text="@string/title_continue"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/sp_18"
+        app:backgroundTint="@color/colorCarrotOrange"
+        app:cornerRadius="@dimen/dp_10"
+        app:layout_constraintDimensionRatio="280:50"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatTextView5"
+        app:layout_constraintStart_toStartOf="@+id/appCompatTextView5"
+        app:layout_constraintTop_toBottomOf="@+id/selectImageView"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:theme="@style/circleProgress"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/signUpButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectImageView"
+        app:layout_constraintVertical_bias="0.664" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

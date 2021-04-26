@@ -6,7 +6,6 @@ interface SignUpContract {
 
     interface View {
 
-        fun onSignUpSuccess()
         fun onSignUpFailure(message: String)
         fun onCheckEmailIsExistSuccess()
         fun onCheckEmailIsExistFailure()
@@ -20,15 +19,6 @@ interface SignUpContract {
     }
 
     interface Presenter : BasePresenter<View> {
-
-        fun signUp(email: String,
-                   password: String,
-                   passwordConfirmation: String,
-                   phoneNumber: String,
-                   name: String,
-                   idCard: String,
-                   licensePlate: String
-        )
 
         fun checkEmailIsExist(email: String)
         fun checkPhoneNumberIsExist(phoneNumber: String)

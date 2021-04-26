@@ -17,43 +17,6 @@ class SignUpPresenter(private val signRepository: SignRepository) : SignUpContra
     private var view: SignUpContract.View? = null
     private val compositeDisposable = CompositeDisposable()
 
-    override fun signUp(
-            email: String,
-            password: String,
-            passwordConfirmation: String,
-            phoneNumber: String,
-            name: String,
-            idCard: String,
-            licensePlate: String
-    ) {
-        val disposable = signRepository.signUp(
-                email,
-                password,
-                passwordConfirmation,
-                phoneNumber,
-                name,
-                idCard,
-                licensePlate
-        )
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    view?.onSignUpSuccess()
-                }, {
-                    if (it is HttpException) {
-                        try {
-                            view?.onSignUpFailure(Gson().fromJson(
-                                    it.response()?.errorBody()?.string(),
-                                    MessageResponse::class.java
-                            ).message)
-                        } catch (e: Exception) {
-                            view?.onError(it.localizedMessage)
-                        }
-                    }
-                })
-        compositeDisposable.add(disposable)
-    }
-
     override fun checkEmailIsExist(email: String) {
         val disposable = signRepository.checkEmail(EmailRequest(email))
                 .subscribeOn(Schedulers.io())

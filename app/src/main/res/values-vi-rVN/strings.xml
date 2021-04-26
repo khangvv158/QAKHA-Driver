@@ -189,4 +189,6 @@
     <string name="choose_year">Chọn năm</string>
     <string name="content_signout_failure">Đăng xuất thất bại, hãy kiểm tra trạng thái của bạn</string>
     <string name="coming_soon">Sắp ra mắt</string>
+    <string name="permission_denied">Quyền truy cập bộ nhớ bị từ chối</string>
+    <string name="please_select_a_picture_that_shows_your_full_face">Vui lòng chọn một bức ảnh hiển thị toàn bộ khuôn mặt của bạn </string>
 </resources>

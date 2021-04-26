@@ -199,4 +199,6 @@
     <string name="choose_year">Choose year</string>
     <string name="content_signout_failure">Sign out failure, check your delivery status</string>
     <string name="coming_soon">Coming soon</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="please_select_a_picture_that_shows_your_full_face">Please select a picture that shows your full face</string>
 </resources>
