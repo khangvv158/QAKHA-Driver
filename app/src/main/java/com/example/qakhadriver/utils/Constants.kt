@@ -6,7 +6,7 @@ object Constants {
     const val DEFAULT_FLOAT = 0f
     const val DEFAULT_STRING = ""
     const val SPACE_STRING = " "
-    const val BASE_URL = "https://52b62d440420.ngrok.io/api/v1/"
+    const val BASE_URL = "https://0af20525500e.ngrok.io/api/v1/"
     const val ROLE_MEMBER = "driver"
     const val DRIVER = "driver"
     const val DRIVERS = "drivers"
@@ -22,4 +22,6 @@ object Constants {
     const val DATE_PATTERN = "dd-MM-yyyy"
     const val MONTH_YEAR = "MM-yyyy"
     const val YEAR_PATTERN = "yyyy"
+    const val LANG_VI = "vi"
+    const val LANG_EN = "en"
 }

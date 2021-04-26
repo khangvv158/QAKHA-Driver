@@ -1,29 +1,47 @@
 package com.example.qakhadriver.screens.main
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import android.os.Handler
+import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import com.example.qakhadriver.R
+import com.example.qakhadriver.data.repository.LanguageRepositoryImpl
+import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
 import com.example.qakhadriver.screens.authentication.AuthenticationFragment
-import com.example.qakhadriver.screens.container.ContainerFragment
 import com.example.qakhadriver.utils.addFragment
+import java.util.*
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(), MainActivityContract.View {
+
+    private val presenter by lazy {
+        MainActivityPresenter(
+            LanguageRepositoryImpl.getInstance(SharedPrefsImpl.getInstance(baseContext))
+        )
+    }
 
     private var doubleBackPressed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        presenter.setView(this)
+        presenter.onSetupLanguage()
         setFlags()
         initViews()
+    }
+
+    override fun onSetupLanguageSuccess(langCode: String) {
+        setAppLocale(langCode)
     }
 
     override fun onBackPressed() {
@@ -71,5 +89,13 @@ class MainActivity : AppCompatActivity() {
         val inputMethodManager =
             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    private fun setAppLocale(localeCode: String) {
+        val resources: Resources = resources
+        val dm: DisplayMetrics = resources.displayMetrics
+        val config: Configuration = resources.configuration
+        config.setLocale(Locale(localeCode.toLowerCase()))
+        resources.updateConfiguration(config, dm)
     }
 }

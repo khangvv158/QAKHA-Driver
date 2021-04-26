@@ -187,4 +187,6 @@
     <string name="total_month">Tổng cộng</string>
     <string name="total_annual">Tổng cộng</string>
     <string name="choose_year">Chọn năm</string>
+    <string name="content_signout_failure">Đăng xuất thất bại, hãy kiểm tra trạng thái của bạn</string>
+    <string name="coming_soon">Sắp ra mắt</string>
 </resources>

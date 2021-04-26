@@ -13,6 +13,8 @@ import com.example.qakhadriver.data.model.Event
 import com.example.qakhadriver.data.repository.ProfileRepositoryImpl
 import com.example.qakhadriver.data.repository.TokenRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
+import com.example.qakhadriver.screens.me.navigate.settings.SettingFragment
+import com.example.qakhadriver.utils.addFragmentBackStack
 import com.example.qakhadriver.utils.makeText
 import kotlinx.android.synthetic.main.fragment_me.*
 import org.greenrobot.eventbus.EventBus
@@ -45,7 +47,7 @@ class MeFragment : Fragment(), MeContract.View {
     }
 
     override fun onCheckStatusIsOfflineFailure() {
-        makeText(getString(R.string.content_offline_failure))
+        makeText(getString(R.string.content_signout_failure))
     }
 
     override fun onSignOutSuccess() {
@@ -71,6 +73,20 @@ class MeFragment : Fragment(), MeContract.View {
         signOutButton.setOnClickListener {
             presenter.checkStatusIsOffline()
         }
+        setupNavigation()
+    }
+
+    private fun setupNavigation() {
+        navProfile.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.settingsItemMenu -> navigateToFragment(SettingFragment.newInstance())
+            }
+            true
+        }
+    }
+
+    private fun navigateToFragment(fragment: Fragment) {
+        parentFragment?.addFragmentBackStack(fragment, R.id.containerViewAuthentication)
     }
 
     companion object {
