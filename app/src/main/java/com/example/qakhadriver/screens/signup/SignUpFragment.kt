@@ -10,7 +10,9 @@ import android.widget.Toast
 import com.example.qakhadriver.R
 import com.example.qakhadriver.data.repository.SignRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
+import com.example.qakhadriver.data.source.remote.schema.request.RegisterRequest
 import com.example.qakhadriver.screens.signup.activate.ActivateFragment
+import com.example.qakhadriver.screens.signup.imagesignup.ImageSignUpFragment
 import com.example.qakhadriver.utils.*
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up.emailEditText
@@ -43,12 +45,6 @@ class SignUpFragment : Fragment(), SignUpContract.View {
         super.onViewCreated(view, savedInstanceState)
         presenter.setView(this)
         handleEvents()
-    }
-
-    override fun onSignUpSuccess() {
-        clearEditText()
-        loadingProgress.gone()
-        addFragmentSlideAnim(ActivateFragment.newInstance(), R.id.containerViewAuthentication)
     }
 
     override fun onSignUpFailure(message: String) {
@@ -142,20 +138,25 @@ class SignUpFragment : Fragment(), SignUpContract.View {
             licensePlateIsExist
         ) {
             hideKeyboard()
-            presenter.signUp(
-                emailEditText.text.toString(),
-                passwordEditText.text.toString(),
-                confirmPasswordEditText.text.toString(),
-                phoneNumberEditText.text.toString(),
-                nameEditText.text.toString(),
-                identityCardEditText.text.toString(),
-                licensePlateCardEditText.text.toString()
+            addFragmentBackStack(
+                ImageSignUpFragment.newInstance(
+                    RegisterRequest(
+                        emailEditText.text.toString(),
+                        passwordEditText.text.toString(),
+                        confirmPasswordEditText.text.toString(),
+                        phoneNumberEditText.text.toString(),
+                        nameEditText.text.toString(),
+                        identityCardEditText.text.toString(),
+                        licensePlateCardEditText.text.toString(),
+                        null
+                    )
+                ), R.id.containerViewAuthentication
             )
+            clearEditText()
             emailIsExist = false
             phoneNumberIsExist = false
             idCardIsExist = false
             licensePlateIsExist = false
-            loadingProgress.show()
         }
     }
 

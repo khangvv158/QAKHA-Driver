@@ -24,7 +24,8 @@ interface SignRepository {
         phoneNumber: String,
         name: String,
         idCard: String,
-        licensePlate: String
+        licensePlate: String,
+        image: String?
     ): Observable<MessageResponse>
 
     fun checkEmail(emailRequest: EmailRequest): Observable<Boolean>
@@ -70,7 +71,8 @@ class SignRepositoryImpl private constructor(
         phoneNumber: String,
         name: String,
         idCard: String,
-        licensePlate: String
+        licensePlate: String,
+        image: String?
     ): Observable<MessageResponse> =
         client.signUp(
             RegisterRequest(
@@ -81,6 +83,7 @@ class SignRepositoryImpl private constructor(
                 name,
                 idCard,
                 licensePlate,
+                image
             )
         )
 

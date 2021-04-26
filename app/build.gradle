@@ -99,4 +99,10 @@ dependencies {
     /* Date picker dialog */
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
     implementation 'com.github.dewinjm:monthyear-picker:1.0.2'
+
+    /* cloudinary */
+    implementation 'com.cloudinary:cloudinary-android:1.24.0'
+
+    /* RxBinding */
+    implementation 'com.jakewharton.rxbinding:rxbinding:0.4.0'
 }
