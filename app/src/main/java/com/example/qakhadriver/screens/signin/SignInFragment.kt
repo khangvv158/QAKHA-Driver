@@ -94,6 +94,12 @@ class SignInFragment : Fragment(), SignInContract.View {
             presenter.signIn(emailEditText.text.toString(), passwordEditText.text.toString())
             progressBar.show()
         }
+        imageViewLoginGoogle.setOnClickListener {
+            makeText(getString(R.string.coming_soon))
+        }
+        imageViewLoginFacebook.setOnClickListener {
+            makeText(getString(R.string.coming_soon))
+        }
     }
 
     companion object {

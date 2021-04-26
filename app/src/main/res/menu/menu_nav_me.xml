@@ -1,31 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/groupProfile">
-        <item
-            android:id="@+id/takeCareItemMenu"
-            android:icon="@drawable/ic_insurance"
-            android:title="@string/take_care_of_the_driver" />
-    </group>
-
-    <group android:id="@+id/groupCenter">
-        <item
-            android:id="@+id/helpCenterItemMenu"
-            android:icon="@drawable/ic_help"
-            android:title="@string/help_center" />
-    </group>
-
     <group android:id="@+id/groupApplication">
-        <item
-            android:id="@+id/userPolicyItemMenu"
-            android:icon="@drawable/ic_verified"
-            android:title="@string/user_policy" />
         <item
             android:id="@+id/settingsItemMenu"
             android:icon="@drawable/ic_setting"
             android:title="@string/settings" />
-        <item
-            android:id="@+id/quitJobItemMenu"
-            android:icon="@drawable/ic_about"
-            android:title="@string/quit_a_job" />
     </group>
 </menu>
