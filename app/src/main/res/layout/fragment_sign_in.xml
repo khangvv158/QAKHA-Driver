@@ -71,7 +71,7 @@
         app:boxCornerRadiusTopStart="@dimen/dp_10"
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
-        app:layout_constraintDimensionRatio="331:78"
+        app:layout_constraintDimensionRatio="331:100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailTextInputLayout"
@@ -88,30 +88,29 @@
         android:id="@+id/forgotPasswordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
         android:text="@string/forgot_password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.138"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintEnd_toEndOf="@+id/passwordTextInputLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/passwordTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signInButton"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_30"
         android:text="@string/title_sign_in"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/sp_18"
         app:backgroundTint="@color/colorCarrotOrange"
         app:cornerRadius="@dimen/dp_10"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="280:50"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637"
+        app:layout_constraintEnd_toEndOf="@+id/passwordTextInputLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/passwordTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPasswordTextView"
         app:layout_constraintWidth_percent="0.8" />
 
     <TextView
@@ -145,11 +144,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/don_t_have_an_account"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/dp_10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.871" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLoginGoogle" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageViewLoginGoogle"
