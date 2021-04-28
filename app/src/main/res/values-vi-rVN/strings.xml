@@ -191,4 +191,9 @@
     <string name="coming_soon">Sắp ra mắt</string>
     <string name="permission_denied">Quyền truy cập bộ nhớ bị từ chối</string>
     <string name="please_select_a_picture_that_shows_your_full_face">Vui lòng chọn một bức ảnh hiển thị toàn bộ khuôn mặt của bạn </string>
+    <string name="about_application">Về ứng dụng</string>
+    <string name="department_of_information_technology_duy_tan_university">Khoa công nghệ thông tin, trường đại học Duy Tân</string>
+    <string name="contact_us">Liện hệ với chúng tôi</string>
+    <string name="building_qakha_delivery_system">Xây dựng hệ thống QAKHA Delivery</string>
+    <string name="rate">Đánh giá</string>
 </resources>
