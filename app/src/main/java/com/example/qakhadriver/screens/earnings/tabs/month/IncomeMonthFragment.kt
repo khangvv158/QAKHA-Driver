@@ -43,10 +43,10 @@ class IncomeMonthFragment : Fragment(), IncomeMonthContract.View {
     }
 
     override fun onGetIncomeMonthSuccess(incomeMonthResponse: IncomeMonthResponse) {
-        totalCashTextView.text = incomeMonthResponse.totalCash.toString()
-        totalCoinTextView.text = incomeMonthResponse.totalCoin.toString()
-        totalPayPalTextView.text = incomeMonthResponse.totalPayPal.toString()
-        totalMonthTextView.text = incomeMonthResponse.totalMonthly.toString()
+        totalCashTextView?.text = incomeMonthResponse.totalCash.toString()
+        totalCoinTextView?.text = incomeMonthResponse.totalCoin.toString()
+        totalPayPalTextView?.text = incomeMonthResponse.totalPayPal.toString()
+        totalMonthTextView?.text = incomeMonthResponse.totalMonthly.toString()
     }
 
     override fun onError(message: String) {
@@ -55,7 +55,7 @@ class IncomeMonthFragment : Fragment(), IncomeMonthContract.View {
 
     private fun initViews() {
         presenter.setView(this)
-        dateTextView.text = TimeHelper.getTimeCurrent(Constants.MONTH_YEAR)
+        dateTextView?.text = TimeHelper.getTimeCurrent(Constants.MONTH_YEAR)
         presenter.getIncomeMonth(TimeHelper.getTimeCurrent(Constants.MONTH_YEAR))
     }
 
@@ -73,7 +73,7 @@ class IncomeMonthFragment : Fragment(), IncomeMonthContract.View {
                     Constants.MONTH_YEAR,
                     Locale.getDefault()
                 ).parse("$month-$year")
-                dateTextView.text = date.toString(Constants.MONTH_YEAR)
+                dateTextView?.text = date.toString(Constants.MONTH_YEAR)
                 presenter.getIncomeMonth(date.toString(Constants.MONTH_YEAR))
             }
         }

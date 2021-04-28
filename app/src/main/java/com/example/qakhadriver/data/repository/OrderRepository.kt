@@ -1,6 +1,7 @@
 package com.example.qakhadriver.data.repository
 
 import com.example.qakhadriver.data.model.Order
+import com.example.qakhadriver.data.model.OrderDone
 import com.example.qakhadriver.data.source.remote.OrderAPI
 import com.example.qakhadriver.data.source.remote.RetrofitClient
 import com.example.qakhadriver.data.source.remote.schema.request.CompleteDelivery
@@ -15,6 +16,8 @@ interface OrderRepository {
         completeDelivery: CompleteDelivery,
         token: String
     ): Observable<MessageResponse>
+
+    fun getOrderDone(token: String): Single<MutableList<OrderDone>>
 }
 
 class OrderRepositoryImpl private constructor() : OrderRepository {
@@ -28,6 +31,9 @@ class OrderRepositoryImpl private constructor() : OrderRepository {
         completeDelivery: CompleteDelivery,
         token: String
     ): Observable<MessageResponse> = client.completeDelivery(completeDelivery, token)
+
+    override fun getOrderDone(token: String): Single<MutableList<OrderDone>> =
+        client.getOrderDone(token)
 
     companion object {
 

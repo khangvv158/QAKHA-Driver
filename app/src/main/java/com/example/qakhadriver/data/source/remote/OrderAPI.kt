@@ -1,6 +1,7 @@
 package com.example.qakhadriver.data.source.remote
 
 import com.example.qakhadriver.data.model.Order
+import com.example.qakhadriver.data.model.OrderDone
 import com.example.qakhadriver.data.source.remote.schema.request.CompleteDelivery
 import com.example.qakhadriver.data.source.remote.schema.response.MessageResponse
 import com.example.qakhadriver.utils.Constants.AUTHORIZATION
@@ -22,4 +23,9 @@ interface OrderAPI {
         @Body completeDelivery: CompleteDelivery,
         @Header(AUTHORIZATION) token: String
     ): Observable<MessageResponse>
+
+    @GET("drivers/order_history")
+    fun getOrderDone(
+        @Header(AUTHORIZATION) token: String
+    ): Single<MutableList<OrderDone>>
 }

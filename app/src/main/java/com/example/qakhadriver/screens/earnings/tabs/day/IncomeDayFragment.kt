@@ -47,15 +47,15 @@ class IncomeDayFragment : Fragment(), DatePickerDialog.OnDateSetListener, Income
             Constants.DATE_PATTERN,
             Locale.getDefault()
         ).parse("$dayOfMonth-$month-$year")
-        dayTextView.text = date.toString(Constants.DATE_PATTERN)
+        dayTextView?.text = date.toString(Constants.DATE_PATTERN)
         presenter.getIncomeDay(date.toString(Constants.DATE_PATTERN))
     }
 
     override fun onGetIncomeDaySuccess(incomeDayResponse: IncomeDayResponse) {
-        totalCashTextView.text = incomeDayResponse.totalCash.toString()
-        totalCoinTextView.text = incomeDayResponse.totalCoin.toString()
-        totalPayPalTextView.text = incomeDayResponse.totalPayPal.toString()
-        totalDailyTextView.text = incomeDayResponse.totalDaily.toString()
+        totalCashTextView?.text = incomeDayResponse.totalCash.toString()
+        totalCoinTextView?.text = incomeDayResponse.totalCoin.toString()
+        totalPayPalTextView?.text = incomeDayResponse.totalPayPal.toString()
+        totalDailyTextView?.text = incomeDayResponse.totalDaily.toString()
     }
 
     override fun onError(message: String) {
@@ -64,7 +64,7 @@ class IncomeDayFragment : Fragment(), DatePickerDialog.OnDateSetListener, Income
 
     private fun initViews() {
         presenter.setView(this)
-        dayTextView.text = TimeHelper.getTimeCurrent(Constants.DATE_PATTERN)
+        dayTextView?.text = TimeHelper.getTimeCurrent(Constants.DATE_PATTERN)
         presenter.getIncomeDay(TimeHelper.getTimeCurrent(Constants.DATE_PATTERN))
     }
 
