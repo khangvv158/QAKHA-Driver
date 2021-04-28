@@ -57,6 +57,7 @@ class DoneFragment : Fragment(), DoneContract.View, DoneRecyclerViewOnClickListe
 
     override fun onError(message: String) {
         makeText(message)
+        swipeLayout.isRefreshing = false
     }
 
     override fun onItemClickListener(orderDone: OrderDone) {

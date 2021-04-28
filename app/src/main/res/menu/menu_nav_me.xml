@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:id="@+id/groupApplication">
+
+        <item
+            android:id="@+id/feedbackItemMenu"
+            android:icon="@drawable/ic_feedback"
+            android:title="@string/feedback" />
+
+        <item
+            android:id="@+id/helpCenterItemMenu"
+            android:icon="@drawable/ic_help"
+            android:title="@string/help_center" />
         <item
             android:id="@+id/settingsItemMenu"
             android:icon="@drawable/ic_setting"
             android:title="@string/settings" />
+
+        <item
+            android:id="@+id/aboutItemMenu"
+            android:icon="@drawable/ic_about"
+            android:title="@string/about_application" />
     </group>
 </menu>

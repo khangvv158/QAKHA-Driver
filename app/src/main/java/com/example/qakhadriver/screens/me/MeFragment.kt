@@ -13,6 +13,9 @@ import com.example.qakhadriver.data.model.Event
 import com.example.qakhadriver.data.repository.ProfileRepositoryImpl
 import com.example.qakhadriver.data.repository.TokenRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
+import com.example.qakhadriver.screens.feedback.FeedbackFragment
+import com.example.qakhadriver.screens.me.navigate.about.AboutFragment
+import com.example.qakhadriver.screens.me.navigate.helpcenter.HelpCenterFragment
 import com.example.qakhadriver.screens.me.navigate.settings.SettingFragment
 import com.example.qakhadriver.utils.addFragmentBackStack
 import com.example.qakhadriver.utils.makeText
@@ -27,6 +30,7 @@ class MeFragment : Fragment(), MeContract.View {
             ProfileRepositoryImpl.getInstance()
         )
     }
+    private lateinit var driver: Driver
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,6 +70,7 @@ class MeFragment : Fragment(), MeContract.View {
         arguments?.getParcelable<Driver>(BUNDLE_DRIVER)?.let {
             Glide.with(requireContext()).load(it.image.imageUrl).into(imageViewAvatar)
             textViewName.text = it.name
+            driver = it
         }
     }
 
@@ -80,6 +85,9 @@ class MeFragment : Fragment(), MeContract.View {
         navProfile.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.settingsItemMenu -> navigateToFragment(SettingFragment.newInstance())
+                R.id.helpCenterItemMenu -> navigateToFragment(HelpCenterFragment.newInstance())
+                R.id.aboutItemMenu -> navigateToFragment(AboutFragment.newInstance())
+                R.id.feedbackItemMenu -> navigateToFragment(FeedbackFragment.newInstance(driver))
             }
             true
         }
