@@ -6,7 +6,7 @@ object Constants {
     const val DEFAULT_FLOAT = 0f
     const val DEFAULT_STRING = ""
     const val SPACE_STRING = " "
-    const val BASE_URL = "https://f4b05965e591.ngrok.io/api/v1/"
+    const val BASE_URL = "https://4480f3c0b964.ngrok.io/api/v1/"
     const val ROLE_MEMBER = "driver"
     const val DRIVER = "driver"
     const val DRIVERS = "drivers"

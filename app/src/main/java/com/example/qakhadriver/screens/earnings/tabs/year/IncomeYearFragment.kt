@@ -46,10 +46,10 @@ class IncomeYearFragment : Fragment(), IncomeYearContract.View {
     }
 
     override fun onGetIncomeYearSuccess(incomeYearResponse: IncomeYearResponse) {
-        totalCashTextView.text = incomeYearResponse.totalCash.toString()
-        totalCoinTextView.text = incomeYearResponse.totalCoin.toString()
-        totalPayPalTextView.text = incomeYearResponse.totalPayPal.toString()
-        totalAnnualTextView.text = incomeYearResponse.totalAnnual.toString()
+        totalCashTextView?.text = incomeYearResponse.totalCash.toString()
+        totalCoinTextView?.text = incomeYearResponse.totalCoin.toString()
+        totalPayPalTextView?.text = incomeYearResponse.totalPayPal.toString()
+        totalAnnualTextView?.text = incomeYearResponse.totalAnnual.toString()
     }
 
     override fun onError(message: String) {
@@ -58,7 +58,7 @@ class IncomeYearFragment : Fragment(), IncomeYearContract.View {
 
     private fun initViews() {
         presenter.setView(this)
-        dateTextView.text = TimeHelper.getTimeCurrent(Constants.YEAR_PATTERN)
+        dateTextView?.text = TimeHelper.getTimeCurrent(Constants.YEAR_PATTERN)
         presenter.getIncomeYear(TimeHelper.getTimeCurrent(Constants.YEAR_PATTERN))
     }
 
@@ -78,7 +78,7 @@ class IncomeYearFragment : Fragment(), IncomeYearContract.View {
         view.picker.value = TimeHelper.getTimeCurrent(Constants.YEAR_PATTERN).toInt()
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             presenter.getIncomeYear(view.picker.value.toString().trim())
-            dateTextView.text = view.picker.value.toString().trim()
+            dateTextView?.text = view.picker.value.toString().trim()
         }
             .setNegativeButton(android.R.string.cancel) { dialog, _ ->
                 dialog.dismiss()

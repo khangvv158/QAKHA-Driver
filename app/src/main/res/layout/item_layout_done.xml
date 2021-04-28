@@ -17,7 +17,7 @@
             android:background="@color/colorTextBlackGray">
 
             <TextView
-                android:id="@+id/kilometerTextView"
+                android:id="@+id/rateTextView"
                 android:layout_width="@dimen/dp_180"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/sf_compact_display_medium"
@@ -38,7 +38,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/pickupLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_100"
+            android:layout_height="@dimen/dp_80"
             android:layout_below="@+id/titleLayout"
             android:background="#FFF5E8">
 
@@ -143,7 +143,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/deliveryLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_70"
+            android:layout_height="@dimen/dp_80"
             android:layout_below="@+id/pickupLayout"
             android:background="#F6FBFB">
 
@@ -184,12 +184,49 @@
                 android:maxLines="2"
                 android:textColor="@color/colorTextGray"
                 android:textSize="@dimen/sp_12"
+                app:layout_constraintEnd_toEndOf="@+id/nameUserTextView"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/nameUserTextView"
+                app:layout_constraintTop_toBottomOf="@+id/nameUserTextView"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/nameUserTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/sf_compact_display_medium"
+                android:maxLines="1"
+                android:textSize="@dimen/sp_12"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/titleDeliveryTextView"
                 app:layout_constraintTop_toBottomOf="@+id/titleDeliveryTextView"
-                app:layout_constraintVertical_bias="0.205"
+                app:layout_constraintVertical_bias="0.1"
                 app:layout_constraintWidth_percent="0.9" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:fontFamily="@font/sf_compact_display_regular"
+                android:text="@string/title_type"
+                app:layout_constraintBottom_toBottomOf="@+id/typeCheckoutTextView"
+                app:layout_constraintEnd_toStartOf="@+id/typeCheckoutTextView"
+                app:layout_constraintTop_toTopOf="@+id/typeCheckoutTextView"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/typeCheckoutTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_compact_display_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.981"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.94" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
