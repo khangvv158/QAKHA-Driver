@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/avatarLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_250"
@@ -19,11 +19,18 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageViewAvatar"
-                android:layout_width="@dimen/dp_100"
-                android:layout_height="@dimen/dp_100"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/dp_70"
                 android:src="@color/colorAlabasterGray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="100:100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.28"
+                app:layout_constraintWidth_percent="0.25"
                 app:shapeAppearanceOverlay="@style/circleImageView"
                 app:strokeWidth="@dimen/dp_2" />
 
@@ -32,10 +39,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imageViewAvatar"
+                android:gravity="center"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/dp_10"
-                android:fontFamily="@font/sf_compact_display_medium" />
-        </RelativeLayout>
+                android:fontFamily="@font/sf_compact_display_medium"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewAvatar"
+                app:layout_constraintStart_toStartOf="@+id/imageViewAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewAvatar" />
+
+            <TextView
+                android:id="@+id/coinTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewName"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_10"
+                android:fontFamily="@font/sf_compact_display_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+
+            <TextView
+                android:id="@+id/tileCoinTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewName"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/dp_5"
+                android:fontFamily="@font/sf_compact_display_bold"
+                android:text="c"
+                app:layout_constraintBottom_toBottomOf="@+id/coinTextView"
+                app:layout_constraintStart_toEndOf="@+id/coinTextView"
+                app:layout_constraintTop_toBottomOf="@+id/textViewName"
+                app:layout_constraintVertical_bias="1.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navProfile"
@@ -55,9 +94,9 @@
             android:layout_below="@id/navProfile"
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/dp_10"
-            android:textSize="@dimen/sp_10"
             android:text="@string/sign_out"
             android:textColor="@color/colorCarrotOrange"
+            android:textSize="@dimen/sp_10"
             app:cornerRadius="@dimen/dp_15"
             app:strokeColor="@color/colorCarrotOrange"
             app:strokeWidth="@dimen/dp_1" />

@@ -1,5 +1,6 @@
 package com.example.qakhadriver.screens.me
 
+import com.example.qakhadriver.data.repository.IncomeRepository
 import com.example.qakhadriver.data.repository.ProfileRepository
 import com.example.qakhadriver.data.repository.TokenRepository
 import com.example.qakhadriver.utils.Constants
@@ -9,8 +10,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MePresenter(
     private val tokenRepository: TokenRepository,
-    private val profileRepository: ProfileRepository
-    ) : MeContract.Presenter {
+    private val profileRepository: ProfileRepository,
+    private val incomeRepository: IncomeRepository
+) : MeContract.Presenter {
 
     private var view: MeContract.View? = null
     private val compositeDisposable = CompositeDisposable()
@@ -25,6 +27,18 @@ class MePresenter(
                     Constants.SHIPPING -> view?.onCheckStatusIsOfflineFailure()
                     Constants.OFFLINE -> view?.onCheckStatusIsOfflineSuccess()
                 }
+            }, {
+                view?.onError(it.localizedMessage)
+            })
+        compositeDisposable.add(disposable)
+    }
+
+    override fun getCoin() {
+        val disposable = incomeRepository.getCoin(tokenRepository.getToken())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                view?.onGetCoinSuccess(it)
             }, {
                 view?.onError(it.localizedMessage)
             })
