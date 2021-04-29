@@ -10,9 +10,11 @@ import com.bumptech.glide.Glide
 import com.example.qakhadriver.R
 import com.example.qakhadriver.data.model.Driver
 import com.example.qakhadriver.data.model.Event
+import com.example.qakhadriver.data.repository.IncomeRepositoryImpl
 import com.example.qakhadriver.data.repository.ProfileRepositoryImpl
 import com.example.qakhadriver.data.repository.TokenRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
+import com.example.qakhadriver.data.source.remote.schema.response.CoinResponse
 import com.example.qakhadriver.screens.feedback.FeedbackFragment
 import com.example.qakhadriver.screens.me.navigate.about.AboutFragment
 import com.example.qakhadriver.screens.me.navigate.helpcenter.HelpCenterFragment
@@ -27,7 +29,8 @@ class MeFragment : Fragment(), MeContract.View {
     private val presenter by lazy {
         MePresenter(
             TokenRepositoryImpl.getInstance(SharedPrefsImpl.getInstance(requireContext())),
-            ProfileRepositoryImpl.getInstance()
+            ProfileRepositoryImpl.getInstance(),
+            IncomeRepositoryImpl.getInstance()
         )
     }
     private lateinit var driver: Driver
@@ -54,6 +57,10 @@ class MeFragment : Fragment(), MeContract.View {
         makeText(getString(R.string.content_signout_failure))
     }
 
+    override fun onGetCoinSuccess(coinResponse: CoinResponse) {
+        coinTextView.text = coinResponse.coin.toString()
+    }
+
     override fun onSignOutSuccess() {
         EventBus.getDefault().post(Event(EVENT_SIGN_OUT, EVENT_SIGN_OUT_ID))
     }
@@ -72,6 +79,7 @@ class MeFragment : Fragment(), MeContract.View {
             textViewName.text = it.name
             driver = it
         }
+        presenter.getCoin()
     }
 
     private fun handleEvent() {

@@ -1,5 +1,6 @@
 package com.example.qakhadriver.data.source.remote
 
+import com.example.qakhadriver.data.source.remote.schema.response.CoinResponse
 import com.example.qakhadriver.data.source.remote.schema.response.IncomeDayResponse
 import com.example.qakhadriver.data.source.remote.schema.response.IncomeMonthResponse
 import com.example.qakhadriver.data.source.remote.schema.response.IncomeYearResponse
@@ -21,11 +22,16 @@ interface IncomeAPI {
     fun getIncomeByMonth(
         @Query("month") monthYear: String,
         @Header(Constants.AUTHORIZATION) token: String
-    ) : Observable<IncomeMonthResponse>
+    ): Observable<IncomeMonthResponse>
 
     @GET("drivers/statistics/year")
     fun getIncomeByYear(
         @Query("year") year: String,
         @Header(Constants.AUTHORIZATION) token: String
-    ) : Observable<IncomeYearResponse>
+    ): Observable<IncomeYearResponse>
+
+    @GET("drivers/coins")
+    fun getCoin(
+        @Header(Constants.AUTHORIZATION) token: String
+    ): Observable<CoinResponse>
 }
