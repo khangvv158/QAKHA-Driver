@@ -67,7 +67,7 @@ class OrderDetailFragment : Fragment(), OrderDetailContract.View {
             textViewUserName.text = it.orderDetail.nameUser
             textViewPhoneNumber.text = it.orderDetail.phoneNumberUser
             textViewNamePartner.text = it.orderDetail.partner.name
-            bucketAdapter.updateData(it.orderDetail.carts)
+            bucketAdapter.updateData(it.carts)
             textViewPriceSubtotal.text = it.orderDetail.subtotal.toString()
             textViewPriceShippingFee.text = it.orderDetail.shippingFee.toString()
             textViewPriceDiscount.text = it.orderDetail.discount.toString()

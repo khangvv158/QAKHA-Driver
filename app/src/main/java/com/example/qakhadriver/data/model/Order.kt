@@ -6,6 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Order(
+    @SerializedName("order_details") val carts: MutableList<Cart>,
     @SerializedName("order") val orderDetail: OrderDetail,
     @SerializedName("location_user") val locationUser: LocationUser
 ) : Parcelable
@@ -29,7 +30,6 @@ data class OrderDetail(
     @SerializedName("voucher_id") val voucherId: Int?,
     @SerializedName("partner_id") val partnerID: Int,
     @SerializedName("created_at") val createdAt: String,
-    @SerializedName("order_details") val carts: MutableList<Cart>,
     @SerializedName("partner") val partner: Partner
 ): Parcelable
 
