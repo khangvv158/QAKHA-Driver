@@ -206,4 +206,9 @@
     <string name="contact_us">Contact us</string>
     <string name="building_qakha_delivery_system">Building QAKHA Delivery System</string>
     <string name="rate">Rate</string>
+    <string name="change_password">Change password</string>
+    <string name="change_password_that_is_at_least_6_characters_1_uppercase_letter_1_lowercase_letter_and_a_number">Change password that is at least 6 characters, 1 uppercase letter, 1 lowercase letter and a number</string>
+    <string name="current_password">Current password</string>
+    <string name="change_password_successfully">Change password successfully</string>
+    <string name="current_password_dont_match">Current password don\'t match</string>
 </resources>

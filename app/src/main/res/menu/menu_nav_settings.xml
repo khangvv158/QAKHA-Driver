@@ -12,4 +12,7 @@
             </group>
         </menu>
     </item>
+    <item
+        android:id="@+id/changePassword"
+        android:title="@string/change_password" />
 </menu>

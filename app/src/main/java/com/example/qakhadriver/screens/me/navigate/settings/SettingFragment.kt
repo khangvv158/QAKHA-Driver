@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import com.example.qakhadriver.R
 import com.example.qakhadriver.data.repository.LanguageRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
+import com.example.qakhadriver.screens.me.navigate.settings.changepassword.ChangePasswordFragment
+import com.example.qakhadriver.utils.addFragmentFadeAnim
 import com.example.qakhadriver.utils.makeText
 import kotlinx.android.synthetic.main.fragment_setting.*
 
@@ -59,6 +61,10 @@ class SettingFragment : Fragment(), SettingContract.View {
             when (it.itemId) {
                 R.id.langVi -> presenter.setLanguage(LANG_CODE_VI)
                 R.id.langEn -> presenter.setLanguage(LANG_CODE_EN)
+                R.id.changePassword -> addFragmentFadeAnim(
+                    ChangePasswordFragment.newInstance(),
+                    R.id.containerViewAuthentication
+                )
             }
             true
         }
