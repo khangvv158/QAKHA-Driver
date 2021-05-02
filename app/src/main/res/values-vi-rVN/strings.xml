@@ -196,4 +196,9 @@
     <string name="contact_us">Liện hệ với chúng tôi</string>
     <string name="building_qakha_delivery_system">Xây dựng hệ thống QAKHA Delivery</string>
     <string name="rate">Đánh giá</string>
+    <string name="change_password">Thay đổi mật khẩu</string>
+    <string name="change_password_that_is_at_least_6_characters_1_uppercase_letter_1_lowercase_letter_and_a_number">Thay đổi mật khẩu phải có ít nhất 6 ký tự, 1 ký tự viết hoa, 1 ký tự viết thường và một số</string>
+    <string name="current_password">Mật khẩu hiện tại</string>
+    <string name="change_password_successfully">Thay đổi mật khẩu thành công</string>
+    <string name="current_password_dont_match">Mật khẩu hiện tại không chính xác</string>
 </resources>

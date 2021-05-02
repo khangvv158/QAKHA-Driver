@@ -2,6 +2,9 @@ package com.example.qakhadriver.data.source.remote
 
 import com.example.qakhadriver.data.model.Driver
 import com.example.qakhadriver.data.model.Status
+import com.example.qakhadriver.data.source.remote.schema.request.ChangePasswordRequest
+import com.example.qakhadriver.data.source.remote.schema.response.ChangePasswordResponse
+import com.example.qakhadriver.utils.Constants
 import com.example.qakhadriver.utils.Constants.AUTHORIZATION
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.*
@@ -24,4 +27,10 @@ interface ProfileAPI {
         @Body status: Status,
         @Header(AUTHORIZATION) token: String
     ) : Observable<Boolean>
+
+    @PATCH("driver/change_password")
+    fun changePassword(
+        @Header(Constants.AUTHORIZATION) token: String?,
+        @Body changePasswordRequest: ChangePasswordRequest
+    ): Observable<ChangePasswordResponse>
 }
