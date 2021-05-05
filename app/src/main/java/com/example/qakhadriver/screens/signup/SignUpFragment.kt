@@ -57,7 +57,7 @@ class SignUpFragment : Fragment(), SignUpContract.View {
     }
 
     override fun onCheckEmailIsExistFailure() {
-        emailTextInputLayout.error = getString(R.string.email_is_already_exists_in_database)
+        emailTextInputLayout?.error = getString(R.string.email_is_already_exists_in_database)
         emailIsExist = false
     }
 
@@ -66,7 +66,7 @@ class SignUpFragment : Fragment(), SignUpContract.View {
     }
 
     override fun onCheckPhoneNumberIsExistFailure() {
-        phoneNumberTextInputLayout.error =
+        phoneNumberTextInputLayout?.error =
             getString(R.string.Phone_umber_is_already_exists_in_database)
         phoneNumberIsExist = false
     }
@@ -76,7 +76,7 @@ class SignUpFragment : Fragment(), SignUpContract.View {
     }
 
     override fun onCheckIdCardIsExistFailure() {
-        identityCardTextInputLayout.error =
+        identityCardTextInputLayout?.error =
             getString(R.string.id_card_is_already_exists_in_database)
         idCardIsExist = false
     }
@@ -86,7 +86,7 @@ class SignUpFragment : Fragment(), SignUpContract.View {
     }
 
     override fun onCheckLicensePlateFailure() {
-        licensePlateTextInputLayout.error =
+        licensePlateTextInputLayout?.error =
             getString(R.string.license_plate_is_already_exists_in_database)
         licensePlateIsExist = false
     }
@@ -249,27 +249,27 @@ class SignUpFragment : Fragment(), SignUpContract.View {
 
     private fun validateEmail(email: String): Boolean {
         return if (email.isEmpty()) {
-            emailTextInputLayout.error = getString(R.string.email_cant_be_blank)
+            emailTextInputLayout?.error = getString(R.string.email_cant_be_blank)
             false
         } else if (!email.validWithRegex(RegexKey.VALID_EMAIL_REGEX)) {
-            emailTextInputLayout.error = getString(R.string.email_is_invalid)
+            emailTextInputLayout?.error = getString(R.string.email_is_invalid)
             false
         } else {
-            emailTextInputLayout.error = null
+            emailTextInputLayout?.error = null
             true
         }
     }
 
     private fun validatePassword(password: String): Boolean {
         return if (password.isEmpty()) {
-            passwordTextInputLayout.error = getString(R.string.password_cant_be_blank)
+            passwordTextInputLayout?.error = getString(R.string.password_cant_be_blank)
             false
         } else if (!password.validWithRegex(RegexKey.VALID_PASSWORD_REGEX)) {
-            passwordTextInputLayout.error =
+            passwordTextInputLayout?.error =
                 getString(R.string.description_validate_password)
             false
         } else {
-            passwordTextInputLayout.error = null
+            passwordTextInputLayout?.error = null
             true
         }
     }
@@ -277,16 +277,16 @@ class SignUpFragment : Fragment(), SignUpContract.View {
     private fun validatePasswordConfirmation(passwordConfirmation: String): Boolean {
         return when {
             passwordConfirmation.isEmpty() -> {
-                confirmPasswordTextInputLayout.error = getString(R.string.password_cant_be_blank)
+                confirmPasswordTextInputLayout?.error = getString(R.string.password_cant_be_blank)
                 false
             }
             passwordConfirmation != passwordEditText.text.toString() -> {
-                confirmPasswordTextInputLayout.error =
+                confirmPasswordTextInputLayout?.error =
                     getString(R.string.description_validate_confirmation_password)
                 false
             }
             else -> {
-                confirmPasswordTextInputLayout.error = null
+                confirmPasswordTextInputLayout?.error = null
                 true
             }
         }
@@ -294,50 +294,50 @@ class SignUpFragment : Fragment(), SignUpContract.View {
 
     private fun validateUsername(name: String): Boolean {
         return if (name.isEmpty()) {
-            nameTextInputLayout.error = getString(R.string.name_cant_be_blank)
+            nameTextInputLayout?.error = getString(R.string.name_cant_be_blank)
             false
         } else {
-            nameTextInputLayout.error = null
+            nameTextInputLayout?.error = null
             true
         }
     }
 
     private fun validatePhoneNumber(phoneNumber: String): Boolean {
         return if (phoneNumber.isEmpty()) {
-            phoneNumberTextInputLayout.error =
+            phoneNumberTextInputLayout?.error =
                 getString(R.string.phone_number_is_too_short)
             false
         } else if (!phoneNumber.validWithRegex(RegexKey.VALID_PHONE_REGEX)) {
-            phoneNumberTextInputLayout.error = getString(R.string.phone_number_is_invalid)
+            phoneNumberTextInputLayout?.error = getString(R.string.phone_number_is_invalid)
             false
         } else {
-            phoneNumberTextInputLayout.error = null
+            phoneNumberTextInputLayout?.error = null
             true
         }
     }
 
     private fun validateIdentityCard(identityCard: String): Boolean {
         return if (identityCard.isEmpty()) {
-            identityCardTextInputLayout.error = getString(R.string.identity_card_cant_be_blank)
+            identityCardTextInputLayout?.error = getString(R.string.identity_card_cant_be_blank)
             false
         } else if (!identityCard.validWithRegex(RegexKey.VALID_ID_CARD_REGEX)) {
-            identityCardTextInputLayout.error = getString(R.string.identity_card_is_invalid)
+            identityCardTextInputLayout?.error = getString(R.string.identity_card_is_invalid)
             false
         } else {
-            identityCardTextInputLayout.error = null
+            identityCardTextInputLayout?.error = null
             true
         }
     }
 
     private fun validateLicensePlate(licensePlate: String): Boolean {
         return if (licensePlate.isEmpty()) {
-            licensePlateTextInputLayout.error = getString(R.string.license_plate_cant_be_blank)
+            licensePlateTextInputLayout?.error = getString(R.string.license_plate_cant_be_blank)
             false
         } else if (!licensePlate.validWithRegex(RegexKey.VALID_LICENSE_PLATE_REGEX)) {
-            licensePlateTextInputLayout.error = getString(R.string.license_plate_is_invalid)
+            licensePlateTextInputLayout?.error = getString(R.string.license_plate_is_invalid)
             false
         } else {
-            licensePlateTextInputLayout.error = null
+            licensePlateTextInputLayout?.error = null
             true
         }
     }

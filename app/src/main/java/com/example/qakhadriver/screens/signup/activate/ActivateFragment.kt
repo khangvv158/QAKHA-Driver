@@ -33,8 +33,17 @@ class ActivateFragment : Fragment(), ActivateContract.View {
         handleEvents()
     }
 
+    override fun onStop() {
+        presenter.onStop()
+        super.onStop()
+    }
+
     override fun onActivateAccountSuccess() {
-        Toast.makeText(requireContext(),getString(R.string.content_activate_success),Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.content_activate_success),
+            Toast.LENGTH_LONG
+        ).show()
         parentFragmentManager.popBackStack()
     }
 

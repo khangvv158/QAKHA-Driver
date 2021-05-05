@@ -1,194 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containerViewSignIn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
+    android:fillViewport="true"
     tools:context=".screens.signin.SignInFragment">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageViewIllustration"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/ic_driver_illustration"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="200:175"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.089"
-        app:layout_constraintWidth_percent="0.45" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageViewLogo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/logo"
-        app:layout_constraintDimensionRatio="123:47"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.77"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewIllustration"
-        app:layout_constraintWidth_percent="0.3" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewIllustration"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_driver_illustration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="200:175"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.535"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.089"
+            app:layout_constraintWidth_percent="0.45" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailTextInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:hint="@string/enter_your_email"
-        app:boxCornerRadiusBottomEnd="@dimen/dp_10"
-        app:boxCornerRadiusBottomStart="@dimen/dp_10"
-        app:boxCornerRadiusTopEnd="@dimen/dp_10"
-        app:boxCornerRadiusTopStart="@dimen/dp_10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="331:60"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38"
-        app:layout_constraintWidth_percent="0.8">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailTextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_20"
+            android:hint="@string/enter_your_email"
+            app:boxCornerRadiusBottomEnd="@dimen/dp_10"
+            app:boxCornerRadiusBottomStart="@dimen/dp_10"
+            app:boxCornerRadiusTopEnd="@dimen/dp_10"
+            app:boxCornerRadiusTopStart="@dimen/dp_10"
+            app:layout_constraintDimensionRatio="331:90"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewIllustration"
+            app:layout_constraintWidth_percent="0.8">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordTextInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_below="@id/emailTextInputLayout"
-        android:hint="@string/enter_your_password"
-        app:boxCornerRadiusBottomEnd="@dimen/dp_10"
-        app:boxCornerRadiusBottomStart="@dimen/dp_10"
-        app:boxCornerRadiusTopEnd="@dimen/dp_10"
-        app:boxCornerRadiusTopStart="@dimen/dp_10"
-        app:endIconMode="password_toggle"
-        app:errorEnabled="true"
-        app:layout_constraintDimensionRatio="331:100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTextInputLayout"
-        app:layout_constraintWidth_percent="0.8">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordTextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/emailTextInputLayout"
+            android:hint="@string/enter_your_password"
+            app:boxCornerRadiusBottomEnd="@dimen/dp_10"
+            app:boxCornerRadiusBottomStart="@dimen/dp_10"
+            app:boxCornerRadiusTopEnd="@dimen/dp_10"
+            app:boxCornerRadiusTopStart="@dimen/dp_10"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="true"
+            app:layout_constraintDimensionRatio="331:90"
+            app:layout_constraintEnd_toEndOf="@+id/emailTextInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/emailTextInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/emailTextInputLayout"
+            app:layout_constraintWidth_percent="0.8">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/forgotPasswordTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_20"
-        android:text="@string/forgot_password"
-        app:layout_constraintEnd_toEndOf="@+id/passwordTextInputLayout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/passwordTextInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout" />
+        <TextView
+            android:id="@+id/forgotPasswordTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/forgot_password"
+            app:layout_constraintEnd_toEndOf="@+id/passwordTextInputLayout"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/passwordTextInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/signInButton"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp_30"
-        android:text="@string/title_sign_in"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/sp_18"
-        app:backgroundTint="@color/colorCarrotOrange"
-        app:cornerRadius="@dimen/dp_10"
-        app:layout_constraintDimensionRatio="280:50"
-        app:layout_constraintEnd_toEndOf="@+id/passwordTextInputLayout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/passwordTextInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/forgotPasswordTextView"
-        app:layout_constraintWidth_percent="0.8" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signInButton"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_30"
+            android:text="@string/title_sign_in"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_18"
+            app:backgroundTint="@color/colorCarrotOrange"
+            app:cornerRadius="@dimen/dp_10"
+            app:layout_constraintDimensionRatio="280:50"
+            app:layout_constraintEnd_toEndOf="@+id/passwordTextInputLayout"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/passwordTextInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/forgotPasswordTextView"
+            app:layout_constraintWidth_percent="0.8" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/or_sign_in_with"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signInButton"
-        app:layout_constraintVertical_bias="0.114" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30"
+            android:text="@string/or_sign_in_with"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signInButton" />
 
-    <TextView
-        android:id="@+id/textViewSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_sign_up"
-        android:textColor="@color/colorCarrotOrange"
-        android:textSize="@dimen/sp_24"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.934" />
+        <TextView
+            android:id="@+id/textViewSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/title_sign_up"
+            android:textColor="@color/colorCarrotOrange"
+            android:textSize="@dimen/sp_24"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitleOne" />
 
-    <TextView
-        android:id="@+id/textViewTitleOne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/don_t_have_an_account"
-        android:layout_marginTop="@dimen/dp_10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLoginGoogle" />
+        <TextView
+            android:id="@+id/textViewTitleOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/don_t_have_an_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewLoginGoogle" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageViewLoginGoogle"
-        android:layout_width="41dp"
-        android:layout_height="41dp"
-        android:background="@drawable/ic_google"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.327"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.194"
-        app:layout_constraintWidth_percent="0.1"
-        app:shapeAppearanceOverlay="@style/circleImageView" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewLoginGoogle"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="@dimen/dp_30"
+            android:background="@drawable/ic_google"
+            android:foreground="?attr/selectableItemBackground"
+            app:layout_constraintEnd_toEndOf="@+id/signInButton"
+            app:layout_constraintHorizontal_bias="0.327"
+            app:layout_constraintStart_toStartOf="@+id/signInButton"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintWidth_percent="0.1"
+            app:shapeAppearanceOverlay="@style/circleImageView" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageViewLoginFacebook"
-        android:layout_width="41dp"
-        android:layout_height="41dp"
-        android:background="@drawable/ic_facebook"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.672"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.194"
-        app:layout_constraintWidth_percent="0.1"
-        app:shapeAppearanceOverlay="@style/circleImageView" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewLoginFacebook"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="@dimen/dp_30"
+            android:background="@drawable/ic_facebook"
+            android:foreground="?attr/selectableItemBackground"
+            app:layout_constraintEnd_toEndOf="@+id/signInButton"
+            app:layout_constraintHorizontal_bias="0.672"
+            app:layout_constraintStart_toStartOf="@+id/signInButton"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintWidth_percent="0.1"
+            app:shapeAppearanceOverlay="@style/circleImageView" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:theme="@style/circleProgress"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:theme="@style/circleProgress"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
