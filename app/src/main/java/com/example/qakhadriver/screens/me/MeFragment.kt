@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import com.bumptech.glide.Glide
 import com.example.qakhadriver.R
@@ -96,6 +97,7 @@ class MeFragment : Fragment(), MeContract.View {
                 R.id.helpCenterItemMenu -> navigateToFragment(HelpCenterFragment.newInstance())
                 R.id.aboutItemMenu -> navigateToFragment(AboutFragment.newInstance())
                 R.id.feedbackItemMenu -> navigateToFragment(FeedbackFragment.newInstance(driver))
+                R.id.withdrawalItemMenu -> makeText(getString(R.string.coming_soon))
             }
             true
         }

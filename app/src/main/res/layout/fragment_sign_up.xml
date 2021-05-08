@@ -74,7 +74,7 @@
                 app:boxCornerRadiusTopEnd="@dimen/dp_10"
                 app:boxCornerRadiusTopStart="@dimen/dp_10"
                 app:errorTextAppearance="@style/TextInputLayoutError"
-                app:layout_constraintDimensionRatio="331:80"
+                app:layout_constraintDimensionRatio="331:100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewIllustration"
@@ -83,7 +83,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_50"
+                    android:layout_height="@dimen/dp_60"
                     android:imeOptions="actionGo"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -100,7 +100,7 @@
                 app:boxCornerRadiusTopEnd="@dimen/dp_10"
                 app:boxCornerRadiusTopStart="@dimen/dp_10"
                 app:errorTextAppearance="@style/TextInputLayoutError"
-                app:layout_constraintDimensionRatio="331:80"
+                app:layout_constraintDimensionRatio="331:100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/emailTextInputLayout"
@@ -109,7 +109,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_50"
+                    android:layout_height="@dimen/dp_60"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,7 +125,7 @@
                 app:boxCornerRadiusTopEnd="@dimen/dp_10"
                 app:boxCornerRadiusTopStart="@dimen/dp_10"
                 app:errorTextAppearance="@style/TextInputLayoutError"
-                app:layout_constraintDimensionRatio="331:80"
+                app:layout_constraintDimensionRatio="331:100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout"
@@ -134,7 +134,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/confirmPasswordEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_50"
+                    android:layout_height="@dimen/dp_60"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -150,7 +150,7 @@
                 app:boxCornerRadiusTopEnd="@dimen/dp_10"
                 app:boxCornerRadiusTopStart="@dimen/dp_10"
                 app:errorTextAppearance="@style/TextInputLayoutError"
-                app:layout_constraintDimensionRatio="331:80"
+                app:layout_constraintDimensionRatio="331:100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/confirmPasswordTextInputLayout"
@@ -159,7 +159,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nameEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_50"
+                    android:layout_height="@dimen/dp_60"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -175,7 +175,7 @@
                 app:boxCornerRadiusTopEnd="@dimen/dp_10"
                 app:boxCornerRadiusTopStart="@dimen/dp_10"
                 app:errorTextAppearance="@style/TextInputLayoutError"
-                app:layout_constraintDimensionRatio="331:80"
+                app:layout_constraintDimensionRatio="331:100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nameTextInputLayout"
@@ -184,7 +184,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phoneNumberEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_50"
+                    android:layout_height="@dimen/dp_60"
                     android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -220,7 +220,7 @@
                 app:boxCornerRadiusTopEnd="@dimen/dp_10"
                 app:boxCornerRadiusTopStart="@dimen/dp_10"
                 app:errorTextAppearance="@style/TextInputLayoutError"
-                app:layout_constraintDimensionRatio="331:80"
+                app:layout_constraintDimensionRatio="331:100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/phoneNumberTextInputLayout"
@@ -229,7 +229,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/identityCardEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_50"
+                    android:layout_height="@dimen/dp_60"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -245,7 +245,7 @@
                 app:boxCornerRadiusTopEnd="@dimen/dp_10"
                 app:boxCornerRadiusTopStart="@dimen/dp_10"
                 app:errorTextAppearance="@style/TextInputLayoutError"
-                app:layout_constraintDimensionRatio="331:80"
+                app:layout_constraintDimensionRatio="331:100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/identityCardTextInputLayout"
@@ -254,18 +254,17 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/licensePlateCardEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_50"
+                    android:layout_height="@dimen/dp_60"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/activateTextView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
                 android:fontFamily="@font/sf_compact_display_medium"
                 android:text="@string/account_not_activated"
-                app:layout_constraintDimensionRatio="139:20"
                 app:layout_constraintEnd_toEndOf="@+id/licensePlateTextInputLayout"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/licensePlateTextInputLayout"
