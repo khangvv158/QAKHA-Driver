@@ -105,4 +105,7 @@ dependencies {
 
     /* RxBinding */
     implementation 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+
+    /* SDP */
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
 }

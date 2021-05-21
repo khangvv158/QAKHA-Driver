@@ -30,8 +30,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailTextInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_20"
             android:hint="@string/enter_your_email"
             app:boxCornerRadiusBottomEnd="@dimen/dp_10"
@@ -46,17 +46,17 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailEditText"
-                android:layout_width="match_parent"
-                android:inputType="text"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:imeOptions="actionGo"
-                android:layout_height="@dimen/dp_60" />
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordTextInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/emailTextInputLayout"
             android:hint="@string/enter_your_password"
             app:boxCornerRadiusBottomEnd="@dimen/dp_10"
@@ -64,7 +64,6 @@
             app:boxCornerRadiusTopEnd="@dimen/dp_10"
             app:boxCornerRadiusTopStart="@dimen/dp_10"
             app:endIconMode="password_toggle"
-            app:errorEnabled="true"
             app:layout_constraintDimensionRatio="331:100"
             app:layout_constraintEnd_toEndOf="@+id/emailTextInputLayout"
             app:layout_constraintStart_toStartOf="@+id/emailTextInputLayout"
@@ -73,9 +72,9 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordEditText"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:imeOptions="actionDone"
-                android:layout_height="@dimen/dp_60"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,11 +123,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20"
             android:text="@string/title_sign_up"
             android:textColor="@color/colorCarrotOrange"
             android:textSize="@dimen/sp_24"
             android:textStyle="bold"
-            android:layout_marginBottom="@dimen/dp_20"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
