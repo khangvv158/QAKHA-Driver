@@ -202,4 +202,5 @@
     <string name="change_password_successfully">Thay đổi mật khẩu thành công</string>
     <string name="current_password_dont_match">Mật khẩu hiện tại không chính xác</string>
     <string name="withdrawal">Rút tiền</string>
+    <string name="connecting_please_wait">Đang kết nối, vui lòng đợi…</string>
 </resources>
