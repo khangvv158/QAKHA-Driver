@@ -11,7 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.bumptech.glide.Glide
 import com.example.qakhadriver.R
 import com.example.qakhadriver.data.model.Driver
 import com.example.qakhadriver.data.model.Event
@@ -23,10 +25,13 @@ import com.example.qakhadriver.screens.container.ContainerFragment
 import com.example.qakhadriver.screens.me.MeFragment
 import com.example.qakhadriver.screens.signin.OnSignInSuccessListener
 import com.example.qakhadriver.screens.signin.SignInFragment
+import com.example.qakhadriver.screens.signup.imagesignup.ImageSignUpFragment
 import com.example.qakhadriver.utils.*
+import kotlinx.android.synthetic.main.fragment_image_sign_up.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.lang.Exception
 
 class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignInSuccessListener {
 
@@ -49,23 +54,12 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
         )
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_authentication, container, false)
-    }
+    private var driver: Driver? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        checkPermission()
-        initView()
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEventBusSignOutSuccess(event: Event<Int>){
-        if(event.keyEvent == MeFragment.EVENT_SIGN_OUT){
-            navigateSignInFragment()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+            driver?.let { checkPermission(it) }
         }
     }
 
@@ -83,6 +77,7 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
     }
 
     override fun onGetProfileSuccess(driver: Driver) {
+        this.driver = driver
         navigateContainerFragment(driver)
     }
 
@@ -90,17 +85,28 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
         makeText(message)
     }
 
-    private fun navigateContainerFragment(driver: Driver) {
-        replaceFragmentSlideAnim(
-            ContainerFragment.newInstance(driver),
-            R.id.containerViewAuthentication
-        )
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEventBusSignOutSuccess(event: Event<Int>) {
+        if (event.keyEvent == MeFragment.EVENT_SIGN_OUT) {
+            navigateSignInFragment()
+        }
     }
 
-    private fun navigateSignInFragment() {
-        replaceFragmentSlideAnim(SignInFragment.newInstance().apply {
-            registerOnSignInSuccessListener(this@AuthenticationFragment)
-        }, R.id.containerViewAuthentication)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_authentication, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+    }
+
+    override fun onStop() {
+        presenter.onStart()
+        super.onStop()
     }
 
     private fun initView() {
@@ -110,7 +116,17 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
         }
     }
 
-    private fun checkPermission() {
+    private fun navigateContainerFragment(driver: Driver) {
+        checkPermission(driver)
+    }
+
+    private fun navigateSignInFragment() {
+        replaceFragmentSlideAnim(SignInFragment.newInstance().apply {
+            registerOnSignInSuccessListener(this@AuthenticationFragment)
+        }, R.id.containerViewAuthentication)
+    }
+
+    private fun checkPermission(driver: Driver) {
         if (!LocationHelper.isPlayServicesAvailable(requireContext())) {
             Toast.makeText(
                 requireContext(),
@@ -118,10 +134,10 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
                 Toast.LENGTH_SHORT
             )
                 .show()
-        } else enableGPS()
+        } else enableGPS(driver)
     }
 
-    private fun enableGPS() {
+    private fun enableGPS(driver: Driver) {
         if (!LocationHelper.isHaveLocationPermission(requireContext())) {
             ActivityCompat.requestPermissions(
                 activity as Activity,
@@ -130,8 +146,14 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
             )
             return
         }
-        if (LocationHelper.isLocationProviderEnabled(requireContext()))
+        if (LocationHelper.isLocationProviderEnabled(requireContext())) {
             showDialogEnableGPS()
+        } else {
+            replaceFragmentSlideAnim(
+                ContainerFragment.newInstance(driver),
+                R.id.containerViewAuthentication
+            )
+        }
     }
 
     private fun showDialogEnableGPS() {
@@ -141,7 +163,10 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
             getString(R.string.content_location),
             object : IPositiveNegativeListener {
                 override fun onPositive() {
-                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                    startActivityForResult(
+                        Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS),
+                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
+                    )
                 }
             },
             getString(R.string.turn_on),

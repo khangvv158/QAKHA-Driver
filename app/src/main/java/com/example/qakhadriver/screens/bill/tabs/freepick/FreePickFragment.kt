@@ -3,6 +3,7 @@ package com.example.qakhadriver.screens.bill.tabs.freepick
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -129,10 +130,15 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     private fun setUpGoogleMap(map: GoogleMap) {
         googleMap = map
         googleMap.isMyLocationEnabled = true
-        locationProviderClient.lastLocation.addOnSuccessListener {
-            animateCamera(LatLng(it.latitude, it.longitude))
-        }
-        initViews()
+        Handler().postDelayed({
+            try {
+                locationProviderClient.lastLocation.addOnSuccessListener {
+                    animateCamera(LatLng(it.latitude, it.longitude))
+                    initViews()
+                }
+            } catch (e: Exception) {
+            }
+        }, 2000)
     }
 
     private fun initViews() {
