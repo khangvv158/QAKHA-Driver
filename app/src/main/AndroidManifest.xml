@@ -29,6 +29,12 @@
             android:foregroundServiceType="location"
             android:stopWithTask="false" />
 
+        <receiver android:name=".broadcast.LocationBroadcast">
+            <intent-filter>
+                <action android:name="android.intent.action.PROVIDER_CHANGED"/>
+            </intent-filter>
+        </receiver>
+
         <meta-data
             android:name="CLOUDINARY_URL"
             android:value="cloudinary://579874848943797:BtOC4tUTNLVRUKFh2qPnKLncpHw@qakhadelivery" />
