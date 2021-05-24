@@ -53,7 +53,6 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
             ProfileRepositoryImpl.getInstance()
         )
     }
-
     private var driver: Driver? = null
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -72,7 +71,6 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
     }
 
     override fun onCheckSignedInByTokenFailure() {
-        /*Code offline here*/
         navigateSignInFragment()
     }
 
@@ -99,13 +97,13 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
         return inflater.inflate(R.layout.fragment_authentication, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onStart() {
         initView()
+        super.onStart()
     }
 
     override fun onStop() {
-        presenter.onStart()
+        presenter.onStop()
         super.onStop()
     }
 
