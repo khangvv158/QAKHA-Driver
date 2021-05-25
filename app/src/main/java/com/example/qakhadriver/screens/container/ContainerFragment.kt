@@ -95,10 +95,12 @@ class ContainerFragment : Fragment() {
             getString(R.string.content_location),
             object : IPositiveNegativeListener {
                 override fun onPositive() {
-                    startActivityForResult(
-                        Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS),
-                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
-                    )
+                    if (isAdded) {
+                        startActivityForResult(
+                            Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS),
+                            MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
+                        )
+                    }
                 }
             },
             getString(R.string.turn_on),

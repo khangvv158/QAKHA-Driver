@@ -14,11 +14,14 @@ import com.example.qakhadriver.data.source.remote.schema.request.RegisterRequest
 import com.example.qakhadriver.screens.signup.activate.ActivateFragment
 import com.example.qakhadriver.screens.signup.imagesignup.ImageSignUpFragment
 import com.example.qakhadriver.utils.*
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up.emailEditText
 import kotlinx.android.synthetic.main.fragment_sign_up.emailTextInputLayout
 import kotlinx.android.synthetic.main.fragment_sign_up.passwordEditText
 import kotlinx.android.synthetic.main.fragment_sign_up.passwordTextInputLayout
+import java.util.concurrent.TimeUnit
 
 class SignUpFragment : Fragment(), SignUpContract.View {
 
@@ -208,26 +211,70 @@ class SignUpFragment : Fragment(), SignUpContract.View {
     }
 
     private fun handleEventsAfterTextChanged() {
-        emailEditText.afterTextChanged {
-            if (validateEmail(it)) {
-                presenter.checkEmailIsExist(it)
+        EditTextObservable.fromView(emailEditText)
+            .debounce(1000, TimeUnit.MILLISECONDS)
+            .distinctUntilChanged()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { text ->
+                validateEmail(text).also { isValid ->
+                    if (isValid) {
+                        presenter.checkEmailIsExist(text)
+                    }
+                }
             }
-        }
-        phoneNumberEditText.afterTextChanged {
-            if (validatePhoneNumber(it)) {
-                presenter.checkPhoneNumberIsExist(it)
+        EditTextObservable.fromView(phoneNumberEditText)
+            .debounce(1000, TimeUnit.MILLISECONDS)
+            .distinctUntilChanged()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { text ->
+                validatePhoneNumber(text).also { isValid ->
+                    if (isValid) {
+                        presenter.checkPhoneNumberIsExist(text)
+                    }
+                }
             }
-        }
-        identityCardEditText.afterTextChanged {
-            if (validateIdentityCard(it)) {
-                presenter.checkIdCardIsExist(it)
+        EditTextObservable.fromView(passwordEditText)
+            .debounce(500, TimeUnit.MILLISECONDS)
+            .distinctUntilChanged()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { text ->
+                validatePassword(text)
             }
-        }
-        licensePlateCardEditText.afterTextChanged {
-            if (validateLicensePlate(it)) {
-                presenter.checkLicensePlate(it)
+        EditTextObservable.fromView(confirmPasswordEditText)
+            .debounce(500, TimeUnit.MILLISECONDS)
+            .distinctUntilChanged()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { text ->
+                validatePasswordConfirmation(text)
             }
-        }
+        EditTextObservable.fromView(identityCardEditText)
+            .debounce(1000, TimeUnit.MILLISECONDS)
+            .distinctUntilChanged()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { text ->
+                validateIdentityCard(text).also { isValid ->
+                    if (isValid) {
+                        presenter.checkIdCardIsExist(text)
+                    }
+                }
+            }
+        EditTextObservable.fromView(licensePlateCardEditText)
+            .debounce(1000, TimeUnit.MILLISECONDS)
+            .distinctUntilChanged()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { text ->
+                validateLicensePlate(text).also { isValid ->
+                    if (isValid) {
+                        presenter.checkLicensePlate(text)
+                    }
+                }
+            }
     }
 
     private fun clearEditText() {
