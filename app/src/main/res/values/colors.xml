@@ -121,4 +121,5 @@
     <color name="colorWhileSmoke">#F6F6F6</color>
     <color name="colorCarrotOrangeLight">#FBC584</color>
     <color name="colorTextGray">#9A9A9A</color>
+    <color name="textPrimary">#3E4462</color>
 </resources>

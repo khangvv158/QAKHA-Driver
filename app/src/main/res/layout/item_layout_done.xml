@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/dp_5"
-    android:layout_margin="@dimen/dp_5">
+    android:layout_margin="@dimen/_5sdp"
+    app:cardCornerRadius="@dimen/_5sdp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,34 +13,38 @@
         <LinearLayout
             android:id="@+id/titleLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_30"
+            android:layout_height="@dimen/_30sdp"
             android:background="@color/colorTextBlackGray">
 
             <TextView
                 android:id="@+id/rateTextView"
-                android:layout_width="@dimen/dp_180"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/sf_compact_display_medium"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/dp_10"
-                android:textColor="@color/colorWhite" />
-
-            <TextView
-                android:id="@+id/coinTextView"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:fontFamily="@font/sf_compact_display_medium"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorCarrotOrange" />
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/coinTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/sf_compact_display_medium"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_12sdp" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/pickupLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_80"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/titleLayout"
-            android:background="#FFF5E8">
+            android:background="#FFF5E8"
+            android:paddingBottom="@dimen/_5sdp">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/pointPickupImageView"
@@ -61,67 +65,69 @@
                 android:id="@+id/titlePickupTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
                 android:fontFamily="@font/sf_compact_display_medium"
                 android:text="@string/pickup"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/pointPickupImageView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.01"
                 app:layout_constraintStart_toEndOf="@+id/pointPickupImageView"
                 app:layout_constraintTop_toTopOf="@+id/pointPickupImageView"
-                app:layout_constraintVertical_bias="0.6" />
+                app:layout_constraintVertical_bias="0.5" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/namePartnerTextView"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_270sdp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:ellipsize="end"
-                android:fontFamily="@font/sf_compact_display_medium"
+                android:fontFamily="@font/sf_compact_display_regular"
                 android:maxLines="1"
-                android:textSize="@dimen/sp_12"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="@+id/titlePickupTextView"
                 app:layout_constraintTop_toBottomOf="@+id/titlePickupTextView"
-                app:layout_constraintVertical_bias="0.07"
-                app:layout_constraintWidth_percent="0.9" />
+              />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/addressPartnerTextView"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_270sdp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:ellipsize="end"
                 android:fontFamily="@font/sf_compact_display_regular"
                 android:maxLines="2"
-                android:textColor="@color/colorTextGray"
-                android:textSize="@dimen/sp_12"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="@+id/namePartnerTextView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/namePartnerTextView"
                 app:layout_constraintTop_toBottomOf="@+id/namePartnerTextView"
-                app:layout_constraintVertical_bias="0.0"
-                app:layout_constraintWidth_percent="0.9" />
+               />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:fontFamily="@font/sf_compact_display_regular"
                 android:text="@string/vnd"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.982"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.926" />
+                app:layout_constraintTop_toBottomOf="@+id/addressPartnerTextView"
+                app:layout_constraintVertical_bias="0.0" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/payTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_2"
+                android:layout_marginEnd="@dimen/_2sdp"
                 android:fontFamily="@font/sf_compact_display_regular"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/vndTextView"
                 app:layout_constraintEnd_toStartOf="@+id/vndTextView"
                 app:layout_constraintTop_toTopOf="@+id/vndTextView"
@@ -130,9 +136,11 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_2"
+                android:layout_marginEnd="@dimen/_2sdp"
                 android:fontFamily="@font/sf_compact_display_regular"
                 android:text="@string/title_pay"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/payTextView"
                 app:layout_constraintEnd_toStartOf="@+id/payTextView"
                 app:layout_constraintTop_toTopOf="@+id/payTextView"
@@ -143,9 +151,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/deliveryLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_80"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/pickupLayout"
-            android:background="#F6FBFB">
+            android:background="#F6FBFB"
+            android:paddingBottom="@dimen/_5sdp">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/pointDeliveryImageView"
@@ -166,51 +175,53 @@
                 android:id="@+id/titleDeliveryTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
                 android:fontFamily="@font/sf_compact_display_medium"
                 android:text="@string/delivery"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/pointDeliveryImageView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.01"
                 app:layout_constraintStart_toEndOf="@+id/pointDeliveryImageView"
                 app:layout_constraintTop_toTopOf="@+id/pointDeliveryImageView"
-                app:layout_constraintVertical_bias="0.6" />
+                app:layout_constraintVertical_bias="0.5" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/addressUserTextView"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_270sdp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:ellipsize="end"
                 android:fontFamily="@font/sf_compact_display_regular"
                 android:maxLines="2"
-                android:textColor="@color/colorTextGray"
-                android:textSize="@dimen/sp_12"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="@+id/nameUserTextView"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/nameUserTextView"
-                app:layout_constraintTop_toBottomOf="@+id/nameUserTextView"
-                app:layout_constraintVertical_bias="0.0"
-                app:layout_constraintWidth_percent="0.9" />
+                app:layout_constraintTop_toBottomOf="@+id/nameUserTextView" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/nameUserTextView"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_270sdp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:ellipsize="end"
-                android:fontFamily="@font/sf_compact_display_medium"
+                android:fontFamily="@font/sf_compact_display_regular"
                 android:maxLines="1"
-                android:textSize="@dimen/sp_12"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="@+id/titleDeliveryTextView"
                 app:layout_constraintTop_toBottomOf="@+id/titleDeliveryTextView"
-                app:layout_constraintVertical_bias="0.1"
-                app:layout_constraintWidth_percent="0.9" />
+                />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:fontFamily="@font/sf_compact_display_regular"
                 android:text="@string/title_type"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/typeCheckoutTextView"
                 app:layout_constraintEnd_toStartOf="@+id/typeCheckoutTextView"
                 app:layout_constraintTop_toTopOf="@+id/typeCheckoutTextView"
@@ -220,13 +231,13 @@
                 android:id="@+id/typeCheckoutTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/sf_compact_display_regular"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.981"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.94" />
+                app:layout_constraintTop_toBottomOf="@+id/addressUserTextView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>

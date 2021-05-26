@@ -12,7 +12,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
+        android:layout_height="@dimen/_40sdp"
         android:background="@color/colorWhite">
 
         <RelativeLayout
@@ -21,10 +21,10 @@
 
             <ImageView
                 android:id="@+id/imageViewBack"
-                android:layout_width="@dimen/dp_28"
-                android:layout_height="@dimen/dp_28"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginStart="@dimen/_15sdp"
                 android:src="@drawable/ic_back" />
 
             <TextView
