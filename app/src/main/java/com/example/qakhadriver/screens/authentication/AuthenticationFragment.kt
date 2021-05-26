@@ -97,9 +97,9 @@ class AuthenticationFragment : Fragment(), AuthenticationContract.View, OnSignIn
         return inflater.inflate(R.layout.fragment_authentication, container, false)
     }
 
-    override fun onStart() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initView()
-        super.onStart()
     }
 
     override fun onStop() {

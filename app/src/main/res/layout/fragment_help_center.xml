@@ -7,7 +7,7 @@
     android:background="@color/colorWhite"
     android:clickable="true"
     android:translationZ="@dimen/dp_10"
-    tools:context=".screens.navigate.helpcenter.HelpCenterFragment">
+    tools:context=".screens.me.navigate.helpcenter.HelpCenterFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -32,12 +32,13 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_35"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_compact_display_medium"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text="@string/help_center"
-                android:textSize="@dimen/sp_18" />
+                android:textSize="@dimen/_14sdp" />
         </RelativeLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
