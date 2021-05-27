@@ -3,6 +3,6 @@
     <item android:drawable="@color/colorWhite" />
 
     <item
-        android:drawable="@drawable/ic_splash"
+        android:drawable="@drawable/ic_splash_driver"
         android:gravity="center" />
 </layer-list>
