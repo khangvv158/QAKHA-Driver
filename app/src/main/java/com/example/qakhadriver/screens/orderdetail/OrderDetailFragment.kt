@@ -1,12 +1,18 @@
 package com.example.qakhadriver.screens.orderdetail
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.NotificationCompat
 import androidx.core.os.bundleOf
 import com.example.qakhadriver.R
 import com.example.qakhadriver.data.model.Order
@@ -32,6 +38,7 @@ class OrderDetailFragment : Fragment(), OrderDetailContract.View {
             )
         )
     }
+    private lateinit var notificationManager: NotificationManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +55,7 @@ class OrderDetailFragment : Fragment(), OrderDetailContract.View {
 
     override fun completeDeliverySuccess() {
         makeText(getString(R.string.complete))
+        notificationManager.notify(NOTIFICATION_ORDER_ID,createNotificationOrderDone())
         parentFragmentManager.popBackStack()
     }
 
@@ -56,6 +64,7 @@ class OrderDetailFragment : Fragment(), OrderDetailContract.View {
     }
 
     private fun initViews() {
+        createNotificationChannelOrder()
         presenter.setView(this)
         recyclerViewBucket.adapter = bucketAdapter
     }
@@ -107,9 +116,47 @@ class OrderDetailFragment : Fragment(), OrderDetailContract.View {
         }
     }
 
+    private fun createNotificationOrderDone(): Notification {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationCompat.Builder(requireContext(), CHANNEL_ORDER_ID_DETAIL)
+                .setContentTitle(getString(R.string.complete_delivery))
+                .setContentText(getString(R.string.the_order_has_been_successfully_delivered))
+                .setSmallIcon(R.drawable.ic_box)
+                .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_delivery_box))
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setAutoCancel(true)
+                .build()
+        } else {
+            NotificationCompat.Builder(requireContext())
+                .setContentTitle(getString(R.string.complete_delivery))
+                .setContentText(getString(R.string.the_order_has_been_successfully_delivered))
+                .setSmallIcon(R.drawable.ic_box)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_delivery_box))
+                .setAutoCancel(true)
+                .build()
+        }
+    }
+
+    private fun createNotificationChannelOrder() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val serviceChannel = NotificationChannel(
+                CHANNEL_ORDER_ID_DETAIL,
+                getString(R.string.notification_order_chanel),
+                NotificationManager.IMPORTANCE_HIGH
+            )
+            notificationManager = activity?.getSystemService(NotificationManager::class.java) as NotificationManager
+            notificationManager.createNotificationChannel(serviceChannel)
+        }
+    }
+
     companion object {
 
         private const val BUNDLE_DRIVER = "BUNDLE_DRIVER"
+        const val CHANNEL_ORDER_ID_DETAIL = "CHANNEL_ORDER_ID_DETAIL"
+        const val NOTIFICATION_ORDER_ID = 12
 
         fun newInstance(order: Order) = OrderDetailFragment().apply {
             arguments = bundleOf(BUNDLE_DRIVER to order)

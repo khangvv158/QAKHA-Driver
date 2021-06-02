@@ -20,9 +20,9 @@ import com.example.qakhadriver.data.repository.OrderFirebaseRepositoryImpl
 import com.example.qakhadriver.utils.Constants
 import com.example.qakhadriver.utils.LocationHelper.getLocationRequest
 import com.google.android.gms.location.*
-import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import org.greenrobot.eventbus.EventBus
 
 class FirebaseLocationService : Service() {
@@ -69,25 +69,20 @@ class FirebaseLocationService : Service() {
     }
 
     private fun onListenerOrderFromFirebase(idDriver: Int) {
-        orderFirebaseRepository.listenerOrder(idDriver, object : ChildEventListener {
+        orderFirebaseRepository.listenerOrder(idDriver, object : ValueEventListener {
 
-            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                snapshot.getValue(OrderFirebase::class.java)?.let {
-                    notificationManager.notify(NOTIFICATION_ORDER_ID, createNotificationOrder())
-                    EventBus.getDefault().postSticky(Event(EVENT_ORDER_FIREBASE_RESPONSE, it))
+            override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.getValue(OrderFirebase::class.java).let {
+                    if (it != null) {
+                        notificationManager.notify(NOTIFICATION_ORDER_ID, createNotificationOrder())
+                        EventBus.getDefault().postSticky(Event(EVENT_ORDER_FIREBASE_RESPONSE, it))
+                    } else {
+                        snapshot.getValue(OrderFirebase::class.java).let {
+                            EventBus.getDefault().postSticky(Event(EVENT_ORDER_FIREBASE_REMOVE, it))
+                        }
+                    }
                 }
             }
-
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) = Unit
-
-            override fun onChildRemoved(snapshot: DataSnapshot) {
-                snapshot.getValue(OrderFirebase::class.java)?.let {
-                    notificationManager.notify(NOTIFICATION_ORDER_ID, createNotificationOrderDone())
-                    EventBus.getDefault().postSticky(Event(EVENT_ORDER_FIREBASE_REMOVE, it))
-                }
-            }
-
-            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) = Unit
 
             override fun onCancelled(error: DatabaseError) = Unit
         })
@@ -180,30 +175,6 @@ class FirebaseLocationService : Service() {
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_delivery_man))
-                .setAutoCancel(true)
-                .build()
-        }
-    }
-
-    private fun createNotificationOrderDone(): Notification {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationCompat.Builder(this, CHANNEL_ORDER_ID)
-                .setContentTitle(getString(R.string.complete_delivery))
-                .setContentText(getString(R.string.the_order_has_been_successfully_delivered))
-                .setSmallIcon(R.drawable.ic_box)
-                .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_delivery_box))
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setAutoCancel(true)
-                .build()
-        } else {
-            NotificationCompat.Builder(this)
-                .setContentTitle(getString(R.string.complete_delivery))
-                .setContentText(getString(R.string.the_order_has_been_successfully_delivered))
-                .setSmallIcon(R.drawable.ic_box)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_delivery_box))
                 .setAutoCancel(true)
                 .build()
         }
