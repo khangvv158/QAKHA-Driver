@@ -91,7 +91,8 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     fun onEventGetOrderFromFirebase(event: Event<OrderFirebase>) {
         if (event.keyEvent == FirebaseLocationService.EVENT_ORDER_FIREBASE_RESPONSE) {
             presenter.getOrderDetail(event.obj.idDriver, event.obj.idOrder)
-        } else {
+        }
+        if (event.keyEvent == FirebaseLocationService.EVENT_ORDER_FIREBASE_REMOVE) {
             freePickLayout.gone()
             removeMarker()
         }

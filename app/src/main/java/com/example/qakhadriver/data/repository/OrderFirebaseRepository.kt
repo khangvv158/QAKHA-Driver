@@ -1,24 +1,24 @@
 package com.example.qakhadriver.data.repository
 
 import com.example.qakhadriver.utils.Constants
-import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 interface OrderFirebaseRepository {
 
-    fun listenerOrder(idDriver: Int, callback: ChildEventListener)
+    fun listenerOrder(idDriver: Int, callback: ValueEventListener)
 }
 
 class OrderFirebaseRepositoryImpl private constructor() : OrderFirebaseRepository {
 
     private val firebaseClient = FirebaseDatabase.getInstance()
 
-    override fun listenerOrder(idDriver: Int, callback: ChildEventListener) {
+    override fun listenerOrder(idDriver: Int, callback: ValueEventListener) {
         firebaseClient.reference.child(Constants.DRIVERS)
             .child(Constants.SHIPPING)
-            .child(idDriver.toString())
             .child(Constants.ORDER)
-            .addChildEventListener(callback)
+            .child(idDriver.toString())
+            .addValueEventListener(callback)
     }
 
     companion object {
