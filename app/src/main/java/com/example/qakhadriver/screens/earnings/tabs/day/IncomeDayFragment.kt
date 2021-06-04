@@ -27,6 +27,7 @@ class IncomeDayFragment : Fragment(), DatePickerDialog.OnDateSetListener, Income
             TokenRepositoryImpl.getInstance(SharedPrefsImpl.getInstance(requireContext()))
         )
     }
+    private var dateChoose: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,11 +48,13 @@ class IncomeDayFragment : Fragment(), DatePickerDialog.OnDateSetListener, Income
             Constants.DATE_PATTERN,
             Locale.getDefault()
         ).parse("$dayOfMonth-$month-$year")
+        dateChoose = date.toString(Constants.DATE_PATTERN)
         dayTextView?.text = date.toString(Constants.DATE_PATTERN)
         presenter.getIncomeDay(date.toString(Constants.DATE_PATTERN))
     }
 
     override fun onGetIncomeDaySuccess(incomeDayResponse: IncomeDayResponse) {
+        swipeLayout.isRefreshing = false
         totalCashTextView?.text = incomeDayResponse.totalCash.toString()
         totalCoinTextView?.text = incomeDayResponse.totalCoin.toString()
         totalPayPalTextView?.text = incomeDayResponse.totalPayPal.toString()
@@ -64,6 +67,7 @@ class IncomeDayFragment : Fragment(), DatePickerDialog.OnDateSetListener, Income
 
     private fun initViews() {
         presenter.setView(this)
+        dateChoose = TimeHelper.getTimeCurrent(Constants.DATE_PATTERN)
         dayTextView?.text = TimeHelper.getTimeCurrent(Constants.DATE_PATTERN)
         presenter.getIncomeDay(TimeHelper.getTimeCurrent(Constants.DATE_PATTERN))
     }
@@ -77,6 +81,11 @@ class IncomeDayFragment : Fragment(), DatePickerDialog.OnDateSetListener, Income
                 now.get(Calendar.DAY_OF_MONTH)
             )
             datePickerDialog.show(parentFragmentManager, DATE_PICKER_DIALOG)
+        }
+        swipeLayout.setOnRefreshListener {
+            dateChoose?.let {
+                presenter.getIncomeDay(it)
+            }
         }
     }
 
