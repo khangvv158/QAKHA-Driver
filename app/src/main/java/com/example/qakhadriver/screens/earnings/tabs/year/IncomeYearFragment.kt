@@ -31,6 +31,7 @@ class IncomeYearFragment : Fragment(), IncomeYearContract.View {
             TokenRepositoryImpl.getInstance(SharedPrefsImpl.getInstance(requireContext()))
         )
     }
+    private var dateChoose: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +47,7 @@ class IncomeYearFragment : Fragment(), IncomeYearContract.View {
     }
 
     override fun onGetIncomeYearSuccess(incomeYearResponse: IncomeYearResponse) {
+        swipeLayout.isRefreshing = false
         totalCashTextView?.text = incomeYearResponse.totalCash.toString()
         totalCoinTextView?.text = incomeYearResponse.totalCoin.toString()
         totalPayPalTextView?.text = incomeYearResponse.totalPayPal.toString()
@@ -60,11 +62,17 @@ class IncomeYearFragment : Fragment(), IncomeYearContract.View {
         presenter.setView(this)
         dateTextView?.text = TimeHelper.getTimeCurrent(Constants.YEAR_PATTERN)
         presenter.getIncomeYear(TimeHelper.getTimeCurrent(Constants.YEAR_PATTERN))
+        dateChoose = TimeHelper.getTimeCurrent(Constants.YEAR_PATTERN)
     }
 
     private fun handleEvents() {
         imageViewCalendar.setOnClickListener {
             showPickerDialog()
+        }
+        swipeLayout.setOnRefreshListener {
+            dateChoose?.let {
+                presenter.getIncomeYear(it)
+            }
         }
     }
 
@@ -78,6 +86,7 @@ class IncomeYearFragment : Fragment(), IncomeYearContract.View {
         view.picker.value = TimeHelper.getTimeCurrent(Constants.YEAR_PATTERN).toInt()
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             presenter.getIncomeYear(view.picker.value.toString().trim())
+            dateChoose = view.picker.value.toString().trim()
             dateTextView?.text = view.picker.value.toString().trim()
         }
             .setNegativeButton(android.R.string.cancel) { dialog, _ ->

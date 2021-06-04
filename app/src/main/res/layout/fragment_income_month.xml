@@ -6,283 +6,294 @@
     android:layout_height="match_parent"
     tools:context=".screens.earnings.tabs.month.IncomeMonthFragment">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/dateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sf_compact_display_bold"
-        android:textSize="@dimen/sp_16"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.019" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageViewCalendar"
-        android:layout_width="@dimen/dp_25"
-        android:layout_height="@dimen/dp_25"
-        android:layout_marginLeft="@dimen/dp_10"
-        android:background="@drawable/ic_calendar"
-        app:layout_constraintBottom_toBottomOf="@+id/dateTextView"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toEndOf="@+id/dateTextView"
-        app:layout_constraintTop_toTopOf="@+id/dateTextView"
-        app:layout_constraintWidth_percent="0.05" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cashCardView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:cardBackgroundColor="@color/colorMantisGreen"
-        app:cardCornerRadius="@dimen/dp_5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="400:65"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.107"
-        app:layout_constraintWidth_percent="0.95">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_compact_display_medium"
-                android:gravity="center_vertical"
-                android:text="@string/cash"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.019"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.093" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/totalCashTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_compact_display_medium"
-                android:gravity="center_vertical"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.511" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_5"
-                android:fontFamily="@font/sf_compact_display_medium"
-                android:gravity="center_vertical"
-                android:text="đ"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toBottomOf="@+id/totalCashTextView"
-                app:layout_constraintStart_toEndOf="@+id/totalCashTextView"
-                app:layout_constraintTop_toTopOf="@+id/totalCashTextView" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/coinCardView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp_10"
-        app:cardBackgroundColor="@color/colorGoldenrodLowTransparentYellow"
-        app:cardCornerRadius="@dimen/dp_5"
-        app:layout_constraintDimensionRatio="400:65"
-        app:layout_constraintEnd_toEndOf="@+id/cashCardView"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/cashCardView"
-        app:layout_constraintTop_toBottomOf="@+id/cashCardView"
-        app:layout_constraintWidth_percent="0.95">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_compact_display_medium"
-                android:gravity="center_vertical"
-                android:text="@string/coin"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.019"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.093" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/totalCoinTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_compact_display_medium"
-                android:gravity="center_vertical"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.511" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_5"
-                android:fontFamily="@font/sf_compact_display_medium"
-                android:gravity="center_vertical"
-                android:text="đ"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toBottomOf="@+id/totalCoinTextView"
-                app:layout_constraintStart_toEndOf="@+id/totalCoinTextView"
-                app:layout_constraintTop_toTopOf="@+id/totalCoinTextView" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/payPalCardView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp_10"
-        app:cardBackgroundColor="@color/colorLightBlue"
-        app:cardCornerRadius="@dimen/dp_5"
-        app:layout_constraintDimensionRatio="400:65"
-        app:layout_constraintEnd_toEndOf="@+id/coinCardView"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/coinCardView"
-        app:layout_constraintTop_toBottomOf="@+id/coinCardView"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintWidth_percent="0.95">
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_compact_display_medium"
-                android:gravity="center_vertical"
-                android:text="Paypal"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.019"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.093" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/totalPayPalTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_compact_display_medium"
-                android:gravity="center_vertical"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.511" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_5"
-                android:fontFamily="@font/sf_compact_display_medium"
-                android:gravity="center_vertical"
-                android:text="đ"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toBottomOf="@+id/totalPayPalTextView"
-                app:layout_constraintStart_toEndOf="@+id/totalPayPalTextView"
-                app:layout_constraintTop_toTopOf="@+id/totalPayPalTextView" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/totalDailyCardView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp_50"
-        app:cardBackgroundColor="@color/colorBayouxBlue"
-        app:cardCornerRadius="@dimen/dp_5"
-        app:layout_constraintDimensionRatio="400:95"
-        app:layout_constraintEnd_toEndOf="@+id/payPalCardView"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="@+id/payPalCardView"
-        app:layout_constraintTop_toBottomOf="@+id/payPalCardView"
-        app:layout_constraintWidth_percent="0.95">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_compact_display_medium"
-                android:gravity="center_vertical"
-                android:text="@string/total_month"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.019"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.093" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/totalMonthTextView"
+                android:id="@+id/dateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_compact_display_bold"
-                android:gravity="center_vertical"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_18"
+                android:textSize="@dimen/sp_16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.035"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.511" />
+                app:layout_constraintVertical_bias="0.019" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_5"
-                android:fontFamily="@font/sf_compact_display_bold"
-                android:gravity="center_vertical"
-                android:text="đ"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_18"
-                app:layout_constraintBottom_toBottomOf="@+id/totalMonthTextView"
-                app:layout_constraintStart_toEndOf="@+id/totalMonthTextView"
-                app:layout_constraintTop_toTopOf="@+id/totalMonthTextView" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewCalendar"
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="@dimen/dp_25"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:background="@drawable/ic_calendar"
+                app:layout_constraintBottom_toBottomOf="@+id/dateTextView"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toEndOf="@+id/dateTextView"
+                app:layout_constraintTop_toTopOf="@+id/dateTextView"
+                app:layout_constraintWidth_percent="0.05" />
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cashCardView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:cardBackgroundColor="@color/colorMantisGreen"
+                app:cardCornerRadius="@dimen/dp_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="400:65"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.107"
+                app:layout_constraintWidth_percent="0.95">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_compact_display_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/cash"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.093" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/totalCashTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_compact_display_medium"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.511" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:fontFamily="@font/sf_compact_display_medium"
+                        android:gravity="center_vertical"
+                        android:text="đ"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintBottom_toBottomOf="@+id/totalCashTextView"
+                        app:layout_constraintStart_toEndOf="@+id/totalCashTextView"
+                        app:layout_constraintTop_toTopOf="@+id/totalCashTextView" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/coinCardView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_10"
+                app:cardBackgroundColor="@color/colorGoldenrodLowTransparentYellow"
+                app:cardCornerRadius="@dimen/dp_5"
+                app:layout_constraintDimensionRatio="400:65"
+                app:layout_constraintEnd_toEndOf="@+id/cashCardView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/cashCardView"
+                app:layout_constraintTop_toBottomOf="@+id/cashCardView"
+                app:layout_constraintWidth_percent="0.95">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_compact_display_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/coin"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.093" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/totalCoinTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_compact_display_medium"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.511" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:fontFamily="@font/sf_compact_display_medium"
+                        android:gravity="center_vertical"
+                        android:text="đ"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintBottom_toBottomOf="@+id/totalCoinTextView"
+                        app:layout_constraintStart_toEndOf="@+id/totalCoinTextView"
+                        app:layout_constraintTop_toTopOf="@+id/totalCoinTextView" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/payPalCardView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_10"
+                app:cardBackgroundColor="@color/colorLightBlue"
+                app:cardCornerRadius="@dimen/dp_5"
+                app:layout_constraintDimensionRatio="400:65"
+                app:layout_constraintEnd_toEndOf="@+id/coinCardView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/coinCardView"
+                app:layout_constraintTop_toBottomOf="@+id/coinCardView"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintWidth_percent="0.95">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_compact_display_medium"
+                        android:gravity="center_vertical"
+                        android:text="Paypal"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.093" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/totalPayPalTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_compact_display_medium"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.511" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:fontFamily="@font/sf_compact_display_medium"
+                        android:gravity="center_vertical"
+                        android:text="đ"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintBottom_toBottomOf="@+id/totalPayPalTextView"
+                        app:layout_constraintStart_toEndOf="@+id/totalPayPalTextView"
+                        app:layout_constraintTop_toTopOf="@+id/totalPayPalTextView" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/totalDailyCardView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_50"
+                app:cardBackgroundColor="@color/colorBayouxBlue"
+                app:cardCornerRadius="@dimen/dp_5"
+                app:layout_constraintDimensionRatio="400:95"
+                app:layout_constraintEnd_toEndOf="@+id/payPalCardView"
+                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintStart_toStartOf="@+id/payPalCardView"
+                app:layout_constraintTop_toBottomOf="@+id/payPalCardView"
+                app:layout_constraintWidth_percent="0.95">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_compact_display_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/total_month"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.093" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/totalMonthTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_compact_display_bold"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_18"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.511" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:fontFamily="@font/sf_compact_display_bold"
+                        android:gravity="center_vertical"
+                        android:text="đ"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_18"
+                        app:layout_constraintBottom_toBottomOf="@+id/totalMonthTextView"
+                        app:layout_constraintStart_toEndOf="@+id/totalMonthTextView"
+                        app:layout_constraintTop_toTopOf="@+id/totalMonthTextView" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,6 +28,7 @@ class IncomeMonthFragment : Fragment(), IncomeMonthContract.View {
             TokenRepositoryImpl.getInstance(SharedPrefsImpl.getInstance(requireContext()))
         )
     }
+    private var dateChoose: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +44,7 @@ class IncomeMonthFragment : Fragment(), IncomeMonthContract.View {
     }
 
     override fun onGetIncomeMonthSuccess(incomeMonthResponse: IncomeMonthResponse) {
+        swipeLayout.isRefreshing = false
         totalCashTextView?.text = incomeMonthResponse.totalCash.toString()
         totalCoinTextView?.text = incomeMonthResponse.totalCoin.toString()
         totalPayPalTextView?.text = incomeMonthResponse.totalPayPal.toString()
@@ -57,6 +59,7 @@ class IncomeMonthFragment : Fragment(), IncomeMonthContract.View {
         presenter.setView(this)
         dateTextView?.text = TimeHelper.getTimeCurrent(Constants.MONTH_YEAR)
         presenter.getIncomeMonth(TimeHelper.getTimeCurrent(Constants.MONTH_YEAR))
+        dateChoose = TimeHelper.getTimeCurrent(Constants.MONTH_YEAR)
     }
 
     private fun handleEvents() {
@@ -74,7 +77,13 @@ class IncomeMonthFragment : Fragment(), IncomeMonthContract.View {
                     Locale.getDefault()
                 ).parse("$month-$year")
                 dateTextView?.text = date.toString(Constants.MONTH_YEAR)
+                dateChoose = date.toString(Constants.MONTH_YEAR)
                 presenter.getIncomeMonth(date.toString(Constants.MONTH_YEAR))
+            }
+        }
+        swipeLayout.setOnRefreshListener {
+            dateChoose?.let {
+                presenter.getIncomeMonth(it)
             }
         }
     }
