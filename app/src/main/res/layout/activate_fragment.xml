@@ -4,11 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:translationZ="@dimen/dp_10"
     android:background="@color/colorWhite"
     android:clickable="true"
     android:focusable="true"
+    android:translationZ="@dimen/dp_10"
     tools:context=".screens.signup.activate.ActivateFragment">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:theme="@style/circleProgress"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageViewBack"
@@ -88,10 +101,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextActivateCode"
             android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
             android:inputType="text"
             android:lines="1"
-            android:textIsSelectable="true"
-            android:layout_height="@dimen/dp_60" />
+            android:textIsSelectable="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
