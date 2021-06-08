@@ -9,7 +9,9 @@ import android.widget.Toast
 import com.example.qakhadriver.R
 import com.example.qakhadriver.data.repository.SignRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
+import com.example.qakhadriver.utils.gone
 import com.example.qakhadriver.utils.makeText
+import com.example.qakhadriver.utils.show
 import kotlinx.android.synthetic.main.activate_fragment.*
 
 class ActivateFragment : Fragment(), ActivateContract.View {
@@ -44,11 +46,13 @@ class ActivateFragment : Fragment(), ActivateContract.View {
             getString(R.string.content_activate_success),
             Toast.LENGTH_LONG
         ).show()
+        progressBar.gone()
         parentFragmentManager.popBackStack()
     }
 
     override fun onActivateAccountFailure() {
         makeText(getString(R.string.content_activate_failure))
+        progressBar.gone()
     }
 
     private fun initViews() {
@@ -58,6 +62,7 @@ class ActivateFragment : Fragment(), ActivateContract.View {
     private fun handleEvents() {
         activateButton.setOnClickListener {
             presenter.activateAccount(editTextActivateCode.text.toString().trim())
+            progressBar.show()
         }
         imageViewBack.setOnClickListener {
             parentFragmentManager.popBackStack()
