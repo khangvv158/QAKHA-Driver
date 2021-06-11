@@ -33,7 +33,7 @@ class ImageSignUpPresenter(
                 .subscribe({
                     view?.onSignUpSuccess()
                 }, {
-                    view?.onError(it.localizedMessage)
+                    view?.onSignUpFailure(it)
                 })
             compositeDisposable.add(disposable)
         }

@@ -8,6 +8,7 @@ interface ImageSignUpContract {
     interface View {
 
         fun onSignUpSuccess()
+        fun onSignUpFailure(throwable: Throwable)
         fun uploadFileToCloudSuccess(url: String)
         fun onError(message: String)
     }

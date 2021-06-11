@@ -1,5 +1,6 @@
 package com.example.qakhadriver.screens.signup
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.example.qakhadriver.R
+import com.example.qakhadriver.data.model.Event
 import com.example.qakhadriver.data.repository.SignRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
 import com.example.qakhadriver.data.source.remote.schema.request.RegisterRequest
@@ -21,6 +23,9 @@ import kotlinx.android.synthetic.main.fragment_sign_up.emailEditText
 import kotlinx.android.synthetic.main.fragment_sign_up.emailTextInputLayout
 import kotlinx.android.synthetic.main.fragment_sign_up.passwordEditText
 import kotlinx.android.synthetic.main.fragment_sign_up.passwordTextInputLayout
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.util.concurrent.TimeUnit
 
 class SignUpFragment : Fragment(), SignUpContract.View {
@@ -37,6 +42,16 @@ class SignUpFragment : Fragment(), SignUpContract.View {
     private var idCardIsExist = false
     private var licensePlateIsExist = false
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onDetach() {
+        EventBus.getDefault().unregister(this)
+        super.onDetach()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +63,20 @@ class SignUpFragment : Fragment(), SignUpContract.View {
         super.onViewCreated(view, savedInstanceState)
         presenter.setView(this)
         handleEvents()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEventBusActivateSuccess(event: Event<String>) {
+        if (event.keyEvent == ActivateFragment.EVENT_ACTIVATE_SUCCESS) {
+            parentFragmentManager.popBackStack()
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEventBusFresh(event: Event<String>) {
+        if (event.keyEvent == ImageSignUpFragment.EVENT_BUS_FRESH) {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     override fun onSignUpFailure(message: String) {
@@ -103,14 +132,11 @@ class SignUpFragment : Fragment(), SignUpContract.View {
         imageViewBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
-        signUpButton.setOnClickListener {
+        signUpButton.setOnSafeClickListener {
             handleSendSignUp()
         }
         handleEventsKeyBoard()
         handleEventsAfterTextChanged()
-        activateTextView.setOnClickListener {
-            addFragmentSlideAnim(ActivateFragment.newInstance(), R.id.containerViewAuthentication)
-        }
     }
 
     private fun handleSendSignUp() {
@@ -250,6 +276,14 @@ class SignUpFragment : Fragment(), SignUpContract.View {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { text ->
                 validatePasswordConfirmation(text)
+            }
+        EditTextObservable.fromView(nameEditText)
+            .debounce(500, TimeUnit.MILLISECONDS)
+            .distinctUntilChanged()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { text ->
+                validateUsername(text)
             }
         EditTextObservable.fromView(identityCardEditText)
             .debounce(1000, TimeUnit.MILLISECONDS)

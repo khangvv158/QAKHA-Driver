@@ -21,12 +21,12 @@ interface SignAPI {
     @POST("check_phone_number")
     fun checkPhoneNumber(@Body phoneRequest: PhoneRequest): Observable<Boolean>
 
-    @POST("passwords/forgot")
+    @POST("passwords/forgot_pw_driver")
     fun forgotPassword(@Body emailRequest: EmailRequest): Observable<MessageResponse>
 
-    @POST("passwords/reset")
+    @POST("passwords/reset_pw_driver")
     fun resetPasswordByVerificationCode(
-            @Body resetPasswordRequest: ResetPasswordRequest
+        @Body resetPasswordRequest: ResetPasswordRequest
     ): Observable<MessageResponse>
 
     @POST("check_id_card_driver")
@@ -39,4 +39,7 @@ interface SignAPI {
     fun activateAccount(
         @Body activateRequest: ActivateRequest
     ): Observable<MessageResponse>
+
+    @POST("driver/confirmation")
+    fun resendCodeActivate(@Body emailRequest: EmailRequest): Observable<MessageResponse>
 }

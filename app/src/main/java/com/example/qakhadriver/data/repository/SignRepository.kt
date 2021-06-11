@@ -7,7 +7,6 @@ import com.example.qakhadriver.data.source.remote.RetrofitClient
 import com.example.qakhadriver.data.source.remote.SignAPI
 import com.example.qakhadriver.data.source.remote.schema.request.*
 import com.example.qakhadriver.data.source.remote.schema.response.MessageResponse
-import com.example.qakhadriver.utils.Constants
 import io.reactivex.rxjava3.core.Observable
 
 interface SignRepository {
@@ -43,6 +42,8 @@ interface SignRepository {
     fun checkLicensePlate(licensePlateRequest: LicensePlateRequest): Observable<Boolean>
 
     fun activateAccount(activateRequest: ActivateRequest): Observable<MessageResponse>
+
+    fun resendCodeActivate(emailRequest: EmailRequest): Observable<MessageResponse>
 }
 
 class SignRepositoryImpl private constructor(
@@ -108,6 +109,9 @@ class SignRepositoryImpl private constructor(
 
     override fun activateAccount(activateRequest: ActivateRequest): Observable<MessageResponse> =
         client.activateAccount(activateRequest)
+
+    override fun resendCodeActivate(emailRequest: EmailRequest): Observable<MessageResponse> =
+        client.resendCodeActivate(emailRequest)
 
     companion object {
 
