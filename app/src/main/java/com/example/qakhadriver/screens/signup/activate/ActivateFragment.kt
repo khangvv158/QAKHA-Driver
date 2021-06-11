@@ -6,13 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import com.example.qakhadriver.R
+import com.example.qakhadriver.data.model.Event
 import com.example.qakhadriver.data.repository.SignRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
+import com.example.qakhadriver.data.source.remote.schema.request.EmailRequest
 import com.example.qakhadriver.utils.gone
 import com.example.qakhadriver.utils.makeText
 import com.example.qakhadriver.utils.show
 import kotlinx.android.synthetic.main.activate_fragment.*
+import org.greenrobot.eventbus.EventBus
 
 class ActivateFragment : Fragment(), ActivateContract.View {
 
@@ -21,6 +25,7 @@ class ActivateFragment : Fragment(), ActivateContract.View {
             SignRepositoryImpl.getInstance(SharedPrefsImpl.getInstance(requireContext()))
         )
     }
+    private var emailRequest: EmailRequest? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +52,7 @@ class ActivateFragment : Fragment(), ActivateContract.View {
             Toast.LENGTH_LONG
         ).show()
         progressBar.gone()
+        EventBus.getDefault().post(Event(EVENT_ACTIVATE_SUCCESS, EVENT_ACTIVATE_SUCCESS))
         parentFragmentManager.popBackStack()
     }
 
@@ -55,7 +61,23 @@ class ActivateFragment : Fragment(), ActivateContract.View {
         progressBar.gone()
     }
 
+    override fun onResendCodeActivateSuccess() {
+        progressBar.gone()
+        makeText(getString(R.string.generating_code))
+    }
+
+    override fun onResendCodeActivateFailure() {
+        progressBar.gone()
+    }
+
+    override fun onError(message: String) {
+        makeText(message)
+    }
+
     private fun initViews() {
+        arguments?.getParcelable<EmailRequest>(ARGUMENT_EMAIL)?.let {
+            emailRequest = it
+        }
         presenter.setView(this)
     }
 
@@ -67,9 +89,21 @@ class ActivateFragment : Fragment(), ActivateContract.View {
         imageViewBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+        textViewGeneratingCode.setOnClickListener {
+            emailRequest?.let { email ->
+                presenter.resendCodeActivate(email)
+                progressBar.show()
+            }
+        }
     }
 
     companion object {
-        fun newInstance() = ActivateFragment()
+
+        private const val ARGUMENT_EMAIL = "ARGUMENT_EMAIL"
+        const val EVENT_ACTIVATE_SUCCESS = "EVENT_ACTIVATE_SUCCESS"
+
+        fun newInstance(emailRequest: EmailRequest?) = ActivateFragment().apply {
+            arguments = bundleOf(ARGUMENT_EMAIL to emailRequest)
+        }
     }
 }

@@ -2,7 +2,6 @@ package com.example.qakhadriver.screens.signup.imagesignup
 
 import android.Manifest
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
@@ -20,13 +19,17 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import com.bumptech.glide.Glide
 import com.example.qakhadriver.R
+import com.example.qakhadriver.data.model.Event
 import com.example.qakhadriver.data.repository.CloudRepositoryImpl
 import com.example.qakhadriver.data.repository.SignRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
+import com.example.qakhadriver.data.source.remote.schema.request.EmailRequest
 import com.example.qakhadriver.data.source.remote.schema.request.RegisterRequest
 import com.example.qakhadriver.screens.signup.activate.ActivateFragment
 import com.example.qakhadriver.utils.*
 import kotlinx.android.synthetic.main.fragment_image_sign_up.*
+import org.greenrobot.eventbus.EventBus
+import retrofit2.HttpException
 import java.lang.Exception
 
 class ImageSignUpFragment : Fragment(), ImageSignUpContract.View {
@@ -39,13 +42,6 @@ class ImageSignUpFragment : Fragment(), ImageSignUpContract.View {
     }
     private var registerRequest: RegisterRequest? = null
     private var filePath: String? = null
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        arguments?.getParcelable<RegisterRequest>(BUNDLE_REGISTER).let {
-            registerRequest = it
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +58,18 @@ class ImageSignUpFragment : Fragment(), ImageSignUpContract.View {
 
     override fun onSignUpSuccess() {
         progressBar.gone()
-        replaceFragment(ActivateFragment.newInstance(), R.id.containerViewImageSignUp)
+        replaceFragment(
+            ActivateFragment.newInstance(registerRequest?.email?.let { EmailRequest(it) }),
+            R.id.containerViewImageSignUp
+        )
+    }
+
+    override fun onSignUpFailure(throwable: Throwable) {
+        progressBar.gone()
+        makeText(throwable.localizedMessage)
+        if ((throwable as HttpException).code() == 500) {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     override fun uploadFileToCloudSuccess(url: String) {
@@ -110,18 +117,25 @@ class ImageSignUpFragment : Fragment(), ImageSignUpContract.View {
     }
 
     private fun initViews() {
+        arguments?.getParcelable<RegisterRequest>(BUNDLE_REGISTER).let {
+            registerRequest = it
+        }
         presenter.setView(this)
     }
 
     private fun handleEvents() {
-        selectImageView.setOnClickListener {
+        selectImageView.setOnSafeClickListener {
             requestPermission()
         }
-        signUpButton.setOnClickListener {
+        signUpButton.setOnSafeClickListener {
             if (!registerRequest?.image.isNullOrEmpty()) {
                 registerRequest?.let { registerRequest -> presenter.signUp(registerRequest) }
                 progressBar.show()
             }
+        }
+        imageViewBack.setOnClickListener {
+            EventBus.getDefault().post(Event(EVENT_BUS_FRESH, EVENT_BUS_FRESH))
+            parentFragmentManager.popBackStack()
         }
     }
 
@@ -165,6 +179,7 @@ class ImageSignUpFragment : Fragment(), ImageSignUpContract.View {
         private const val BUNDLE_REGISTER = "BUNDLE_REGISTER"
         private const val PERMISSION_CODE = 1
         private const val PICK_IMAGE = 1
+        const val EVENT_BUS_FRESH = "EVENT_BUS_FRESH"
 
         fun newInstance(registerRequest: RegisterRequest) = ImageSignUpFragment().apply {
             arguments = bundleOf(BUNDLE_REGISTER to registerRequest)
