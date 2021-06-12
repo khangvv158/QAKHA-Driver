@@ -20,9 +20,7 @@ import com.example.qakhadriver.data.repository.OrderRepositoryImpl
 import com.example.qakhadriver.data.repository.TokenRepositoryImpl
 import com.example.qakhadriver.data.source.local.sharedprefs.SharedPrefsImpl
 import com.example.qakhadriver.screens.orderdetail.adapter.BucketAdapter
-import com.example.qakhadriver.utils.IPositiveNegativeListener
-import com.example.qakhadriver.utils.makeText
-import com.example.qakhadriver.utils.showDialogWithListener
+import com.example.qakhadriver.utils.*
 import kotlinx.android.synthetic.main.fragment_order_detail.*
 
 class OrderDetailFragment : Fragment(), OrderDetailContract.View {
@@ -54,12 +52,14 @@ class OrderDetailFragment : Fragment(), OrderDetailContract.View {
     }
 
     override fun completeDeliverySuccess() {
+        progressBar.gone()
         makeText(getString(R.string.complete))
         notificationManager.notify(NOTIFICATION_ORDER_ID,createNotificationOrderDone())
         parentFragmentManager.popBackStack()
     }
 
     override fun onError(message: String) {
+        progressBar.gone()
         makeText(message)
     }
 
@@ -89,13 +89,14 @@ class OrderDetailFragment : Fragment(), OrderDetailContract.View {
         imageViewBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
-        doneButton.setOnClickListener {
+        doneButton.setOnSafeClickListener {
             requireContext().showDialogWithListener(
                 getString(R.string.delivery_confirmation),
                 getString(R.string.make_sure_your_order_has_been_delivered_correctly),
                 object : IPositiveNegativeListener {
 
                     override fun onPositive() {
+                        progressBar.show()
                         presenter.completeDelivery(
                             order.orderDetail.id,
                             order.orderDetail.driverId
