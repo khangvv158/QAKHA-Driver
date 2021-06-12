@@ -49,7 +49,7 @@
             android:id="@+id/freePickLayout"
             layout="@layout/item_layout_free_pick"
             android:layout_width="@dimen/_300sdp"
-            android:layout_height="@dimen/_190sdp"
+            android:layout_height="@dimen/_200sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/appCompatTextView"

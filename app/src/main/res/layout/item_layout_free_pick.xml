@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/_200sdp">
 
         <LinearLayout
             android:id="@+id/titleLayout"
@@ -162,7 +162,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/deliveryLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/pickupLayout"
             android:background="#F6FBFB"
             android:paddingBottom="@dimen/_5sdp">
