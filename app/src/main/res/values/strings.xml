@@ -214,4 +214,5 @@
     <string name="withdrawal">Withdrawal</string>
     <string name="connecting_please_wait">Connecting, please wait ...</string>
     <string name="content_account_has_not_activation_from_admin">Your account has not activation from admin. Please contact with QAKHA Team.</string>
+    <string name="content_locked_account">Your account has been locked !!</string>
 </resources>

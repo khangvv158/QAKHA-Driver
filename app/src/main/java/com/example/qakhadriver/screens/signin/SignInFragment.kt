@@ -103,6 +103,12 @@ class SignInFragment : Fragment(), SignInContract.View {
                 getString(R.string.content_account_has_not_activation_from_admin),
                 Toast.LENGTH_LONG
             ).show()
+        } else if (message == "Your account has been locked !!") {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.content_locked_account),
+                Toast.LENGTH_SHORT
+            ).show()
         } else {
             emailTextInputLayout.error = Constants.SPACE_STRING
             passwordTextInputLayout.error = message

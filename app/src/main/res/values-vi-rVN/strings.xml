@@ -204,4 +204,5 @@
     <string name="withdrawal">Rút tiền</string>
     <string name="connecting_please_wait">Đang kết nối, vui lòng đợi…</string>
     <string name="content_account_has_not_activation_from_admin">Tài khoản của bạn chưa được quản trị viên kích hoạt. Vui lòng liên hệ với QAKHA Team.</string>
+    <string name="content_locked_account">Tài khoản của bạn đã bị khóa</string>
 </resources>
