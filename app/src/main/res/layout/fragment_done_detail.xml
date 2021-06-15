@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhileSmoke"
+    android:clickable="true"
+    android:focusable="true"
+    android:translationZ="@dimen/_15sdp"
     tools:context=".screens.donedetail.DoneDetailFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -12,8 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_alignParentTop="true"
-        android:background="@color/colorDarkGrayishMagenta"
-        android:translationZ="@dimen/_5sdp">
+        android:background="@color/colorDarkGrayishMagenta">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -50,10 +52,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/appBarLayoutTop"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -217,8 +220,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:paddingBottom="@dimen/_10sdp"
                 android:background="@color/colorWhite"
+                android:paddingBottom="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayoutInfo">
@@ -308,9 +311,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:textSize="@dimen/_14sdp"
-                    android:textColor="@color/textPrimary"
                     android:fontFamily="@font/sf_compact_display_medium"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/_14sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/textViewUnit4"
                     app:layout_constraintEnd_toStartOf="@+id/textViewUnit4"
                     app:layout_constraintTop_toTopOf="@+id/textViewUnit4"
@@ -322,8 +325,8 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:fontFamily="@font/sf_compact_display_medium"
                     android:text="@string/total"
-                    android:textSize="@dimen/_14sdp"
                     android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/_14sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/textViewPriceTotal"
                     app:layout_constraintEnd_toStartOf="@+id/textViewPriceTotal"
                     app:layout_constraintTop_toTopOf="@+id/textViewPriceTotal"
@@ -436,5 +439,5 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

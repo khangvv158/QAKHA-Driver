@@ -54,10 +54,9 @@ class IncomeDayFragment : Fragment(), DatePickerDialog.OnDateSetListener, Income
     }
 
     override fun onGetIncomeDaySuccess(incomeDayResponse: IncomeDayResponse) {
-        swipeLayout.isRefreshing = false
+        swipeLayout?.isRefreshing = false
         totalCashTextView?.text = incomeDayResponse.totalCash.toString()
         totalCoinTextView?.text = incomeDayResponse.totalCoin.toString()
-        totalPayPalTextView?.text = incomeDayResponse.totalPayPal.toString()
         totalDailyTextView?.text = incomeDayResponse.totalDaily.toString()
     }
 
@@ -73,7 +72,7 @@ class IncomeDayFragment : Fragment(), DatePickerDialog.OnDateSetListener, Income
     }
 
     private fun handleEvent() {
-        imageViewCalendar.setOnClickListener {
+        imageViewCalendar?.setOnClickListener {
             val now = Calendar.getInstance()
             val datePickerDialog = DatePickerDialog.newInstance(
                 this, now.get(Calendar.YEAR),
@@ -82,7 +81,7 @@ class IncomeDayFragment : Fragment(), DatePickerDialog.OnDateSetListener, Income
             )
             datePickerDialog.show(parentFragmentManager, DATE_PICKER_DIALOG)
         }
-        swipeLayout.setOnRefreshListener {
+        swipeLayout?.setOnRefreshListener {
             dateChoose?.let {
                 presenter.getIncomeDay(it)
             }

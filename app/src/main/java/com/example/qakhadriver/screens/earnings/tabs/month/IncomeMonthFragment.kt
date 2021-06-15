@@ -44,10 +44,9 @@ class IncomeMonthFragment : Fragment(), IncomeMonthContract.View {
     }
 
     override fun onGetIncomeMonthSuccess(incomeMonthResponse: IncomeMonthResponse) {
-        swipeLayout.isRefreshing = false
+        swipeLayout?.isRefreshing = false
         totalCashTextView?.text = incomeMonthResponse.totalCash.toString()
         totalCoinTextView?.text = incomeMonthResponse.totalCoin.toString()
-        totalPayPalTextView?.text = incomeMonthResponse.totalPayPal.toString()
         totalMonthTextView?.text = incomeMonthResponse.totalMonthly.toString()
     }
 
@@ -63,7 +62,7 @@ class IncomeMonthFragment : Fragment(), IncomeMonthContract.View {
     }
 
     private fun handleEvents() {
-        imageViewCalendar.setOnClickListener {
+        imageViewCalendar?.setOnClickListener {
             val calendar = Calendar.getInstance()
             val dialog = MonthYearPickerDialogFragment.getInstance(
                 calendar.get(Calendar.MONTH),

@@ -64,8 +64,8 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     }
 
     override fun onDetach() {
-        super.onDetach()
         EventBus.getDefault().unregister(this)
+        super.onDetach()
     }
 
     override fun onCreateView(
@@ -90,7 +90,10 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     fun onEventGetOrderFromFirebase(event: Event<OrderFirebase>) {
         if (event.keyEvent == FirebaseLocationService.EVENT_ORDER_FIREBASE_RESPONSE) {
-            presenter.getOrderDetail(event.obj.idDriver, event.obj.idOrder)
+            Handler().postDelayed({
+                presenter.getOrderDetail(event.obj.idDriver, event.obj.idOrder)
+                progressBar.show()
+            }, 3200)
         }
         if (event.keyEvent == FirebaseLocationService.EVENT_ORDER_FIREBASE_REMOVE) {
             freePickLayout.gone()
@@ -104,6 +107,7 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     }
 
     override fun onGetOrderDetailSuccess(order: Order) {
+        progressBar.gone()
         initViewsFreePickLayout(order)
         handleEventsFreePickLayout(order)
     }
@@ -124,6 +128,7 @@ class FreePickFragment : Fragment(), FreePickContract.View {
     }
 
     override fun onError(message: String) {
+        progressBar.gone()
         makeText(message)
     }
 

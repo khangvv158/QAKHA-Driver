@@ -168,71 +168,6 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/payPalCardView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="@dimen/dp_10"
-                app:cardBackgroundColor="@color/colorLightBlue"
-                app:cardCornerRadius="@dimen/dp_5"
-                app:layout_constraintDimensionRatio="400:65"
-                app:layout_constraintEnd_toEndOf="@+id/coinCardView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/coinCardView"
-                app:layout_constraintTop_toBottomOf="@+id/coinCardView"
-                app:layout_constraintVertical_bias="0.0"
-                app:layout_constraintWidth_percent="0.95">
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_compact_display_medium"
-                        android:gravity="center_vertical"
-                        android:text="Paypal"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_16"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.093" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/totalPayPalTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_compact_display_medium"
-                        android:gravity="center_vertical"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_16"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.511" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_5"
-                        android:fontFamily="@font/sf_compact_display_medium"
-                        android:gravity="center_vertical"
-                        android:text="đ"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_16"
-                        app:layout_constraintBottom_toBottomOf="@+id/totalPayPalTextView"
-                        app:layout_constraintStart_toEndOf="@+id/totalPayPalTextView"
-                        app:layout_constraintTop_toTopOf="@+id/totalPayPalTextView" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
                 android:id="@+id/totalDailyCardView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -240,10 +175,10 @@
                 app:cardBackgroundColor="@color/colorBayouxBlue"
                 app:cardCornerRadius="@dimen/dp_5"
                 app:layout_constraintDimensionRatio="400:95"
-                app:layout_constraintEnd_toEndOf="@+id/payPalCardView"
+                app:layout_constraintEnd_toEndOf="@+id/coinCardView"
                 app:layout_constraintHorizontal_bias="0.8"
-                app:layout_constraintStart_toStartOf="@+id/payPalCardView"
-                app:layout_constraintTop_toBottomOf="@+id/payPalCardView"
+                app:layout_constraintStart_toStartOf="@+id/coinCardView"
+                app:layout_constraintTop_toBottomOf="@+id/coinCardView"
                 app:layout_constraintWidth_percent="0.95">
 
                 <androidx.constraintlayout.widget.ConstraintLayout

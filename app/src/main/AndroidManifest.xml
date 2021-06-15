@@ -31,7 +31,7 @@
 
         <receiver android:name=".broadcast.LocationBroadcast">
             <intent-filter>
-                <action android:name="android.intent.action.PROVIDER_CHANGED"/>
+                <action android:name="android.intent.action.PROVIDER_CHANGED" />
             </intent-filter>
         </receiver>
 
@@ -44,6 +44,7 @@
 
         <activity
             android:name=".screens.splash.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,7 +53,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".screens.main.MainActivity" />
+        <activity
+            android:name=".screens.main.MainActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

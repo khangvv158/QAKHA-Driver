@@ -32,14 +32,14 @@ class HelpCenterFragment : Fragment() {
             startActivity(
                 Intent(
                     Intent.ACTION_DIAL,
-                    Uri.parse("tel:0378365756")
+                    Uri.parse("tel:0396355253")
                 )
             )
         }
         gmailImageView.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
-                putExtra(Intent.EXTRA_EMAIL, arrayOf("khangvv158@gmail.com"))
+                putExtra(Intent.EXTRA_EMAIL, arrayOf("qakhadelivery@gmail.com"))
                 putExtra(Intent.EXTRA_SUBJECT, "Feedback")
             }
             startActivity(intent)
