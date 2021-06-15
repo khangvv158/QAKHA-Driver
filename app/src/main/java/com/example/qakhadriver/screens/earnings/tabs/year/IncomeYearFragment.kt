@@ -16,11 +16,6 @@ import com.example.qakhadriver.utils.TimeHelper
 import com.example.qakhadriver.utils.makeText
 import kotlinx.android.synthetic.main.dialog_number_picker.view.*
 import kotlinx.android.synthetic.main.fragment_income_year.*
-import kotlinx.android.synthetic.main.fragment_income_year.dateTextView
-import kotlinx.android.synthetic.main.fragment_income_year.imageViewCalendar
-import kotlinx.android.synthetic.main.fragment_income_year.totalCashTextView
-import kotlinx.android.synthetic.main.fragment_income_year.totalCoinTextView
-import kotlinx.android.synthetic.main.fragment_income_year.totalPayPalTextView
 
 
 class IncomeYearFragment : Fragment(), IncomeYearContract.View {
@@ -47,10 +42,9 @@ class IncomeYearFragment : Fragment(), IncomeYearContract.View {
     }
 
     override fun onGetIncomeYearSuccess(incomeYearResponse: IncomeYearResponse) {
-        swipeLayout.isRefreshing = false
+        swipeLayout?.isRefreshing = false
         totalCashTextView?.text = incomeYearResponse.totalCash.toString()
         totalCoinTextView?.text = incomeYearResponse.totalCoin.toString()
-        totalPayPalTextView?.text = incomeYearResponse.totalPayPal.toString()
         totalAnnualTextView?.text = incomeYearResponse.totalAnnual.toString()
     }
 
@@ -66,10 +60,10 @@ class IncomeYearFragment : Fragment(), IncomeYearContract.View {
     }
 
     private fun handleEvents() {
-        imageViewCalendar.setOnClickListener {
+        imageViewCalendar?.setOnClickListener {
             showPickerDialog()
         }
-        swipeLayout.setOnRefreshListener {
+        swipeLayout?.setOnRefreshListener {
             dateChoose?.let {
                 presenter.getIncomeYear(it)
             }

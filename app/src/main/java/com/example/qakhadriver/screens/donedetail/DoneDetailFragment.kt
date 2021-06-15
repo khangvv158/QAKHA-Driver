@@ -66,7 +66,7 @@ class DoneDetailFragment : Fragment() {
     }
 
     private fun handleEventCall(orderDone: OrderDone) {
-        imageViewBack.setOnClickListener {
+        imageViewCall.setOnClickListener {
             startActivity(
                 Intent(
                     Intent.ACTION_DIAL,
